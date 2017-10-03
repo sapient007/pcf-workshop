@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Route-services on Pivotal Cloud Foundry Developer</title>
+    <link>/pivotal-cloud-foundry-developer/route-service/</link>
+    <description>Recent content in Route-services on Pivotal Cloud Foundry Developer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright Pivotal. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 07 Mar 2016 15:49:50 -0600</lastBuildDate>
+    <atom:link href="/pivotal-cloud-foundry-developer/route-service/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/route-service/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/route-service/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are the key headers used to implement route services (Service Instance Responsibilities)?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;
+* &lt;code&gt;X-CF-Forwarded-Url&lt;/code&gt;
+* &lt;code&gt;X-CF-Proxy-Signature&lt;/code&gt;
+* &lt;code&gt;X-CF-Proxy-Metadata&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How would you apply route services in your environment??&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Show them how they can succeed with route services.  Use-cases may include Apigee or other software fronting legacy apps.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;p&gt;Make sure that when using PCF that the Redis shared VM has been sized appropriately for the class.  For instance in class of 25 size it to 16GB of RAM.  See the &lt;a href=&#34;http://docs.pivotal.io/redis/overview.html#shared&#34;&gt;here&lt;/a&gt; for more detail.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Route Service</title>
+      <link>/pivotal-cloud-foundry-developer/route-service/</link>
+      <pubDate>Fri, 04 Mar 2016 09:51:10 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/route-service/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to create a route service&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;setup:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;1) &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/demo-apps/route-service-1.0.0.BUILD-SNAPSHOT.jar&#34;&gt;Download&lt;/a&gt; the &lt;code&gt;route-service&lt;/code&gt; application. Copy the file to folder: &lt;code&gt;~/pivotal-cloud-foundry-developer-workshop/route-service/&lt;/code&gt; (&lt;code&gt;~&lt;/code&gt; is shorthand for the home directory in Linux, Mac and Unix based operating systems). You will need to create this directory in your &lt;a href=&#34;https://en.wikipedia.org/wiki/Home_directory&#34; target=&#34;_blank&#34;&gt;home&lt;/a&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; If your browser warns you about downloading this file please proceed to download it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/pivotal-enablement/route-service-example&#34; target=&#34;_blank&#34;&gt;Source&lt;/a&gt;
+is not required, but you may be curious how it works as you move through the labs.&lt;/p&gt;
+
+&lt;h2 id=&#34;route-service-overview:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Route Service Overview&lt;/h2&gt;
+
+&lt;p&gt;1) Review the documentation on
+&lt;a href=&#34;http://docs.pivotal.io/pivotalcf/services/route-services.html&#34; target=&#34;_blank&#34;&gt;Route Services.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;scenario:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Scenario&lt;/h2&gt;
+
+&lt;p&gt;Route services can be used for a number of things such as logging, transformations, security and rate limiting.&lt;/p&gt;
+
+&lt;p&gt;Our &lt;code&gt;route-service&lt;/code&gt; application will do a couple of things.  It will log incoming and outgoing requests.  It will also impose a rate limit.  No more than 3 requests per 15 seconds.  Rate limited requests will be returned with an HTTP status code 429 (too many requests).  Rate limiting is very common in the API space.  Rate limiting protects your API from being overrun.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;attendee-service&lt;/code&gt; service exposes a RESTful API, so we will front it with our &lt;code&gt;route-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;push-route-service:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Push &lt;code&gt;route-service&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;1) Push &lt;code&gt;route-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/route-service/
+$ cf push route-service -p ./route-service-1.0.0.BUILD-SNAPSHOT.jar -m 512M --random-route --no-start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Create a Redis service instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Cloud Foundry:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service p-redis shared-vm redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Web Services:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service rediscloud 30mb redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Bind the service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service route-service redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Start the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf start route-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;create-a-route-service-and-bind-it-to-a-route:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Create a Route Service and Bind it to a Route&lt;/h2&gt;
+
+&lt;p&gt;1) Create a user provided service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-user-provided-service route-service -r https://&amp;lt;ROUTE-SERVICE-ADDRESS&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-user-provided-service route-service -r https://route-service.cfapps.haas-39.pez.pivotal.io
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Bind the &lt;code&gt;route-service&lt;/code&gt; to the &lt;code&gt;attendee-service&lt;/code&gt; route.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-route-service &amp;lt;APPLICATION-DOMAIN&amp;gt; route-service --hostname &amp;lt;APPLICATION-HOST&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-route-service cfapps.haas-39.pez.pivotal.io route-service --hostname attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;observe-the-effects-of-the-route-service:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Observe the effects of the &lt;code&gt;route-service&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;1) Tail the logs of &lt;code&gt;route-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf logs route-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Choose a client of your preference, but one that can show HTTP status code.  Hit an &lt;code&gt;attendee-service&lt;/code&gt; endpoint (e.g. &lt;code&gt;/attendees&lt;/code&gt;) several times and see if you can get the rate limit to trigger.  Observe the logs.&lt;/p&gt;
+
+&lt;p&gt;Pic below is using Chrome with the Developer Tools.
+&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/rate_limit.png&#34; alt=&#34;Rate Limit&#34; title=&#34;Rate Limit&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What are the key headers used to implement route services (Service Instance Responsibilities)?&lt;/li&gt;
+&lt;li&gt;How would you apply route services in your environment?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;clean-up:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Clean up&lt;/h2&gt;
+
+&lt;p&gt;1) Unbind the route service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unbind-route-service &amp;lt;APPLICATION-DOMAIN&amp;gt; route-service --hostname &amp;lt;APPLICATION-HOST&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unbind-route-service cfapps.haas-39.pez.pivotal.io route-service --hostname attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Delete &lt;code&gt;route-service&lt;/code&gt; service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete-service route-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Unbind &lt;code&gt;redis&lt;/code&gt; service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unbind-service route-service redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Delete the &lt;code&gt;redis&lt;/code&gt; service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete-service redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) Delete the &lt;code&gt;route-service&lt;/code&gt; app.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete route-service
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

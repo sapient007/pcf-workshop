@@ -1,0 +1,232 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Push to the Cloud</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Push to the Cloud - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</a></li>
+<li><a href="#what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</a></li>
+<li><a href="#exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</a>
+<ul>
+<li><a href="#download-the-cf-cli:d680e8a854a7cbad6d490c445cba2eba">Download the <code>cf</code> CLI</a></li>
+<li><a href="#login-to-pivotal-cloud-foundry-with-the-cf-cli:d680e8a854a7cbad6d490c445cba2eba">Login to Pivotal Cloud Foundry with the <code>cf</code> CLI</a></li>
+<li><a href="#pushing-apps:d680e8a854a7cbad6d490c445cba2eba">Pushing apps</a>
+<ul>
+<li><a href="#questions:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+<li><a href="#explore-apps-manager:d680e8a854a7cbad6d490c445cba2eba">Explore Apps Manager</a></li>
+<li><a href="#clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</a></li>
+</ul></li>
+<li><a href="#beyond-the-class:d680e8a854a7cbad6d490c445cba2eba">Beyond the class</a></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<p>Estimated Time: 25 minutes</p>
+
+<h1 id="requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</h1>
+
+<p><a href="/pivotal-cloud-foundry-developer/requirements">Lab Requirements</a></p>
+
+<h1 id="what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</h1>
+
+<ul>
+<li>How to access Apps Manager</li>
+<li>How to install the <code>cf</code> CLI</li>
+<li>How to target a Pivotal Cloud Foundry instance with the <code>cf</code> CLI</li>
+<li>How to <code>cf push</code> apps</li>
+</ul>
+
+<h1 id="exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</h1>
+
+<h2 id="download-the-cf-cli:d680e8a854a7cbad6d490c445cba2eba">Download the <code>cf</code> CLI</h2>
+
+<p>Endpoint and credential information for accessing Apps Manager will be provided by your instructor.  Apps Manager is a web application that helps you manage your applications, but it is also the place to download the <code>cf</code> CLI.  The next set of steps walk you through just that.</p>
+
+<p>1) <a href=http://docs.pivotal.io/pivotalcf/console/dev-console.html target="_blank">Review the Apps Manager Documentation</a>.  Knowing where to go for help is essential.</p>
+
+<p>2) Login into Pivotal Cloud Foundry with the Apps Manager.</p>
+
+<p><strong><em>NOTE:</em></strong> It is common to use self signed certs in educational environments, but doing so will result in warnings from your browser.  These warnings can safely be ignored (proceed through them).</p>
+
+<p>3) Upon logging into Apps Manager for the first time you will be greeted with a welcome message that will walk you through the installation of the <code>cf</code> CLI.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/get_started.png" alt="Get Started" title="Get Started" /></p>
+
+<p>If you do not see this dialog, the same information can be found under <code>Tools</code> (Left side).</p>
+
+<p>4) Download and <a href=http://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html target="_blank">install</a> the <code>cf</code> CLI for your platform.</p>
+
+<p>5) Open a terminal window.  Explore the <code>cf</code> CLI. In the terminal window type <code>cf</code>.  Review the commands available with the <code>cf</code> CLI.  Help on a specific command can be found using the <code>--help</code> option (e.g. <code>cf login --help</code>).</p>
+
+<pre><code>$ cf
+...
+$ cf login --help
+</code></pre>
+
+<h2 id="login-to-pivotal-cloud-foundry-with-the-cf-cli:d680e8a854a7cbad6d490c445cba2eba">Login to Pivotal Cloud Foundry with the <code>cf</code> CLI</h2>
+
+<p>1) Continue to follow directions for logging in with the <code>cf</code> CLI.  You can copy and paste the <code>cf login</code> command directly from Apps Manager.</p>
+
+<pre><code>$ cf login -a &lt;substitute the API endpoint from Apps Manager&gt;
+</code></pre>
+
+<p><strong><em>NOTE:</em></strong>  Are SSL errors preventing you from logging in?  Try adding the <code>--skip-ssl-validation</code> option.</p>
+
+<p>2) Review your current API endpoint, user, org, and space</p>
+
+<pre><code>$ cf target
+</code></pre>
+
+<p><strong><em>What Just Happened?</em></strong></p>
+
+<p>You have logged into Pivotal Cloud Foundry from two different clients (Apps Manager and the <code>cf</code> CLI).  You have installed the <code>cf</code> CLI and targeted a Pivotal Cloud Foundry instance.  You are ready to <code>push</code> apps.</p>
+
+<h2 id="pushing-apps:d680e8a854a7cbad6d490c445cba2eba">Pushing apps</h2>
+
+<p>Next we will push (deploy) several applications.</p>
+
+<p>1) Download the <a href="/pivotal-cloud-foundry-developer/resources/demo-apps/demo-apps.zip">demo applications</a>.  Copy the file to folder: <code>~/pivotal-cloud-foundry-developer-workshop</code> (<code>~</code> is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your <a href=https://en.wikipedia.org/wiki/Home_directory target="_blank">home</a> directory.</p>
+
+<p>2) Extract the zip file to <code>~/pivotal-cloud-foundry-developer-workshop/demo-apps</code>.</p>
+
+<p>The zip file contains four directories; each directory contains an application developed in a different language.</p>
+
+<p>3) Open a terminal window and push the <code>node</code> application</p>
+
+<pre><code>$ cd ~/pivotal-cloud-foundry-developer-workshop/demo-apps/node
+$ cf push node --random-route -m 128M
+</code></pre>
+
+<p>4) View the <code>node</code> application in your browser or use <code>curl</code>.  The url can be obtained from the <code>cf push</code> output or by issuing the command <code>cf apps</code>.</p>
+
+<p>Example:</p>
+
+<pre><code>$ curl node-northeasterly-zygoma.cfapps.io
+Hello Node
+</code></pre>
+
+<p>5) Repeat steps 3 - 4 for the <code>php</code>, <code>python</code>, and <code>ruby</code> applications.</p>
+
+<p><strong><em>NOTE:</em></strong> Make sure you <code>cd</code> into each directory before pushing.</p>
+
+<p><strong><em>What Just Happened?</em></strong></p>
+
+<p>You just deployed four applications each based on a different language and runtime.  Pivotal Cloud Foundry is a polyglot platform, meaning it supports multiple languages and does so in a pluggable way (via buildpacks)!</p>
+
+<h3 id="questions:d680e8a854a7cbad6d490c445cba2eba">Questions</h3>
+
+<ul>
+<li>What are some common items in the output that occurred when pushing each application?</li>
+</ul>
+
+<h2 id="explore-apps-manager:d680e8a854a7cbad6d490c445cba2eba">Explore Apps Manager</h2>
+
+<p>1) Review the following views:</p>
+
+<ul>
+<li>Org</li>
+<li>Space</li>
+<li>App</li>
+</ul>
+
+<p><strong><em>What Just Happened?</em></strong></p>
+
+<p>You have interfaced with Pivotal Cloud Foudry from two separate clients (<code>cf</code> and Apps Manager).  Many of the operations that are available in <code>cf</code> CLI are also available in Apps Manager.</p>
+
+<h2 id="clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</h2>
+
+<p>1) Delete the applications you just pushed.</p>
+
+<p>This is very important for resource constrained environments.</p>
+
+<pre><code>$ cf delete node
+</code></pre>
+
+<p>Repeat for <code>php</code>, <code>python</code>, and <code>ruby</code> applications.</p>
+
+<h1 id="beyond-the-class:d680e8a854a7cbad6d490c445cba2eba">Beyond the class</h1>
+
+<p>Check out the Cloud Foundry <a href=https://github.com/cloudfoundry-samples target="_blank">sample applications</a>.</p>
+
+<p><a href=https://github.com/cloudfoundry-samples/spring-music target="_blank">Spring Music</a> is a favorite.</p>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

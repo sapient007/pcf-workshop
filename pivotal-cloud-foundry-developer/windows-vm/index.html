@@ -1,0 +1,227 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Windows VM</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Windows VM - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#windows-vm:be981c2740c5bb891e1972a2a401e5e6">Windows VM</a>
+<ul>
+<li><a href="#who-should-use:be981c2740c5bb891e1972a2a401e5e6">Who Should Use?</a></li>
+<li><a href="#requirements:be981c2740c5bb891e1972a2a401e5e6">Requirements</a></li>
+<li><a href="#provisioning:be981c2740c5bb891e1972a2a401e5e6">Provisioning</a></li>
+<li><a href="#software-installed:be981c2740c5bb891e1972a2a401e5e6">Software Installed</a></li>
+<li><a href="#best-practices:be981c2740c5bb891e1972a2a401e5e6">Best Practices</a>
+<ul>
+<li><a href="#work-directory:be981c2740c5bb891e1972a2a401e5e6">Work Directory</a></li>
+<li><a href="#conemu:be981c2740c5bb891e1972a2a401e5e6">ConEmu</a>
+<ul>
+<li><a href="#use-labeled-tabs:be981c2740c5bb891e1972a2a401e5e6">Use Labeled Tabs</a></li>
+</ul></li>
+<li><a href="#odd-keyboard-behavior:be981c2740c5bb891e1972a2a401e5e6">Odd Keyboard Behavior?</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<h1 id="windows-vm:be981c2740c5bb891e1972a2a401e5e6">Windows VM</h1>
+
+<hr />
+
+<p>A Windows VM is available to complete the labs.  The VM is hosted on Amazon Web Services.  You will access it with remote desktop client.</p>
+
+<h2 id="who-should-use:be981c2740c5bb891e1972a2a401e5e6">Who Should Use?</h2>
+
+<hr />
+
+<p>Please consider using this VM if you have any of the following limitations:</p>
+
+<ul>
+<li>Your system does not meet the technical requirements</li>
+<li>You can&rsquo;t install software on your system</li>
+<li>You have limited network access</li>
+</ul>
+
+<h2 id="requirements:be981c2740c5bb891e1972a2a401e5e6">Requirements</h2>
+
+<hr />
+
+<ul>
+<li>Remote Desktop Client on your system (most operating systems ship with one)</li>
+<li>Network connectivity and access to reach the Windows VM (RDP uses port 3389)</li>
+</ul>
+
+<h2 id="provisioning:be981c2740c5bb891e1972a2a401e5e6">Provisioning</h2>
+
+<hr />
+
+<p>1) User must have access to an AWS account (can run from any account)</p>
+
+<p>2) User must have an existing key pair in the account or create one</p>
+
+<p>3) The AMI can be found be searching for <code>WinServer08STS</code> in the EC2 Dashboard.  Must be in the N. Virginia region.</p>
+
+<p>Launch the AMI named <code>WinServer08STS</code>. In AWS, in the EC2 dashboard, using the US East (N. Virginia) region, select (or search for the public image) Images &gt; AMIs &gt; WinServer08STS. Click Launch.</p>
+
+<p><strong>NOTE:</strong> pick the AMI with the greatest number appended to the AMI Name.  In this case, <code>WinServer08STS7</code>
+<img src="/pivotal-cloud-foundry-developer/resources/images/ami.png" alt="search for ami" /></p>
+
+<p>4) When launching, accept defaults except:</p>
+
+<ol>
+<li><p>Choose an Instance Type &gt; <code>t2.medium</code> (4 GB memory)</p></li>
+
+<li><p>Configure Instance Details &gt; Auto-assign Public IP &gt; <code>Enable</code></p></li>
+
+<li><p>Tag Instance &gt; Key = <code>Name</code>; Value = <code>&lt;your name here-windows&gt;</code></p></li>
+</ol>
+
+<p>5) Launch the instance.  Once the instance is running, select it in list of EC2 instances. Obtain the public IP.</p>
+
+<p>6) Using your Remote Desktop connect to the Windows VM using the the public IP.</p>
+
+<p><strong><em>Username:</em></strong> <code>Administrator</code></p>
+
+<p><strong><em>Password:</em></strong> <code>KeepItSimple123</code></p>
+
+<h2 id="software-installed:be981c2740c5bb891e1972a2a401e5e6">Software Installed</h2>
+
+<hr />
+
+<p>The software listed below has been installed and configured on the VM:</p>
+
+<ul>
+<li><p>JDK 1.8 - <a href="http://www.oracle.com/technetwork/java/javase/terms/license/index.html">License</a></p></li>
+
+<li><p>Maven - <a href="http://www.apache.org/licenses/">License</a></p></li>
+
+<li><p>git - <a href="https://git-scm.com/about/free-and-open-source">License</a></p></li>
+
+<li><p>curl - <a href="http://curl.haxx.se/docs/copyright.html">License</a></p></li>
+
+<li><p>cf - <a href="https://github.com/cloudfoundry/cli/blob/master/LICENSE">License</a></p></li>
+
+<li><p>Spring Tool Suite - <a href="http://www.eclipse.org/org/documents/epl-v10.php">License</a></p></li>
+
+<li><p>Cygwin - <a href="https://cygwin.com/licensing.html">License</a></p></li>
+
+<li><p>Chrome - <a href="https://www.google.com/chrome/browser/privacy/eula_text.html">License</a></p></li>
+
+<li><p><a href="https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en">Json Formatter for Chrome</a></p></li>
+</ul>
+
+<h2 id="best-practices:be981c2740c5bb891e1972a2a401e5e6">Best Practices</h2>
+
+<hr />
+
+<h3 id="work-directory:be981c2740c5bb891e1972a2a401e5e6">Work Directory</h3>
+
+<p>As part of the VM there is a <code>repos</code> directory.  It is located at <code>C:\Users\Administrator\repos</code>.  This is where you will clone repos from GitHub.  This will be referred to as <code>$REPOS_HOME</code> throughout the labs.</p>
+
+<h3 id="conemu:be981c2740c5bb891e1972a2a401e5e6">ConEmu</h3>
+
+<p>The Windows console is very limited in the sense that it lacks tab support, search and other features one might like in a console/terminal experience.</p>
+
+<p>Therefore, also installed is an alternative to the command prompt known as <a href="https://conemu.github.io/">ConEmu</a>.</p>
+
+<p>We recommend using ConEmu to execute the labs.  You can launch ConEmu from the desktop.  It will open to your <code>$REPOS_HOME</code> directory.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/initial.png" alt="ConEmu Tab" title="ConEmu Tab" /></p>
+
+<h4 id="use-labeled-tabs:be981c2740c5bb891e1972a2a401e5e6">Use Labeled Tabs</h4>
+
+<p>As part of the labs you will be starting many processes.  Organizing the processes with tabs makes a ton of sense, otherwise you will have windows everywhere making it difficult to manage.</p>
+
+<p>To label the tab execute the following:</p>
+
+<pre><code class="language-bash">title - &lt;tab label&gt;
+</code></pre>
+
+<p>For example, creating a tab for the <code>config-server</code>.  This is where work done with the <code>config-server</code> would take place.
+<img src="/pivotal-cloud-foundry-developer/resources/images/tab.png" alt="ConEmu" title="ConEmu" /></p>
+
+<h3 id="odd-keyboard-behavior:be981c2740c5bb891e1972a2a401e5e6">Odd Keyboard Behavior?</h3>
+
+<p>Sometimes when using Remote Desktop keys (<code>control</code>, <code>command</code>, <code>shift</code>, etc.) may become depressed by accident leading to what seems like very odd behavior on the remote machine.  The problem can typically be resolved by toggling the depressed key(s).  If needed the <strong><em>On-Screen Keyboard</em></strong> can also be brought up.</p>
+
+<p>Open the <strong><em>On-Screen Keyboard</em></strong> by clicking the <code>Start</code> button, clicking <code>All Programs</code>, clicking <code>Accessories</code>, clicking <code>Ease of Access</code>, and then clicking <code>On-Screen Keyboard</code>.</p>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

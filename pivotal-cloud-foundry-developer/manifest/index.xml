@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Manifests on Pivotal Cloud Foundry Developer</title>
+    <link>/pivotal-cloud-foundry-developer/manifest/</link>
+    <description>Recent content in Manifests on Pivotal Cloud Foundry Developer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright Pivotal. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 07 Mar 2016 15:49:50 -0600</lastBuildDate>
+    <atom:link href="/pivotal-cloud-foundry-developer/manifest/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/manifest/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/manifest/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Is the manifest uploaded with the application bits?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; No.  It is parsed by the &lt;code&gt;cf&lt;/code&gt; CLI, then the cf CLI invokes specific Cloud Controller endpoints.&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Assuming you have application running with a bound service (MySQL). You push the application again with a manifest, but said service is not specified in the manifest. Is the service still bound to the application?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Yes.  The end state is an accumulation of all commands run against the app.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some &lt;code&gt;cf&lt;/code&gt; commands that don’t have to be explicitly made when using manifests?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; &lt;code&gt;cf bind-service&lt;/code&gt;, &lt;code&gt;cf set-env&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Manifest</title>
+      <link>/pivotal-cloud-foundry-developer/manifest/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/manifest/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 10 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to create a manifest&lt;/li&gt;
+&lt;li&gt;How to use a manifest when pushing an application&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;create-an-application-manifest:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Create an application manifest&lt;/h2&gt;
+
+&lt;p&gt;1) Read about &lt;a href=https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/manifest.html target=&#34;_blank&#34;&gt;application manifests&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2) Change directories to the &lt;code&gt;attendee-service&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/attendee-service/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Generate a manifest.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-app-manifest attendee-service -p ./manifest.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Edit the manifest.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Increase the &lt;code&gt;instances&lt;/code&gt; to &lt;code&gt;2&lt;/code&gt;.&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Set the &lt;code&gt;path&lt;/code&gt; to the &lt;code&gt;./attendee-service-0.0.1-SNAPSHOT.jar&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;5) Push &lt;code&gt;attendee-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6) Confirm the &lt;code&gt;attendee-service&lt;/code&gt; is running and the latest push parameters are reflected.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf app attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Assuming you have application running with a bound service (MySQL).  You &lt;code&gt;push&lt;/code&gt; the application again with a manifest, but said service is not specified in the manifest.  Is the service still bound to the application?&lt;/li&gt;
+&lt;li&gt;What are some &lt;code&gt;cf&lt;/code&gt; commands that don&amp;rsquo;t have to be explicitly made when using manifests?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;cleanup:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Cleanup&lt;/h2&gt;
+
+&lt;p&gt;1) Edit the manifest.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Decrease the &lt;code&gt;instances&lt;/code&gt; to &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2) Push &lt;code&gt;attendee-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf push
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

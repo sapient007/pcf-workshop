@@ -1,0 +1,167 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Requirements</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Requirements - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#personal-experience:a05dcee144da6675ae9d2fe98e94d8dd">Personal Experience</a></li>
+<li><a href="#pivotal-cloud-foundry-environment:a05dcee144da6675ae9d2fe98e94d8dd">Pivotal Cloud Foundry Environment</a>
+<ul>
+<li><a href="#pivotal-cloud-foundry:a05dcee144da6675ae9d2fe98e94d8dd">Pivotal Cloud Foundry</a></li>
+<li><a href="#pivotal-web-services:a05dcee144da6675ae9d2fe98e94d8dd">Pivotal Web Services</a></li>
+<li><a href="#a-note-about-the-service-broker-lab:a05dcee144da6675ae9d2fe98e94d8dd">A Note About the Service Broker Lab</a></li>
+</ul></li>
+<li><a href="#local-machine:a05dcee144da6675ae9d2fe98e94d8dd">Local Machine</a>
+<ul>
+<li><a href="#optional:a05dcee144da6675ae9d2fe98e94d8dd">Optional</a></li>
+</ul></li>
+<li><a href="#windows-vm:a05dcee144da6675ae9d2fe98e94d8dd">Windows VM</a></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<h1 id="personal-experience:a05dcee144da6675ae9d2fe98e94d8dd">Personal Experience</h1>
+
+<ul>
+<li>Understanding of development concepts</li>
+<li>Experience using a terminal window</li>
+</ul>
+
+<h1 id="pivotal-cloud-foundry-environment:a05dcee144da6675ae9d2fe98e94d8dd">Pivotal Cloud Foundry Environment</h1>
+
+<p>You will need a Pivotal Cloud Foundry environment to execute the labs.  You may use a Pivotal Cloud Foundry instance or <a href=http://run.pivotal.io target="_blank">Pivotal Web Services</a>.</p>
+
+<p>If taking the course via e-learning using Pivotal Web Services is recommended, unless you have access to another Pivotal Cloud Foundry instance (typically already provisioned by your company).  It is not recommended that you provision a personal Pivotal Cloud Foundry environment to complete the labs.  The setup and installation of Pivotal Cloud Foundry is beyond the scope of this course.</p>
+
+<p>If taking the course via instructor led training your instructor will provide guidance on the environment to use.</p>
+
+<p>Throughout the labs you will see specific directions for Pivotal Cloud Foundry or Pivotal Web Services.  Make sure follow the directions for the applicable environment.</p>
+
+<h2 id="pivotal-cloud-foundry:a05dcee144da6675ae9d2fe98e94d8dd">Pivotal Cloud Foundry</h2>
+
+<p>Pivotal Cloud Foundry may be used to complete these labs.  The following dependencies are required:</p>
+
+<ul>
+<li>Elastic Runtime 1.7 +</li>
+</ul>
+
+<p>If using self-signed certificates, under the <code>Elastic Runtime Tile</code> → <code>Settings</code> → <code>Networking</code> page make sure the following options have been checked: <code>Disable SSL certificate verification for this environment</code>, <code>Ignore SSL certificate verification on route services</code>.</p>
+
+<ul>
+<li>MySql Tile</li>
+<li>Metrics Tile</li>
+<li>Redis Tile</li>
+</ul>
+
+<h2 id="pivotal-web-services:a05dcee144da6675ae9d2fe98e94d8dd">Pivotal Web Services</h2>
+
+<p><a href=http://run.pivotal.io target="_blank">Pivotal Web Services</a> may be used to complete these labs.  Simply sign up for an account.</p>
+
+<h2 id="a-note-about-the-service-broker-lab:a05dcee144da6675ae9d2fe98e94d8dd">A Note About the Service Broker Lab</h2>
+
+<p>The <a href="/pivotal-cloud-foundry-developer/service-broker">Service Broker lab</a> requires access to a MongoDB instance.  Please review that lab for alternatives on how to meet that requirement.  Options include using the <a href="/pivotal-cloud-foundry-developer/service-broker/aws-mongo-ami">AWS MongoDB AMI</a>.</p>
+
+<h1 id="local-machine:a05dcee144da6675ae9d2fe98e94d8dd">Local Machine</h1>
+
+<p>You will need the ability to install software on your local machine.</p>
+
+<ul>
+<li>4GB Memory</li>
+<li>Installation of <code>cf</code> (this will be done in the first lab)</li>
+<li>Network access to the Pivotal Cloud Foundry environment and internet</li>
+<li><a href=http://jmeter.apache.org/ target=_"blank"> Apache JMeter </a>  also requires <a href=http://www.oracle.com/technetwork/java/javase/downloads/index.html target="_blank">Java</a> - Used in the <a href="/pivotal-cloud-foundry-developer/application-auto-scaler">Auto Scaler</a>, <a href="/pivotal-cloud-foundry-developer/application-performance-monitor">APM</a> and <a href="/pivotal-cloud-foundry-developer/metrics">Metrics</a> labs</li>
+<li><a href=https://jenkins.io/ target="_blank">Jenkins</a> also requires a <a href=http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html  target="_blank">JDK 8</a> and <a href=https://git-scm.com/ target="_blank">git</a> (provisioning a <a href="/pivotal-cloud-foundry-developer/continuous-delivery/aws-jenkins-ami">Jenkins on AWS</a> is alternative to local install) - Used in Continuous Delivery Lab</li>
+</ul>
+
+<h2 id="optional:a05dcee144da6675ae9d2fe98e94d8dd">Optional</h2>
+
+<ul>
+<li><a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target="_blank">JSON Formatter for Chrome</a></li>
+<li>Windows users may desire a better terminal experience than the <em>cmd.exe</em>.  Check out <a href=https://conemu.github.io/ target="_blank">ConEmu</a>.  It provides multiple tabs and search which is helpful during these labs.</li>
+</ul>
+
+<h1 id="windows-vm:a05dcee144da6675ae9d2fe98e94d8dd">Windows VM</h1>
+
+<p>An alternative to installing and configuring the software on your local machine is to use the Windows VM.</p>
+
+<p>If using the Windows VM see these <a href="/pivotal-cloud-foundry-developer/windows-vm/index.html">requirements</a>.</p>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,257 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Services</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Services - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</a></li>
+<li><a href="#what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</a></li>
+<li><a href="#exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</a>
+<ul>
+<li><a href="#review-articulate-dependencies:d680e8a854a7cbad6d490c445cba2eba">Review <code>articulate</code> dependencies</a></li>
+<li><a href="#push-the-attendee-service-application:d680e8a854a7cbad6d490c445cba2eba">Push the <code>attendee-service</code> application</a></li>
+<li><a href="#add-a-managed-service:d680e8a854a7cbad6d490c445cba2eba">Add a Managed Service</a>
+<ul>
+<li><a href="#how-does-this-work:d680e8a854a7cbad6d490c445cba2eba">How does this work?</a></li>
+<li><a href="#questions:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+<li><a href="#add-a-user-provided-service-instance:d680e8a854a7cbad6d490c445cba2eba">Add a User Provided Service Instance</a>
+<ul>
+<li><a href="#questions-1:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#beyond-the-class:d680e8a854a7cbad6d490c445cba2eba">Beyond the class</a></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<p>Estimated Time: 25 minutes</p>
+
+<h1 id="requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</h1>
+
+<p><a href="/pivotal-cloud-foundry-developer/requirements">Lab Requirements</a></p>
+
+<h1 id="what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</h1>
+
+<ul>
+<li>How to create a managed service instance</li>
+<li>How to create a user provided service instance</li>
+<li>How to bind an application to a service instance</li>
+</ul>
+
+<h1 id="exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</h1>
+
+<h2 id="review-articulate-dependencies:d680e8a854a7cbad6d490c445cba2eba">Review <code>articulate</code> dependencies</h2>
+
+<p><code>articulate</code> exposes functionality to add attendees on the <code>Services</code> page.  However, <code>articulate</code> doesn&rsquo;t do this alone.  It makes REST calls to the <code>attendee-service</code> application. To learn more about services, let&rsquo;s provision the <code>attendee-service</code> application.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/services.png" alt="Services" /></p>
+
+<h2 id="push-the-attendee-service-application:d680e8a854a7cbad6d490c445cba2eba">Push the <code>attendee-service</code> application</h2>
+
+<p>1) <a href="/pivotal-cloud-foundry-developer/resources/demo-apps/attendee-service-0.0.1-SNAPSHOT.jar">Download</a> the <code>attendee-service</code> application.  Copy the file to folder: <code>~/pivotal-cloud-foundry-developer-workshop/attendee-service/</code> (<code>~</code> is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your <a href=https://en.wikipedia.org/wiki/Home_directory target="_blank">home</a> directory.</p>
+
+<p><strong><em>NOTE:</em></strong> If your browser warns you about downloading this file please proceed to download it.</p>
+
+<p><a href=https://github.com/pivotal-enablement/attendee-service target="_blank">Source</a> is not required, but you may be curious how it works as you move through the labs.</p>
+
+<p>2) Push the <code>attendee-service</code> application.</p>
+
+<pre><code>$ cd ~/pivotal-cloud-foundry-developer-workshop/attendee-service/
+$ cf push attendee-service -p ./attendee-service-0.0.1-SNAPSHOT.jar -m 512M --random-route
+</code></pre>
+
+<p>Does <code>attendee-service</code> start up correctly?  Why not?</p>
+
+<h2 id="add-a-managed-service:d680e8a854a7cbad6d490c445cba2eba">Add a Managed Service</h2>
+
+<p>1) Review the <a href=http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html target="_blank">documentation</a> on managing service instances</p>
+
+<p>2) Review what services are available in the marketplace.</p>
+
+<pre><code>$ cf marketplace
+</code></pre>
+
+<p>3) Provision a MySql service instance.</p>
+
+<p><strong>Pivotal Cloud Foundry:</strong></p>
+
+<pre><code>$ cf create-service p-mysql 100mb-dev attendee-mysql
+</code></pre>
+
+<p><strong>Pivotal Web Services:</strong></p>
+
+<pre><code>$ cf create-service cleardb spark attendee-mysql
+</code></pre>
+
+<p>4) Now we need to bind the application with the service instance.</p>
+
+<pre><code>$ cf bind-service attendee-service attendee-mysql
+</code></pre>
+
+<p><em>You can ignore the &ldquo;TIP: Use &lsquo;cf restage attendee-service&rsquo; to ensure your env variable changes take effect&rdquo; message at this time.</em></p>
+
+<p>5) Restart the application.</p>
+
+<pre><code>$ cf restart attendee-service
+</code></pre>
+
+<p>6) View the <code>attendee-service</code> in a browser.</p>
+
+<p>You should see response similar to the following (pic is using the <a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target="_blank">JSON Formatter for Chrome</a>):</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/attendee_service.png" alt="attendee-service" title="attendee-service" /></p>
+
+<h3 id="how-does-this-work:d680e8a854a7cbad6d490c445cba2eba">How does this work?</h3>
+
+<p>1) Read about how twelve-factor apps handle <a href=http://12factor.net/backing-services target="_blank">backing services</a> and <a href=http://12factor.net/config target="_blank">configuration</a>.</p>
+
+<p>2) Read about <a href=https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES target="_blank">VCAP_SERVICES</a>.</p>
+
+<p>3) View the environment for <code>attendee-service</code>.</p>
+
+<pre><code>$ cf env attendee-service
+</code></pre>
+
+<p>4) Different languages/frameworks will have various ways to read environment variables.  <code>attendee-service</code> takes advantage of a <a href=https://github.com/cloudfoundry/java-buildpack target="_blank">Java Buildpack</a> feature called <a href=https://github.com/cloudfoundry/java-buildpack-auto-reconfiguration target="_blank">Auto-Reconfiguration</a> that will automatically re-write bean definitions to connect with services bound to an application.</p>
+
+<h3 id="questions:d680e8a854a7cbad6d490c445cba2eba">Questions</h3>
+
+<ul>
+<li>After binding a service to an application why is the application restarted/restaged?</li>
+<li>In this case, why could we <code>restart</code> vs <code>restage</code>?</li>
+</ul>
+
+<h2 id="add-a-user-provided-service-instance:d680e8a854a7cbad6d490c445cba2eba">Add a User Provided Service Instance</h2>
+
+<p>In the enterprise, not all services will be provisioned by Pivotal Cloud Foundry.</p>
+
+<p>For example, consider your Oracle RAC cluster.  How can we connect our applications running on Pivotal Cloud Foundry to these external systems?</p>
+
+<p>Additionally, how can we easily connect applications together running on the platform?</p>
+
+<p>1) Read about <a href=http://docs.pivotal.io/pivotalcf/devguide/services/user-provided.html target="_blank">user provided service instances</a>.</p>
+
+<p>2) Create a user provided service.  This will create an interactive prompt.  Don&rsquo;t use the literal below for the value of <code>uri</code>, use your <code>attendee-service</code> <code>uri</code>.  Also make sure to specify <code>http</code>.</p>
+
+<p><strong><em>NOTE:</em></strong> This will not work with <code>https</code>.</p>
+
+<pre><code>$cf create-user-provided-service attendee-service -p uri
+
+uri&gt; http://attendee-service-surfy-glt.pcfi1.fe.gopivotal.com
+</code></pre>
+
+<p>3) Bind <code>articulate</code> to the <code>attendee-service</code> user provided service.</p>
+
+<pre><code>$ cf bind-service articulate attendee-service
+</code></pre>
+
+<p><em>You can ignore the &ldquo;TIP: Use &lsquo;cf restage articulate&rsquo; to ensure your env variable changes take effect&rdquo; message at this time.</em></p>
+
+<p>4) Restart the application.</p>
+
+<pre><code>$ cf restart articulate
+</code></pre>
+
+<p>5) Refresh the <code>articulate</code> <code>Services</code> page.  You can now see the <code>attendee-service</code> listed under <code>Services</code>.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/articulate_attendee.png" alt="articulate attendee" title="articulate attendee" /></p>
+
+<p>6) Review the environment.</p>
+
+<pre><code>$ cf env articulate
+</code></pre>
+
+<p>7) Add some attendees.</p>
+
+<h3 id="questions-1:d680e8a854a7cbad6d490c445cba2eba">Questions</h3>
+
+<ul>
+<li>From an application perspective, are managed services instances different from user provided service instances?</li>
+</ul>
+
+<h1 id="beyond-the-class:d680e8a854a7cbad6d490c445cba2eba">Beyond the class</h1>
+
+<ul>
+<li>Use <a href=https://github.com/cloudfoundry-samples/spring-music target="_blank">Spring Music</a> and a User Provided Service Instance to connect to a database (MySQL or Oracle) in your environment.</li>
+</ul>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,481 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Service Broker</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Service Broker - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#requirements:841784ecf13a5dea7af69e1b5dd9bcf6">Requirements</a></li>
+<li><a href="#what-you-will-learn:841784ecf13a5dea7af69e1b5dd9bcf6">What you will learn</a></li>
+<li><a href="#exercises:841784ecf13a5dea7af69e1b5dd9bcf6">Exercises</a>
+<ul>
+<li><a href="#service-broker-api-overview:841784ecf13a5dea7af69e1b5dd9bcf6">Service Broker API Overview</a></li>
+<li><a href="#create-a-simple-broker:841784ecf13a5dea7af69e1b5dd9bcf6">Create a Simple Broker</a>
+<ul>
+<li><a href="#implement-catalog-management:841784ecf13a5dea7af69e1b5dd9bcf6">Implement Catalog Management</a>
+<ul>
+<li><a href="#questions:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</a></li>
+</ul></li>
+<li><a href="#implement-provisioning:841784ecf13a5dea7af69e1b5dd9bcf6">Implement Provisioning</a>
+<ul>
+<li><a href="#questions-1:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</a></li>
+</ul></li>
+<li><a href="#review-deprovisioning:841784ecf13a5dea7af69e1b5dd9bcf6">Review Deprovisioning</a>
+<ul>
+<li><a href="#questions-2:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</a></li>
+</ul></li>
+<li><a href="#implement-binding-unbinding-further:841784ecf13a5dea7af69e1b5dd9bcf6">Implement Binding/Unbinding Further</a>
+<ul>
+<li><a href="#questions-3:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#beyond-the-class:841784ecf13a5dea7af69e1b5dd9bcf6">Beyond the class</a></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<p>Estimated Time: 60 minutes</p>
+
+<h1 id="requirements:841784ecf13a5dea7af69e1b5dd9bcf6">Requirements</h1>
+
+<ul>
+<li><a href="/pivotal-cloud-foundry-developer/requirements">Lab Requirements</a></li>
+</ul>
+
+<h1 id="what-you-will-learn:841784ecf13a5dea7af69e1b5dd9bcf6">What you will learn</h1>
+
+<ul>
+<li>How to implement the Service Broker API</li>
+<li>How to deploy a service broker as an app to Pivotal Cloud Foundry</li>
+<li>How to register the service broker with the Cloud Controller</li>
+<li>How to make the single plan in the catalog “public” in your organization</li>
+</ul>
+
+<h1 id="exercises:841784ecf13a5dea7af69e1b5dd9bcf6">Exercises</h1>
+
+<h2 id="service-broker-api-overview:841784ecf13a5dea7af69e1b5dd9bcf6">Service Broker API Overview</h2>
+
+<p>1) Review the <a href="http://docs.pivotal.io/pivotalcf/services/api.html#api-overview">documentation</a>.  Specifically, the sequence diagram.  This is what we will implement.</p>
+
+<h2 id="create-a-simple-broker:841784ecf13a5dea7af69e1b5dd9bcf6">Create a Simple Broker</h2>
+
+<p>1) Inside of the directory of your choice (like your <code>home</code> directory), create a <code>mybroker</code> directory. The <code>mybroker</code> directory will contain an application that provides a service (more on that below) and implements the Service Broker API.</p>
+
+<p>For the service itself, it will get the time of today’s sunset in Paris from the Yahoo Weather API.</p>
+
+<p>2) Place the following code in an <code>index.php</code> file directly in the <code>mybroker</code> directory:</p>
+
+<pre><code>&lt;?php
+header('Content-type: application/json');
+
+$BASE_URL = &quot;http://query.yahooapis.com/v1/public/yql&quot;;
+$yql_query = 'select astronomy.sunset from weather.forecast where woeid in (select woeid from geo.places(1) where text=&quot;paris&quot;)';
+$yql_query_url = $BASE_URL . &quot;?q=&quot; . urlencode($yql_query) . &quot;&amp;format=json&quot;;
+
+$session = curl_init($yql_query_url);
+curl_setopt($session, CURLOPT_RETURNTRANSFER,true);
+echo curl_exec($session);
+curl_close($session);
+?&gt;
+</code></pre>
+
+<p>3) Push the <code>mybroker</code> application.</p>
+
+<pre><code>$ cf push mybroker -m 128M --random-route
+</code></pre>
+
+<p><em>Make sure you are in the <code>mybroker</code> directory.</em></p>
+
+<p>4) Using a browser, verify that your service returns JSON containing the sunset time of Paris.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/json_sunset.png" alt="Sunset JSON" title="Sunset JSON" /></p>
+
+<h3 id="implement-catalog-management:841784ecf13a5dea7af69e1b5dd9bcf6">Implement Catalog Management</h3>
+
+<p>1) Review the documentation on <a href="http://docs.pivotal.io/pivotalcf/services/api.html#catalog-mgmt">implementing catalog management</a>.</p>
+
+<p>2) Inside of your <code>mybroker</code> directory, create the following directory structure: <code>v2/catalog</code>.</p>
+
+<p><strong><em>IMPORTANT NOTE:</em></strong> The <code>v2</code> directory is where we will implement the Service Broker API endpoints!</p>
+
+<p>3) Inside of the <code>v2/catalog</code> directory, create an <code>index.php</code> file with the JSON shown below. You will use that JSON as a starting point for your Service Broker.</p>
+
+<pre><code>&lt;?php
+header('Content-type: application/json');
+$service_guid = 'CHANGE_ME'; //change to a random value (letters and numbers only)
+$plan_guid = 'CHANGE_ME'; //change to a random value (letters and numbers only)
+$dashboard_guid = 'CHANGE_ME'; //change to a random value (letters and numbers only)
+$service_name = 'paris-sunset-'; //append your initials to the end
+
+echo
+'{
+  &quot;services&quot;: [{
+    &quot;id&quot;:' .json_encode($service_guid).',
+    &quot;name&quot;:'.json_encode($service_name).',
+    &quot;description&quot;: &quot;Provide the time of today\'s sunset in Paris&quot;,
+    &quot;bindable&quot;: true,
+    &quot;plans&quot;: [{
+      &quot;id&quot;:'.json_encode($plan_guid).',
+      &quot;name&quot;: &quot;small&quot;,
+      &quot;description&quot;: &quot;limited requests&quot;
+    }],
+    &quot;dashboard_client&quot;: {
+      &quot;id&quot;:'.json_encode($dashboard_guid).',
+      &quot;secret&quot;: &quot;secret-1&quot;,
+      &quot;redirect_uri&quot;: &quot;https://dashboard.service.com&quot;
+    }
+  }]
+}';
+?&gt;
+</code></pre>
+
+<p>4) Change the values for the following:</p>
+
+<ul>
+<li><code>$service_guid</code>, <code>$plan_guid</code>, <code>$dashboard_guid</code>.  Come up with something unique.</li>
+<li><code>$service_name</code> append your initials to <code>paris-sunset-</code> (e.g. <code>paris-sunset-dnr</code>)</li>
+</ul>
+
+<p>5) <strong>Directly in the <code>mybroker</code> directory</strong>, create a file named <code>.htaccess</code> containing the following text. This file is used to redirect any request to <code>v2/catalog*</code> (where the * represents any string of characters) to the <code>v2/catalog/index.php</code> file.</p>
+
+<pre><code>RewriteEngine on
+DirectorySlash off
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^v2/catalog(.*)$ v2/catalog/index.php [L]
+</code></pre>
+
+<p>6) Push the <code>mybroker</code> application.</p>
+
+<p><em>Make sure you are in the <code>mybroker</code> directory.</em></p>
+
+<pre><code>$ cf push mybroker
+</code></pre>
+
+<p>7) Append <code>v2/catalog</code> to the url of the <code>mybroker</code> application and verify that you can see the JSON.</p>
+
+<p>Also ensure that <code>v2/catalog/</code> and <code>v2/catalog/anything</code> resolves to the JSON.</p>
+
+<p>You have implemented the catalog management portion of the Service Broker API!</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/catalog.png" alt="Catalog Endpoint" title="Catalog Endpoint" /></p>
+
+<p>8) Register your Service Broker.</p>
+
+<p><strong><em>Notes:</em></strong></p>
+
+<ul>
+<li>This command must be done with the <code>admin</code> account.  If you don&rsquo;t have access, ask your administrator!</li>
+<li>A unique broker name is required. If using a shared environment make sure to use something unique like appending your initials to the application name.</li>
+<li>For simplicity we have not used basic authentication, so any user name and password can be used. This is not recommended for a production Service Broker.</li>
+</ul>
+
+<p>For Example:</p>
+
+<pre><code>$ cf create-service-broker mybroker-dnr user password https://mybroker-hyperscholastic-arcana.pcfi1.fe.gopivotal.com
+</code></pre>
+
+<p>9) View the Service Brokers in your installation. You should see your new Service Broker.</p>
+
+<p><strong><em>Note:</em></strong> This command must be done with the <code>admin</code> account.</p>
+
+<pre><code>$ cf service-brokers
+</code></pre>
+
+<p>10) View the marketplace</p>
+
+<pre><code>$ cf marketplace
+</code></pre>
+
+<p><em>The service isn&rsquo;t listed.</em></p>
+
+<p>11) View service access.</p>
+
+<p><strong><em>Note:</em></strong> This command must be done with the <code>admin</code> account.</p>
+
+<pre><code>$ cf service-access
+</code></pre>
+
+<p><em>Notice that your service access (i.e. paris-sunset-dnr) is set to <code>none</code></em></p>
+
+<p>12) Enable access.</p>
+
+<p><strong><em>Note:</em></strong> This command must be done with the <code>admin</code> account.</p>
+
+<p>For example:</p>
+
+<pre><code>$ cf enable-service-access paris-sunset-dnr
+</code></pre>
+
+<p>13) Verify that your service is now available when using cf marketplace. Also verify that your service is visible in the Marketplace of Apps Manager.</p>
+
+<p>Congratulations, you have implemented and tested the catalog endpoint in your service broker!</p>
+
+<h4 id="questions:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</h4>
+
+<ul>
+<li>Can a service broker support upgrade/downgrade of a service?</li>
+</ul>
+
+<h3 id="implement-provisioning:841784ecf13a5dea7af69e1b5dd9bcf6">Implement Provisioning</h3>
+
+<p>1) Review the documentation on implementing <a href="http://docs.pivotal.io/pivotalcf/services/api.html#provisioning">provisioning</a>.</p>
+
+<p>2) Inside of your <code>mybroker/v2/</code> directory, create a <code>service_instances</code> directory.</p>
+
+<p>3) Inside of the <code>service_instances</code> directory, create an <code>index.php</code> file with the following contents.</p>
+
+<p><strong><em>Note:</em></strong> this Service Broker doesn’t actually provision any resources.</p>
+
+<pre><code>&lt;?php
+header('Content-type: application/json');
+
+echo '{}';
+?&gt;
+</code></pre>
+
+<p>4) In the <code>mybroker</code> directory, modify the contents of the file named <code>.htaccess</code> to contain the following text. This file is used to redirect any request to <code>v2/service_instances*</code> (where the * represents any string of characters) to the <code>v2/service_instances/index.php</code> file.</p>
+
+<pre><code>RewriteEngine on
+DirectorySlash off
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^v2/catalog(.*)$ v2/catalog/index.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^v2/service_instances(.*)$ v2/service_instances/index.php [L]
+</code></pre>
+
+<p><strong><em>Note:</em></strong> the result of this redirection will result in implementing many other Service Broker API methods (deprovisioning, binding and unbinding) that we will flesh out more later.</p>
+
+<p>5) Push the <code>mybroker</code> application.</p>
+
+<p><em>Make sure you are in the <code>mybroker</code> directory.</em></p>
+
+<pre><code>$ cf push mybroker
+</code></pre>
+
+<p>6) Append <code>v2/service_instances</code> to the url of the <code>mybroker</code> application and verify that the result of provisioning the service is empty JSON (i.e. <code>{}</code>). Also ensure that <code>v2/service_instances/</code> and <code>v2/service_instances/anything</code> resolves to the same content.</p>
+
+<p>7) Create a <code>paris-sunset</code> service instance.</p>
+
+<p>For Example:</p>
+
+<pre><code>$ cf create-service paris-sunset-dnr small paris-sunset
+</code></pre>
+
+<p>8) View all service instances.  Confirm that <code>paris-sunset</code> is listed.</p>
+
+<pre><code>$ cf services
+</code></pre>
+
+<p>9) Bind the <code>paris-sunset</code> to <code>articulate</code>.</p>
+
+<pre><code>$ cf bind-service articulate paris-sunset
+</code></pre>
+
+<p>10) View the <code>articulate</code> environment.</p>
+
+<pre><code>$ cf env articulate
+</code></pre>
+
+<h4 id="questions-1:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</h4>
+
+<ul>
+<li>The broker is required by the Cloud Controller to respond within how many seconds?</li>
+<li>Does provisioning have to be done synchronously?</li>
+</ul>
+
+<h3 id="review-deprovisioning:841784ecf13a5dea7af69e1b5dd9bcf6">Review Deprovisioning</h3>
+
+<p>1) Review the documentation on implementing <a href="http://docs.pivotal.io/pivotalcf/services/api.html#deprovisioning">deprovisioning</a>.</p>
+
+<p>We have already implemented the deprovisioning when we implemented provisioning.</p>
+
+<p>2) Unbind <code>paris-sunset</code> from <code>articulate</code>.</p>
+
+<pre><code>$ cf unbind-service articulate paris-sunset
+
+</code></pre>
+
+<p>3) Delete the <code>paris-sunset</code> service instance.</p>
+
+<pre><code>$ cf delete-service paris-sunset
+</code></pre>
+
+<h4 id="questions-2:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</h4>
+
+<ul>
+<li>When handing a deprovisioning request if the service instance does not exist what status code should be returned?</li>
+</ul>
+
+<h3 id="implement-binding-unbinding-further:841784ecf13a5dea7af69e1b5dd9bcf6">Implement Binding/Unbinding Further</h3>
+
+<p>Technically, our broker supports binding/unbinding right now.  However, one the most important aspects of binding has been ignored - <a href="http://docs.pivotal.io/pivotalcf/services/api.html#binding-types">providing unique credentials per binding</a>.  Let&rsquo;s resolve that.</p>
+
+<p>1) Review the documentation on implementing  <a href="http://docs.pivotal.io/pivotalcf/services/api.html#binding">binding</a> and <a href="http://docs.pivotal.io/pivotalcf/services/api.html#unbinding">unbinding</a>.</p>
+
+<p>2) We will use the existing <code>service_instances/index.php</code> file as a &ldquo;controller&rdquo; to read the request URI and determine if this is a <code>provision</code> request or a <code>binding</code> request. Replace the contents of <code>service_instances/index.php</code> with the following:</p>
+
+<pre><code>&lt;?php
+header('Content-type: application/json');
+//check for 'service_bindings' in the request URI (binding calls will contain this)
+$pos = strpos($_SERVER['REQUEST_URI'], 'service_bindings');
+
+if ($pos ===false){
+  //request did not contain 'service_bindings'
+  //this is a provisioning/deprovisioning request and return empty JSON
+  echo '{}';
+} else {
+  //this is a binding request
+  if ($_SERVER['REQUEST_METHOD']==='PUT'){
+    $username = uniqid();
+    $password = uniqid();
+    $uri = 'https://' . $username . ':' . $password . '@'. $_SERVER['HTTP_HOST'];
+    echo '{
+        &quot;credentials&quot;: {
+          &quot;uri&quot;:' .json_encode($uri).',
+          &quot;username&quot;:'.json_encode($username).',
+          &quot;password&quot;:'.json_encode($password).'
+          }
+        }';
+  } else {
+    // unbind request
+    echo '{}';
+  }
+}
+?&gt;
+</code></pre>
+
+<p><strong><em>NOTE:</em></strong> Applications that bind to this service will just pass fake credentials. This is because the Yahoo API doesn’t require credentials. If the service actually required credentials (like a database), this is how you would pass them.</p>
+
+<p>3) Push the <code>mybroker</code> application.</p>
+
+<p><em>Make sure you are in the <code>mybroker</code> directory.</em></p>
+
+<pre><code>$ cf push mybroker
+</code></pre>
+
+<p>4) Create a <code>paris-sunset</code> service instance.</p>
+
+<p>For Example:</p>
+
+<pre><code>$ cf create-service paris-sunset-dnr small paris-sunset
+</code></pre>
+
+<p>5) Bind the <code>paris-sunset</code> to <code>articulate</code>.</p>
+
+<pre><code>$ cf bind-service articulate paris-sunset
+</code></pre>
+
+<p>6) View the <code>articulate</code> environment.</p>
+
+<pre><code>$ cf env articulate
+</code></pre>
+
+<p><strong><em>NOTE:</em></strong> The credentials are now included.</p>
+
+<p>Congratulations! You have created a simple service broker.</p>
+
+<h4 id="questions-3:841784ecf13a5dea7af69e1b5dd9bcf6">Questions</h4>
+
+<ul>
+<li>Do all services have to be bindable?</li>
+</ul>
+
+<h1 id="beyond-the-class:841784ecf13a5dea7af69e1b5dd9bcf6">Beyond the class</h1>
+
+<p>There are many community resources to help you build your own more robust service broker.</p>
+
+<ul>
+<li>Spring developers can use the <a href="https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker">Spring Cloud CF Service Broker</a></li>
+
+<li><p>Apps Manager can consume additional metadata to show more information about your service (like plan price etc) see <a href="http://docs.pivotal.io/pivotalcf/services/catalog-metadata.html">catalog metadata</a> in the docs for more information.</p></li>
+
+<li><p>You following repositories can be used as a reference:</p>
+
+<ul>
+<li><a href="https://github.com/cloudfoundry-community/s3-cf-service-broker">S3 CF Service Broker</a></li>
+<li><a href="https://github.com/spgreenberg/spring-boot-cf-service-broker-mongo">Spring Boot CF Service Broker Mongo</a></li>
+</ul></li>
+</ul>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

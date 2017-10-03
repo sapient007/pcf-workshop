@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Document on Pivotal Cloud Foundry Developer</title>
+    <link>/pivotal-cloud-foundry-developer/tags/document/</link>
+    <description>Recent content in Document on Pivotal Cloud Foundry Developer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright Pivotal. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 10 Mar 2016 08:52:24 -0600</lastBuildDate>
+    <atom:link href="/pivotal-cloud-foundry-developer/tags/document/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Requirements</title>
+      <link>/pivotal-cloud-foundry-developer/requirements/</link>
+      <pubDate>Thu, 10 Mar 2016 08:52:24 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/requirements/</guid>
+      <description>
+
+&lt;h1 id=&#34;personal-experience:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Personal Experience&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Understanding of development concepts&lt;/li&gt;
+&lt;li&gt;Experience using a terminal window&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;pivotal-cloud-foundry-environment:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Pivotal Cloud Foundry Environment&lt;/h1&gt;
+
+&lt;p&gt;You will need a Pivotal Cloud Foundry environment to execute the labs.  You may use a Pivotal Cloud Foundry instance or &lt;a href=http://run.pivotal.io target=&#34;_blank&#34;&gt;Pivotal Web Services&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If taking the course via e-learning using Pivotal Web Services is recommended, unless you have access to another Pivotal Cloud Foundry instance (typically already provisioned by your company).  It is not recommended that you provision a personal Pivotal Cloud Foundry environment to complete the labs.  The setup and installation of Pivotal Cloud Foundry is beyond the scope of this course.&lt;/p&gt;
+
+&lt;p&gt;If taking the course via instructor led training your instructor will provide guidance on the environment to use.&lt;/p&gt;
+
+&lt;p&gt;Throughout the labs you will see specific directions for Pivotal Cloud Foundry or Pivotal Web Services.  Make sure follow the directions for the applicable environment.&lt;/p&gt;
+
+&lt;h2 id=&#34;pivotal-cloud-foundry:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Pivotal Cloud Foundry&lt;/h2&gt;
+
+&lt;p&gt;Pivotal Cloud Foundry may be used to complete these labs.  The following dependencies are required:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Elastic Runtime 1.7 +&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If using self-signed certificates, under the &lt;code&gt;Elastic Runtime Tile&lt;/code&gt; → &lt;code&gt;Settings&lt;/code&gt; → &lt;code&gt;Networking&lt;/code&gt; page make sure the following options have been checked: &lt;code&gt;Disable SSL certificate verification for this environment&lt;/code&gt;, &lt;code&gt;Ignore SSL certificate verification on route services&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MySql Tile&lt;/li&gt;
+&lt;li&gt;Metrics Tile&lt;/li&gt;
+&lt;li&gt;Redis Tile&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;pivotal-web-services:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Pivotal Web Services&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=http://run.pivotal.io target=&#34;_blank&#34;&gt;Pivotal Web Services&lt;/a&gt; may be used to complete these labs.  Simply sign up for an account.&lt;/p&gt;
+
+&lt;h2 id=&#34;a-note-about-the-service-broker-lab:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;A Note About the Service Broker Lab&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/service-broker&#34;&gt;Service Broker lab&lt;/a&gt; requires access to a MongoDB instance.  Please review that lab for alternatives on how to meet that requirement.  Options include using the &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/service-broker/aws-mongo-ami&#34;&gt;AWS MongoDB AMI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;local-machine:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Local Machine&lt;/h1&gt;
+
+&lt;p&gt;You will need the ability to install software on your local machine.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;4GB Memory&lt;/li&gt;
+&lt;li&gt;Installation of &lt;code&gt;cf&lt;/code&gt; (this will be done in the first lab)&lt;/li&gt;
+&lt;li&gt;Network access to the Pivotal Cloud Foundry environment and internet&lt;/li&gt;
+&lt;li&gt;&lt;a href=http://jmeter.apache.org/ target=_&#34;blank&#34;&gt; Apache JMeter &lt;/a&gt;  also requires &lt;a href=http://www.oracle.com/technetwork/java/javase/downloads/index.html target=&#34;_blank&#34;&gt;Java&lt;/a&gt; - Used in the &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/application-auto-scaler&#34;&gt;Auto Scaler&lt;/a&gt;, &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/application-performance-monitor&#34;&gt;APM&lt;/a&gt; and &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/metrics&#34;&gt;Metrics&lt;/a&gt; labs&lt;/li&gt;
+&lt;li&gt;&lt;a href=https://jenkins.io/ target=&#34;_blank&#34;&gt;Jenkins&lt;/a&gt; also requires a &lt;a href=http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html  target=&#34;_blank&#34;&gt;JDK 8&lt;/a&gt; and &lt;a href=https://git-scm.com/ target=&#34;_blank&#34;&gt;git&lt;/a&gt; (provisioning a &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/continuous-delivery/aws-jenkins-ami&#34;&gt;Jenkins on AWS&lt;/a&gt; is alternative to local install) - Used in Continuous Delivery Lab&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;optional:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Optional&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target=&#34;_blank&#34;&gt;JSON Formatter for Chrome&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Windows users may desire a better terminal experience than the &lt;em&gt;cmd.exe&lt;/em&gt;.  Check out &lt;a href=https://conemu.github.io/ target=&#34;_blank&#34;&gt;ConEmu&lt;/a&gt;.  It provides multiple tabs and search which is helpful during these labs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;windows-vm:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Windows VM&lt;/h1&gt;
+
+&lt;p&gt;An alternative to installing and configuring the software on your local machine is to use the Windows VM.&lt;/p&gt;
+
+&lt;p&gt;If using the Windows VM see these &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/windows-vm/index.html&#34;&gt;requirements&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Services</title>
+      <link>/pivotal-cloud-foundry-developer/services/</link>
+      <pubDate>Tue, 08 Mar 2016 15:10:46 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/services/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to create a managed service instance&lt;/li&gt;
+&lt;li&gt;How to create a user provided service instance&lt;/li&gt;
+&lt;li&gt;How to bind an application to a service instance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;review-articulate-dependencies:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Review &lt;code&gt;articulate&lt;/code&gt; dependencies&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;articulate&lt;/code&gt; exposes functionality to add attendees on the &lt;code&gt;Services&lt;/code&gt; page.  However, &lt;code&gt;articulate&lt;/code&gt; doesn&amp;rsquo;t do this alone.  It makes REST calls to the &lt;code&gt;attendee-service&lt;/code&gt; application. To learn more about services, let&amp;rsquo;s provision the &lt;code&gt;attendee-service&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/services.png&#34; alt=&#34;Services&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;push-the-attendee-service-application:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Push the &lt;code&gt;attendee-service&lt;/code&gt; application&lt;/h2&gt;
+
+&lt;p&gt;1) &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/demo-apps/attendee-service-0.0.1-SNAPSHOT.jar&#34;&gt;Download&lt;/a&gt; the &lt;code&gt;attendee-service&lt;/code&gt; application.  Copy the file to folder: &lt;code&gt;~/pivotal-cloud-foundry-developer-workshop/attendee-service/&lt;/code&gt; (&lt;code&gt;~&lt;/code&gt; is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your &lt;a href=https://en.wikipedia.org/wiki/Home_directory target=&#34;_blank&#34;&gt;home&lt;/a&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; If your browser warns you about downloading this file please proceed to download it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=https://github.com/pivotal-enablement/attendee-service target=&#34;_blank&#34;&gt;Source&lt;/a&gt; is not required, but you may be curious how it works as you move through the labs.&lt;/p&gt;
+
+&lt;p&gt;2) Push the &lt;code&gt;attendee-service&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/attendee-service/
+$ cf push attendee-service -p ./attendee-service-0.0.1-SNAPSHOT.jar -m 512M --random-route
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does &lt;code&gt;attendee-service&lt;/code&gt; start up correctly?  Why not?&lt;/p&gt;
+
+&lt;h2 id=&#34;add-a-managed-service:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Add a Managed Service&lt;/h2&gt;
+
+&lt;p&gt;1) Review the &lt;a href=http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on managing service instances&lt;/p&gt;
+
+&lt;p&gt;2) Review what services are available in the marketplace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf marketplace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Provision a MySql service instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Cloud Foundry:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service p-mysql 100mb-dev attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Web Services:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service cleardb spark attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Now we need to bind the application with the service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service attendee-service attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage attendee-service&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;5) Restart the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6) View the &lt;code&gt;attendee-service&lt;/code&gt; in a browser.&lt;/p&gt;
+
+&lt;p&gt;You should see response similar to the following (pic is using the &lt;a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target=&#34;_blank&#34;&gt;JSON Formatter for Chrome&lt;/a&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/attendee_service.png&#34; alt=&#34;attendee-service&#34; title=&#34;attendee-service&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;how-does-this-work:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How does this work?&lt;/h3&gt;
+
+&lt;p&gt;1) Read about how twelve-factor apps handle &lt;a href=http://12factor.net/backing-services target=&#34;_blank&#34;&gt;backing services&lt;/a&gt; and &lt;a href=http://12factor.net/config target=&#34;_blank&#34;&gt;configuration&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Read about &lt;a href=https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES target=&#34;_blank&#34;&gt;VCAP_SERVICES&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;3) View the environment for &lt;code&gt;attendee-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf env attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Different languages/frameworks will have various ways to read environment variables.  &lt;code&gt;attendee-service&lt;/code&gt; takes advantage of a &lt;a href=https://github.com/cloudfoundry/java-buildpack target=&#34;_blank&#34;&gt;Java Buildpack&lt;/a&gt; feature called &lt;a href=https://github.com/cloudfoundry/java-buildpack-auto-reconfiguration target=&#34;_blank&#34;&gt;Auto-Reconfiguration&lt;/a&gt; that will automatically re-write bean definitions to connect with services bound to an application.&lt;/p&gt;
+
+&lt;h3 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;After binding a service to an application why is the application restarted/restaged?&lt;/li&gt;
+&lt;li&gt;In this case, why could we &lt;code&gt;restart&lt;/code&gt; vs &lt;code&gt;restage&lt;/code&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;add-a-user-provided-service-instance:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Add a User Provided Service Instance&lt;/h2&gt;
+
+&lt;p&gt;In the enterprise, not all services will be provisioned by Pivotal Cloud Foundry.&lt;/p&gt;
+
+&lt;p&gt;For example, consider your Oracle RAC cluster.  How can we connect our applications running on Pivotal Cloud Foundry to these external systems?&lt;/p&gt;
+
+&lt;p&gt;Additionally, how can we easily connect applications together running on the platform?&lt;/p&gt;
+
+&lt;p&gt;1) Read about &lt;a href=http://docs.pivotal.io/pivotalcf/devguide/services/user-provided.html target=&#34;_blank&#34;&gt;user provided service instances&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Create a user provided service.  This will create an interactive prompt.  Don&amp;rsquo;t use the literal below for the value of &lt;code&gt;uri&lt;/code&gt;, use your &lt;code&gt;attendee-service&lt;/code&gt; &lt;code&gt;uri&lt;/code&gt;.  Also make sure to specify &lt;code&gt;http&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; This will not work with &lt;code&gt;https&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$cf create-user-provided-service attendee-service -p uri
+
+uri&amp;gt; http://attendee-service-surfy-glt.pcfi1.fe.gopivotal.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Bind &lt;code&gt;articulate&lt;/code&gt; to the &lt;code&gt;attendee-service&lt;/code&gt; user provided service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service articulate attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage articulate&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;4) Restart the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) Refresh the &lt;code&gt;articulate&lt;/code&gt; &lt;code&gt;Services&lt;/code&gt; page.  You can now see the &lt;code&gt;attendee-service&lt;/code&gt; listed under &lt;code&gt;Services&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/articulate_attendee.png&#34; alt=&#34;articulate attendee&#34; title=&#34;articulate attendee&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;6) Review the environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf env articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;7) Add some attendees.&lt;/p&gt;
+
+&lt;h3 id=&#34;questions-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From an application perspective, are managed services instances different from user provided service instances?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;beyond-the-class:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Beyond the class&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;a href=https://github.com/cloudfoundry-samples/spring-music target=&#34;_blank&#34;&gt;Spring Music&lt;/a&gt; and a User Provided Service Instance to connect to a database (MySQL or Oracle) in your environment.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Platform Operator Benevolence</title>
+      <link>/pivotal-cloud-foundry-developer/platform-operator-setup/</link>
+      <pubDate>Mon, 07 Mar 2016 10:01:13 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/platform-operator-setup/</guid>
+      <description>
+
+&lt;p&gt;During this workshop your instructors have assumed the role of Platform Operator.  You can assume that what you&amp;rsquo;re being given is similar to what a new project team would receive upon requesting a fresh environment from whichever group you would ask for such things.&lt;/p&gt;
+
+&lt;h1 id=&#34;orgs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Orgs&lt;/h1&gt;
+
+&lt;p&gt;An organization is the unit of tenancy in Cloud Foundry. Within an organization there are spaces. Spaces are used to group applications and services. Spaces are generally created according to a projects SDLC or build pipeline. Spaces are free form and we believe development teams should organize them in whatever way suits their needs and objectives.&lt;/p&gt;
+
+&lt;p&gt;Your instructors will provide you with an an org and space.&lt;/p&gt;
+
+&lt;h1 id=&#34;accounts:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Accounts&lt;/h1&gt;
+
+&lt;p&gt;You will need an account to access Pivotal Cloud Foundry.  Your instructors will provide one for you.&lt;/p&gt;
+
+&lt;p&gt;If taking this course via e-learning, use a Pivotal Cloud Foundry account that your admin has setup for you or use &lt;a href=http://run.pivotal.io/ target=&#34;_blank&#34;&gt;Pivotal Web Services&lt;/a&gt;.  Choose the Organization and Space that works for you.&lt;/p&gt;
+
+&lt;h1 id=&#34;spaces:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Spaces&lt;/h1&gt;
+
+&lt;p&gt;Within your org you&amp;rsquo;ll find a space.  Spaces are where you will do your work (push your applications, create service instances, etc).&lt;/p&gt;
+
+&lt;h1 id=&#34;additional-reading:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Additional Reading&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=http://docs.pivotal.io/pivotalcf/concepts/roles.html target=&#34;_blank&#34;&gt;Orgs, Spaces, Roles, and Permissions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=https://docs.pivotal.io/pivotalcf/opsguide/change-quota-plan.html target=&#34;_blank&#34;&gt;Quotas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

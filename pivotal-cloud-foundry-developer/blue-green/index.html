@@ -1,0 +1,273 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Blue Green</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Blue Green - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</a></li>
+<li><a href="#what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</a></li>
+<li><a href="#exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</a>
+<ul>
+<li><a href="#setup:d680e8a854a7cbad6d490c445cba2eba">Setup</a></li>
+<li><a href="#perform-a-blue-green-deployment:d680e8a854a7cbad6d490c445cba2eba">Perform a Blue-Green Deployment</a>
+<ul>
+<li><a href="#questions:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+<li><a href="#cleanup:d680e8a854a7cbad6d490c445cba2eba">Cleanup</a></li>
+</ul></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<p>Estimated Time: 25 minutes</p>
+
+<h1 id="requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</h1>
+
+<p><a href="/pivotal-cloud-foundry-developer/requirements">Lab Requirements</a></p>
+
+<h1 id="what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</h1>
+
+<ul>
+<li>How to manage an application upgrade with a blue-green deployment</li>
+</ul>
+
+<h1 id="exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</h1>
+
+<h2 id="setup:d680e8a854a7cbad6d490c445cba2eba">Setup</h2>
+
+<p>1) To simulate a blue-green deployment, first scale <code>articulate</code> to multiple instances.</p>
+
+<pre><code>$ cf scale articulate -i 2
+</code></pre>
+
+<h2 id="perform-a-blue-green-deployment:d680e8a854a7cbad6d490c445cba2eba">Perform a Blue-Green Deployment</h2>
+
+<p>1) Read about using<a href=https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/blue-green.html target="_blank">Blue-Green Deployments to reduce downtime and risk</a>.</p>
+
+<p>2) Browse to the <code>articulate</code> <code>Blue-Green</code> page.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/blue_green.png" alt="Blue-Green Deployments" title="Blue-Green" /></p>
+
+<p>3) Lets assume that the deployed application is version 1.  Let&rsquo;s generate some traffic.  Press the <code>Start</code> button.</p>
+
+<p><em>Leave this open as a dedicated tab in your browser.  We will come back to this later.</em></p>
+
+<p>4) Observe our existing application handling all the web requests.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/start.png" alt="Start Load" title="Start Load" /></p>
+
+<p>5) Record the subdomain (<code>host</code>) for the <code>articulate</code> application.</p>
+
+<p>This is our production route.  <em>You will use this in the next step.</em></p>
+
+<p>For example:</p>
+
+<pre><code>$ cf routes
+
+Getting routes as droberts@pivotal.io ...
+
+space   host                                           domain                   apps   
+dev     articulate-heartsickening-elegance             pcfi1.fe.gopivotal.com   articulate   
+</code></pre>
+
+<p>6) Now let&rsquo;s <code>push</code> the next version of <code>articulate</code>.</p>
+
+<p>However, this time we will specify the subdomain by appending <code>-temp</code> to our production route.</p>
+
+<p>For example (your subdomain will be different):</p>
+
+<pre><code>$ cd ~/pivotal-cloud-foundry-developer-workshop/articulate/
+$ cf push articulate-v2 -p ./articulate-0.0.1-SNAPSHOT.jar -m 512M -n articulate-heartsickening-elegance-temp --no-start
+</code></pre>
+
+<p>7) Bind <code>articulate-v2</code> to the <code>attendee-service</code> user provided service.</p>
+
+<pre><code>$ cf bind-service articulate-v2 attendee-service
+</code></pre>
+
+<p><em>You can ignore the &ldquo;TIP: Use &lsquo;cf restage articulate-v2&rsquo; to ensure your env variable changes take effect&rdquo; message at this time.</em></p>
+
+<p>8) Start the application.</p>
+
+<pre><code>$ cf start articulate-v2
+</code></pre>
+
+<p>9) Now we have two versions of our app deployed.</p>
+
+<p><em>Open a new tab</em> and view version 2 of <code>articulate</code> in your browser.  Take note of the application name.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/green.png" alt="Green" title="Green" /></p>
+
+<p>At this point in the deployment process, you could do further testing of the version you are about to release before exposing customers to it.</p>
+
+<p>10) Let&rsquo;s assume we are ready to start directing production traffic to version 2.  We need to map our production route to <code>articulate-v2</code>.</p>
+
+<p>For example (your domain and subdomain will be different):</p>
+
+<pre><code>$ cf map-route articulate-v2 pcfi1.fe.gopivotal.com -n articulate-heartsickening-elegance
+</code></pre>
+
+<p>11) Return to browser tab where you started the load.  You should see that it is starting to send requests to version 2.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/map_route.png" alt="Map Route" title="Map Route" /></p>
+
+<p>12) Press the <code>Reset</code> button, so we can see how the load get distributed across app instances.</p>
+
+<p>If you are running with a similar configuration to this:</p>
+
+<pre><code>cf apps
+Getting apps in org dave / space dev as droberts@pivotal.io...
+OK
+
+name                     requested state   instances   memory   disk   urls   
+articulate               started           2/2         512M       1G     ...
+articulate-v2            started           1/1         512M       1G     ...
+</code></pre>
+
+<p>You should see about a third of the requests going to version 2.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/third.png" alt="Third" title="Quarter" /></p>
+
+<p>13) Move more traffic to version 2.</p>
+
+<pre><code>$ cf scale articulate -i 1
+$ cf scale articulate-v2 -i 2
+</code></pre>
+
+<p>If you <code>Reset</code> the load generator, you will see <sup>2</sup>&frasl;<sub>3</sub> of the traffic go to <code>articulate-v2</code>.</p>
+
+<p>14) Move all traffic to version 2.</p>
+
+<p>Remove the production route from the <code>articulate</code> application.</p>
+
+<p>For example (your domain and subdomain will be different):</p>
+
+<pre><code>$ cf unmap-route articulate pcfi1.fe.gopivotal.com -n articulate-heartsickening-elegance
+</code></pre>
+
+<p>If you <code>Reset</code> the load generator, you will see all the traffic goes to <code>articulate-v2</code>.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/unmap.png" alt="Unmap" title="Unmap" /></p>
+
+<p><strong><em>NOTE:</em></strong> Refreshing the entire page will update the application name.</p>
+
+<p>15) Remove the temp route from the <code>articulate-v2</code> application.</p>
+
+<p>For example (your domain and subdomain will be different):</p>
+
+<pre><code>$ cf unmap-route articulate-v2 pcfi1.fe.gopivotal.com -n articulate-heartsickening-elegance-temp
+</code></pre>
+
+<p><strong>Congratulations!</strong> You performed a blue-green deployment.</p>
+
+<h3 id="questions:d680e8a854a7cbad6d490c445cba2eba">Questions</h3>
+
+<ul>
+<li>How would a rollback situation be handled using a blue-green deployment?</li>
+<li>What other design implications does running at least two versions at the same time have on your applications?</li>
+<li>Do you do blue-green deployments today?  How is this different?</li>
+</ul>
+
+<h2 id="cleanup:d680e8a854a7cbad6d490c445cba2eba">Cleanup</h2>
+
+<p>Let&rsquo;s reset our environment.</p>
+
+<p>1) Delete the <code>articulate</code> application.</p>
+
+<pre><code>$ cf delete articulate
+</code></pre>
+
+<p>2) Rename <code>articulate-v2</code> to <code>articulate</code>.</p>
+
+<pre><code>$ cf rename articulate-v2 articulate
+</code></pre>
+
+<p>3) Restart <code>articulate</code>.</p>
+
+<pre><code>$ cf restart articulate
+</code></pre>
+
+<p>4) Scale down.</p>
+
+<pre><code>$ cf scale articulate -i 1
+</code></pre>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

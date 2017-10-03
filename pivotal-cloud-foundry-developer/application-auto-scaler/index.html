@@ -1,0 +1,245 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Application Autoscaler</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Application Autoscaler - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</a></li>
+<li><a href="#what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</a></li>
+<li><a href="#exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</a>
+<ul>
+<li><a href="#setup:d680e8a854a7cbad6d490c445cba2eba">Setup</a></li>
+<li><a href="#provision-and-bind-an-autoscaler-service-instance:d680e8a854a7cbad6d490c445cba2eba">Provision and Bind an Autoscaler Service Instance</a></li>
+<li><a href="#configuring-autoscaling-service-instance:d680e8a854a7cbad6d490c445cba2eba">Configuring Autoscaling Service Instance</a></li>
+<li><a href="#generate-load-and-observe-the-results:d680e8a854a7cbad6d490c445cba2eba">Generate Load and Observe the Results</a></li>
+<li><a href="#clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</a></li>
+<li><a href="#questions:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<p>Estimated Time: 25 minutes</p>
+
+<h1 id="requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</h1>
+
+<p><a href="/pivotal-cloud-foundry-developer/requirements">Lab Requirements</a></p>
+
+<h1 id="what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</h1>
+
+<ul>
+<li>How to use the <code>app-autoscaler</code> service</li>
+</ul>
+
+<h1 id="exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</h1>
+
+<h2 id="setup:d680e8a854a7cbad6d490c445cba2eba">Setup</h2>
+
+<p>1) Ensure the <code>articulate</code> application has one application instance running.</p>
+
+<pre><code>$ cf scale articulate -i 1
+</code></pre>
+
+<h2 id="provision-and-bind-an-autoscaler-service-instance:d680e8a854a7cbad6d490c445cba2eba">Provision and Bind an Autoscaler Service Instance</h2>
+
+<p>1) Read the documentation about App Autoscaling <a href=https://docs.pivotal.io/pivotalcf/customizing/autoscale-configuration.html target="_blank">in response to load</a> and <a href=https://docs.pivotal.io/pivotalcf/customizing/scheduled-scaling.html target="blank">scheduled scaling</a>.</p>
+
+<p>2) Review what&rsquo;s in the marketplace.</p>
+
+<pre><code>$ cf marketplace
+</code></pre>
+
+<p>3) Create a autoscaler service instance.</p>
+
+<pre><code>$ cf create-service app-autoscaler gold autoscaler
+</code></pre>
+
+<p>4) Bind the service to <code>articulate</code>.</p>
+
+<pre><code>$ cf bind-service articulate autoscaler
+</code></pre>
+
+<p><em>You can ignore the &ldquo;TIP: Use &lsquo;cf restage articulate&rsquo; to ensure your env variable changes take effect&rdquo; message at this time.</em></p>
+
+<p>5) Restart the application.</p>
+
+<pre><code>$ cf restart articulate
+</code></pre>
+
+<h2 id="configuring-autoscaling-service-instance:d680e8a854a7cbad6d490c445cba2eba">Configuring Autoscaling Service Instance</h2>
+
+<p>1) View <code>articulate</code> in Apps Manager.</p>
+
+<ol>
+<li>Navigate to the <code>Services</code> tab.</li>
+<li>Click the <code>Manage</code> link for the autoscaler (this will open a new tab).</li>
+</ol>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/manage.png" alt="Manage" title="Manage" /></p>
+
+<p>2) <code>Turn on</code> autoscaling for <code>articulate</code>.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/turn_on.png" alt="Turn On" title="Turn On" /></p>
+
+<p>We will use policy defaults.  Note that the default policy for minimum instances is <code>2</code>.
+<img src="/pivotal-cloud-foundry-developer/resources/images/settings.png" alt="Settings" title="Settings" /></p>
+
+<p>3) Return to Apps Manager and observe the number of instances increase from <code>1</code> to <code>2</code>.</p>
+
+<h2 id="generate-load-and-observe-the-results:d680e8a854a7cbad6d490c445cba2eba">Generate Load and Observe the Results</h2>
+
+<p>1) Download <a href=http://jmeter.apache.org/download_jmeter.cgi target="_blank">Apache JMeter</a>.  It will be used to generate load.  Review the JMeter <a href=http://jmeter.apache.org/usermanual/get-started.html target="_blank">getting started</a> directions.</p>
+
+<p>Helpful hints for <code>Linux and Mac</code>:</p>
+
+<ol>
+<li>Add execute permissions to the jmeter script: <code>chmod +x $WHERE_YOU_EXTRACTED_THE_ZIP/bin/jmeter.sh</code></li>
+<li>Start Jmeter by executing <code>$WHERE_YOU_EXTRACTED_THE_ZIP/bin/jmeter.sh</code></li>
+</ol>
+
+<p>Helpful hints for <code>Windows</code>:</p>
+
+<ol>
+<li>Start Jmeter by double clicking the following file in Windows Explorer: <code>$WHERE_YOU_EXTRACTED_THE_ZIP/bin/jmeter.bat</code></li>
+</ol>
+
+<p>2) Download the <a href="/pivotal-cloud-foundry-developer/resources/jmx/load-gen.jmx">load-gen.jmx</a> file.</p>
+
+<p>3) Open the load-gen.jmx file with the JMeter GUI.</p>
+
+<p>4) Expand the content of the JMeter test plan by:</p>
+
+<ol>
+<li>Selecting the <code>Load Generator</code> test plan on the left pane.</li>
+<li>Going to the menu: <code>Option</code> → <code>Expand All</code>.</li>
+</ol>
+
+<p>5) Edit the test plan to use your application’s URL (do not include the <code>http://</code>) and the <code>/services</code> endpoint.</p>
+
+<p>To do so, change the <code>Server Name or IP</code> field on the <code>HTTP Request Defaults</code> item.</p>
+
+<p>For Example: <code>articulate-eyesome-kilocalorie.pcfi1.fe.gopivotal.com/services</code></p>
+
+<p>6) Save the test plan: <code>File</code> → <code>Save</code>.</p>
+
+<p>7) Run the test plan: <code>Run</code> → <code>Start</code>.</p>
+
+<p>8) Use Apps Manager and the <code>cf</code> CLI to observe your service scale up and back down based on load.</p>
+
+<p><strong><em>NOTE:</em></strong> You may see <code>articulate</code> crash when placing load on it in this scenario.  This is okay.  We are running the application with a lower memory setting so that we can scale within quota limits.</p>
+
+<p>9) Stop the test plan: <code>Run</code> → <code>Stop</code>.</p>
+
+<p>10) Review Autoscale history.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/history.png" alt="History" /></p>
+
+<h2 id="clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</h2>
+
+<p>1) Unbind the <code>autoscaler</code> service instance.</p>
+
+<pre><code>$ cf unbind-service articulate autoscaler
+</code></pre>
+
+<p>2) Delete the <code>autoscaler</code> service instance.</p>
+
+<pre><code>$ cf delete-service autoscaler
+</code></pre>
+
+<p>3) Scale <code>articulate</code> back to original settings.</p>
+
+<pre><code>$ cf scale articulate -i 1
+</code></pre>
+
+<p>4) Restart <code>articulate</code>.</p>
+
+<pre><code>$ cf restart articulate
+</code></pre>
+
+<h2 id="questions:d680e8a854a7cbad6d490c445cba2eba">Questions</h2>
+
+<ul>
+<li>How do you handle autoscaling today?</li>
+<li>What 12 factor principles are important when it comes to scaling?</li>
+<li>How do you handle scaling at the data layer?</li>
+</ul>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+
