@@ -1,0 +1,65 @@
+
+
+# Cloud Controller url and credentials - should have admin privileges
+cf_api_uri: api.run.pivotal.io
+cf_user: mling@pivotal.io
+cf_password: 123Sinch@
+
+#cloud foundry space and org info
+cf_organization: Federal
+cf_space: workshop
+
+#git information
+workshop-branch: cjis-oct-2017
+git_private_key: |
+  -----BEGIN RSA PRIVATE KEY-----
+  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
+  -----END RSA PRIVATE KEY-----
