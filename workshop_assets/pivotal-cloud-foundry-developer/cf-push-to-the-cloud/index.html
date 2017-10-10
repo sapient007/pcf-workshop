@@ -1,5 +1,5 @@
 <div class="row">
-	
+
 	<div class="pane bg-dark-2">
 		<div class="container">
 			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Push to the Cloud</h2>
@@ -24,11 +24,11 @@
 	</head>
 
 <body role="document">
-	
+
 
 <div class="container">
 	<div class="row">
-			
+
 
 	<div class="col-sm-14 doc-sidebar">
 		<div class="sidebar-module">
@@ -64,7 +64,7 @@
 					<div class="doc-entry-meta">
 					</div>
 					<section>
-						
+
 
 <p>Estimated Time: 25 minutes</p>
 
@@ -112,7 +112,7 @@ $ cf login --help
 
 <p>1) Continue to follow directions for logging in with the <code>cf</code> CLI.  You can copy and paste the <code>cf login</code> command directly from Apps Manager.</p>
 
-<pre><code>$ cf login -a &lt;substitute the API endpoint from Apps Manager&gt;
+<pre><code>$ cf login -a api.run.haas-83.pez.pivotal.io --skip-ssl-validation
 </code></pre>
 
 <p><strong><em>NOTE:</em></strong>  Are SSL errors preventing you from logging in?  Try adding the <code>--skip-ssl-validation</code> option.</p>
@@ -146,7 +146,7 @@ $ cf push node --random-route -m 128M
 
 <p>Example:</p>
 
-<pre><code>$ curl node-northeasterly-zygoma.cfapps.io
+<pre><code>$ curl node-northeasterly-zygoma.cfapps.haas-83.pez.pivotal.io
 Hello Node
 </code></pre>
 
@@ -198,10 +198,10 @@ Hello Node
 					</section>
 				</article>
 			</main>
-		</div> 
+		</div>
 
 
-	</div> 
+	</div>
 </div>
 
 <hr />
@@ -212,10 +212,10 @@ Hello Node
 		</div>
 	</div>
 
-</div> 
+</div>
 
 <footer class="doc-footer">
-	
+
 	<p>© Copyright Pivotal. All rights reserved.</p>
 </footer>
 
@@ -229,4 +229,3 @@ Hello Node
 
 </body>
 </html>
-
