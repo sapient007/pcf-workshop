@@ -1,5 +1,5 @@
 <div class="row">
-	
+
 	<div class="pane bg-dark-2">
 		<div class="container">
 			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Services</h2>
@@ -24,11 +24,11 @@
 	</head>
 
 <body role="document">
-	
+
 
 <div class="container">
 	<div class="row">
-			
+
 
 	<div class="col-sm-14 doc-sidebar">
 		<div class="sidebar-module">
@@ -67,7 +67,7 @@
 					<div class="doc-entry-meta">
 					</div>
 					<section>
-						
+
 
 <p>Estimated Time: 25 minutes</p>
 
@@ -123,11 +123,6 @@ $ cf push attendee-service -p ./attendee-service-0.0.1-SNAPSHOT.jar -m 512M --ra
 <pre><code>$ cf create-service p-mysql 100mb-dev attendee-mysql
 </code></pre>
 
-<p><strong>Pivotal Web Services:</strong></p>
-
-<pre><code>$ cf create-service cleardb spark attendee-mysql
-</code></pre>
-
 <p>4) Now we need to bind the application with the service instance.</p>
 
 <pre><code>$ cf bind-service attendee-service attendee-mysql
@@ -142,9 +137,7 @@ $ cf push attendee-service -p ./attendee-service-0.0.1-SNAPSHOT.jar -m 512M --ra
 
 <p>6) View the <code>attendee-service</code> in a browser.</p>
 
-<p>You should see response similar to the following (pic is using the <a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target="_blank">JSON Formatter for Chrome</a>):</p>
-
-<p><img src="/pivotal-cloud-foundry-developer/resources/images/attendee_service.png" alt="attendee-service" title="attendee-service" /></p>
+<p>You should see metrics similar to previous lab  (pic is using the <a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target="_blank">JSON Formatter for Chrome</a>):</p>
 
 <h3 id="how-does-this-work:d680e8a854a7cbad6d490c445cba2eba">How does this work?</h3>
 
@@ -223,10 +216,10 @@ uri&gt; http://attendee-service-surfy-glt.pcfi1.fe.gopivotal.com
 					</section>
 				</article>
 			</main>
-		</div> 
+		</div>
 
 
-	</div> 
+	</div>
 </div>
 
 <hr />
@@ -237,10 +230,10 @@ uri&gt; http://attendee-service-surfy-glt.pcfi1.fe.gopivotal.com
 		</div>
 	</div>
 
-</div> 
+</div>
 
 <footer class="doc-footer">
-	
+
 	<p>© Copyright Pivotal. All rights reserved.</p>
 </footer>
 
@@ -254,4 +247,3 @@ uri&gt; http://attendee-service-surfy-glt.pcfi1.fe.gopivotal.com
 
 </body>
 </html>
-
