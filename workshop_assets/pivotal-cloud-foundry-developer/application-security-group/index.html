@@ -1,5 +1,5 @@
 <div class="row">
-	
+
 	<div class="pane bg-dark-2">
 		<div class="container">
 			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Application Security Groups</h2>
@@ -24,11 +24,11 @@
 	</head>
 
 <body role="document">
-	
+
 
 <div class="container">
 	<div class="row">
-			
+
 
 	<div class="col-sm-14 doc-sidebar">
 		<div class="sidebar-module">
@@ -60,7 +60,7 @@
 					<div class="doc-entry-meta">
 					</div>
 					<section>
-						
+
 
 <p>Estimated Time: 25 minutes</p>
 
@@ -106,32 +106,9 @@
 <p><strong><em>NOTE:</em></strong> when logged in as <code>admin</code> <code>cf security-groups</code> lists all security groups (bound or not).  Additional commands are used to discover running and staging security groups.</p>
 
 <pre><code>$ cf security-groups
-$ cf staging-security-groups
-$ cf running-security-groups
+$ cf default_security_group
+$ cf metrics-api
 </code></pre>
-
-<h2 id="lock-down-all-egress-traffic-for-running-applications:d680e8a854a7cbad6d490c445cba2eba">Lock Down All Egress Traffic For Running Applications</h2>
-
-<p>1) Unbind the <code>all_open</code> security group for running applications.</p>
-
-<pre><code>$ cf unbind-running-security-group all_open
-</code></pre>
-
-<p><strong><em>What Just Happened?</em></strong></p>
-
-<p>You just locked down all outbound traffic for running applications.  We will demonstrate that next.</p>
-
-<p>2) Tail the <code>attendee-service</code> logs.</p>
-
-<pre><code>$ cf logs attendee-service
-</code></pre>
-
-<p>3) Open another terminal.  Restart <code>attendee-service</code> while tailing the logs.</p>
-
-<pre><code>$ cf restart attendee-service
-</code></pre>
-
-<p>4) Review the logs.  The <code>attendee-service</code> application wasn&rsquo;t able to connect to the database.</p>
 
 <h2 id="create-a-security-group-allowing-egress-traffic-to-mysql:d680e8a854a7cbad6d490c445cba2eba">Create a Security Group Allowing Egress Traffic to MySql</h2>
 
@@ -193,10 +170,10 @@ $ cf running-security-groups
 					</section>
 				</article>
 			</main>
-		</div> 
+		</div>
 
 
-	</div> 
+	</div>
 </div>
 
 <hr />
@@ -207,10 +184,10 @@ $ cf running-security-groups
 		</div>
 	</div>
 
-</div> 
+</div>
 
 <footer class="doc-footer">
-	
+
 	<p>© Copyright Pivotal. All rights reserved.</p>
 </footer>
 
@@ -224,4 +201,3 @@ $ cf running-security-groups
 
 </body>
 </html>
-
