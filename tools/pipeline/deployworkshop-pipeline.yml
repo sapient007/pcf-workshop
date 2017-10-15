@@ -17,11 +17,22 @@ resources:
     space: {{cf_space}}
     skip_cert_check: true
 
+- name: resource-version
+  type: semver
+  source:
+    driver: git
+    initial_version: 0.0.1
+    uri: git@github.com:sapient007/pcf-workshop-dev.git
+    branch: {{workshop-branch}}
+    file: version
+    private_key: {{git_private_key}}
+
 jobs:
 - name: job-deploy-app
   serial: true
   plan:
   - {get: workshop-web-app, trigger: true}
+  - get: resource-version
   - put: resource-deploy-web-app
     params:
       manifest: workshop-web-app/workshop_assets/manifest.yml
