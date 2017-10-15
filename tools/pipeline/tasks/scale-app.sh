@@ -2,12 +2,6 @@
 
 set -eu
 
-CF_API_URI="api.run.haas-83.pez.pivotal.io"
-CF_USERNAME="admin"
-CF_PASSWORD="QEshW95tx0iI_XYZ5I3pP86-95Q5coZz"
-ORG="workshop"
-INSTANCES="1"
-
 cf api $CF_API_URI --skip-ssl-validation
 cf auth $CF_USERNAME $CF_PASSWORD
 cf target -o $ORG
