@@ -5,15 +5,15 @@ image_resource:
   type: docker-image
   source: {repository: czero/cflinuxfs2}
 
-inputs:
-- name: workshop-pipelines
-
 params:
   CF_API_URI:
-  CF_USERNAME: 
+  CF_USERNAME:
   CF_PASSWORD:
   ORG:
   INSTANCES:
 
+inputs:
+- name: workshop-pipelines
+
 run:
-  path: pcf-workshop-dev/tools/pipeline/tasks/scale-back-app.sh
+  path: pcf-workshop-dev/tools/pipeline/tasks/scale-app.sh
