@@ -18,3 +18,5 @@ To Start the course use the `run.sh` file.
 CD into the unzipped folder
 
 From the terminal enter: ./run.sh
+
+.
