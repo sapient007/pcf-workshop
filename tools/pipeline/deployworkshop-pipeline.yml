@@ -8,6 +8,7 @@ resources:
     branch: {{workshop-branch}}
     ignore_paths:
         - workshop-web-app/tools/**
+        - tools/**
 
 - name: resource-deploy-web-app
   type: cf
