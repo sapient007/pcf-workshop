@@ -15,6 +15,5 @@ params:
 inputs:
 - name: pcf-workshop-dev
 
-
 run:
   path: pcf-workshop-dev/tools/pipeline/tasks/scale-app.sh
