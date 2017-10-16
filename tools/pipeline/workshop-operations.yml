@@ -1,6 +1,6 @@
 ---
 resources:
-- name: workshop-web-app
+- name: pcf-workshop-dev
   type: git
   source:
     uri: git@github.com:sapient007/pcf-workshop-dev.git
