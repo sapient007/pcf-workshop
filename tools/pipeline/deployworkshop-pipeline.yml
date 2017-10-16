@@ -7,7 +7,7 @@ resources:
     private_key: {{git_private_key}}
     branch: {{workshop-branch}}
     ignore_paths:
-        - tools/**
+        - workshop-web-app/tools/**
 
 - name: resource-deploy-web-app
   type: cf
