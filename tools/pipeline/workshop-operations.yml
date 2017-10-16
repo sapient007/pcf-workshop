@@ -1,6 +1,6 @@
 ---
 resources:
-- name: pcf-workshop-dev
+- name: workshop-web-app
   type: git
   source:
     uri: git@github.com:sapient007/pcf-workshop-dev.git
@@ -12,12 +12,12 @@ jobs:
   serial: true
   plan:
   - aggregate:
-    - get: pcf-workshop-dev
-    - task: scale-back-apps
-      file: pcf-workshop-dev/tools/pipeline/tasks/scale-app.yml
-      params:
-          CF_API_URI: {{cf_api_uri}}
-          CF_USERNAME: {{cf_user}}
-          CF_PASSWORD: {{cf_password}}
-          ORG: {{cf_organization}}
-          INSTANCES: {{application_instances}}
+    - get: workshop-web-app
+  - task: scale-back-apps
+    file: pcf-workshop-dev/tools/pipeline/tasks/scale-app.yml
+    params:
+        CF_API_URI: {{cf_api_uri}}
+        CF_USERNAME: {{cf_user}}
+        CF_PASSWORD: {{cf_password}}
+        ORG: {{cf_organization}}
+        INSTANCES: {{application_instances}}
