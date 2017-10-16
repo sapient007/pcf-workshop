@@ -11,12 +11,13 @@ jobs:
 - name: job-scale-app
   serial: true
   plan:
-  - get: workshop-web-app
-  - task: scale-back-apps
-    file: pcf-workshop-dev/tools/pipeline/tasks/scale-app.yml
-    params:
-        CF_API_URI: {{cf_api_uri}}
-        CF_USERNAME: {{cf_user}}
-        CF_PASSWORD: {{cf_password}}
-        ORG: {{cf_organization}}
-        INSTANCES: {{application_instances}}
+  - aggregate:
+    - get: workshop-web-app
+    - task: scale-back-apps
+      file: pcf-workshop-dev/tools/pipeline/tasks/scale-app.yml
+      params:
+          CF_API_URI: {{cf_api_uri}}
+          CF_USERNAME: {{cf_user}}
+          CF_PASSWORD: {{cf_password}}
+          ORG: {{cf_organization}}
+          INSTANCES: {{application_instances}}
