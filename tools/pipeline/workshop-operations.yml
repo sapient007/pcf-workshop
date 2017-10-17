@@ -22,3 +22,16 @@ jobs:
         CF_PASSWORD: {{cf_password}}
         ORG: {{cf_organization}}
         INSTANCES: {{application_instances}}
+
+- name: job-stop-app
+  serial: true
+  plan:
+  - aggregate:
+    - get: pcf-workshop-dev
+  - task: stop-apps
+    file: pcf-workshop-dev/tools/pipeline/tasks/stop-app.yml
+    params:
+        CF_API_URI: {{cf_api_uri}}
+        CF_USERNAME: {{cf_user}}
+        CF_PASSWORD: {{cf_password}}
+        ORG: {{cf_organization}}
