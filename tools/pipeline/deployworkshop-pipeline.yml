@@ -5,6 +5,8 @@ resources:
   source:
     uri: git@github.com:sapient007/pcf-workshop-dev.git
     private_key: {{git_private_key}}
+    ignore_paths:
+      - tools/**
     branch: {{workshop-branch}}
 
 - name: resource-deploy-web-app
