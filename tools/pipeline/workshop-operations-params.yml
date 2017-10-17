@@ -1,0 +1,9 @@
+#CF API end potins
+cf_api_uri: 
+cf_user: 
+cf_password: 
+cf_organization: 
+application_instances: 1
+workshop-branch: 
+
+git_private_key: 

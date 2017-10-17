@@ -1,0 +1,12 @@
+# Cloud Controller url and credentials - should have org admin privileges
+cf_api_uri: 
+cf_user: 
+cf_password: 
+
+#cloud foundry space and org info
+cf_organization: 
+cf_space: 
+
+#git information
+workshop-branch: 
+git_private_key: |
