@@ -1,0 +1,19 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: czero/cflinuxfs2}
+
+params:
+  CF_API_URI:
+  CF_USERNAME:
+  CF_PASSWORD:
+  ORG:
+  INSTANCES:
+
+inputs:
+- name: pcf-workshop-dev
+
+run:
+  path: pcf-workshop-dev/tools/pipeline/tasks/stop-app.sh

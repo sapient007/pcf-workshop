@@ -1,0 +1,231 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Amazon Web Services MongoDB AMI</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Amazon Web Services MongoDB AMI - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#mongodb-vm:e3a90e3eeca409f0c02afd6669b4d295">MongoDB VM</a>
+<ul>
+<li><a href="#requirements:e3a90e3eeca409f0c02afd6669b4d295">Requirements</a></li>
+<li><a href="#installed-software:e3a90e3eeca409f0c02afd6669b4d295">Installed Software</a></li>
+<li><a href="#provisioning:e3a90e3eeca409f0c02afd6669b4d295">Provisioning</a>
+<ul>
+<li><a href="#provisioning-wizard:e3a90e3eeca409f0c02afd6669b4d295">Provisioning Wizard</a>
+<ul>
+<li><a href="#choose-an-instance-type:e3a90e3eeca409f0c02afd6669b4d295">Choose an Instance Type</a></li>
+<li><a href="#configure-instance-details:e3a90e3eeca409f0c02afd6669b4d295">Configure Instance Details</a></li>
+<li><a href="#add-storage:e3a90e3eeca409f0c02afd6669b4d295">Add Storage</a></li>
+<li><a href="#tag-instance:e3a90e3eeca409f0c02afd6669b4d295">Tag Instance</a></li>
+<li><a href="#create-a-security-group:e3a90e3eeca409f0c02afd6669b4d295">Create a Security Group</a></li>
+<li><a href="#review-instance-launch:e3a90e3eeca409f0c02afd6669b4d295">Review Instance Launch</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#accessing-your-mongo-vm-remotely:e3a90e3eeca409f0c02afd6669b4d295">Accessing Your Mongo VM Remotely</a></li>
+<li><a href="#managing-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Managing MongoDB</a>
+<ul>
+<li><a href="#start-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Start MongoDB</a></li>
+<li><a href="#stop-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Stop MongoDB</a></li>
+<li><a href="#restart-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Restart MongoDB</a></li>
+</ul></li>
+<li><a href="#the-mongo-shell:e3a90e3eeca409f0c02afd6669b4d295">The Mongo Shell</a></li>
+</ul></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<h1 id="mongodb-vm:e3a90e3eeca409f0c02afd6669b4d295">MongoDB VM</h1>
+
+<p>A MongoDB VM (Ubuntu 14.04) is available to complete the service broker lab.  The VM is hosted on Amazon Web Services.</p>
+
+<h2 id="requirements:e3a90e3eeca409f0c02afd6669b4d295">Requirements</h2>
+
+<ul>
+<li>Network connectivity and access to reach the Mongo VM (uses port <code>27017</code>) from your Pivotal Cloud Foundry environment</li>
+</ul>
+
+<h2 id="installed-software:e3a90e3eeca409f0c02afd6669b4d295">Installed Software</h2>
+
+<p>The software listed below has been installed and configured on the VM:</p>
+
+<ul>
+<li>MongoDB - <a href=https://www.mongodb.com/community/licensing target="_blank">License</a></li>
+</ul>
+
+<h2 id="provisioning:e3a90e3eeca409f0c02afd6669b4d295">Provisioning</h2>
+
+<p>1) User must have access to an AWS account (can run from any account)</p>
+
+<p>2) User must have an existing key pair in the account or create one</p>
+
+<p>3) The AMI can be found be searching for <code>mongodb-service-broker-lab</code> in the EC2 Dashboard.  Must be in the N. Virginia region.</p>
+
+<p>Using the EC2 dashboard, under Images &gt; AMIs search for <code>mongodb-service-broker-lab</code>. Click Launch.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/search.png" alt="search for ami" /></p>
+
+<h3 id="provisioning-wizard:e3a90e3eeca409f0c02afd6669b4d295">Provisioning Wizard</h3>
+
+<p>When launching, accept defaults except where specified.</p>
+
+<h4 id="choose-an-instance-type:e3a90e3eeca409f0c02afd6669b4d295">Choose an Instance Type</h4>
+
+<ul>
+<li>Use <code>t2.large</code> (8 GB memory)</li>
+</ul>
+
+<h4 id="configure-instance-details:e3a90e3eeca409f0c02afd6669b4d295">Configure Instance Details</h4>
+
+<ul>
+<li>Auto-assign Public IP  = <code>Enable</code></li>
+</ul>
+
+<h4 id="add-storage:e3a90e3eeca409f0c02afd6669b4d295">Add Storage</h4>
+
+<ul>
+<li>Accept defaults</li>
+</ul>
+
+<h4 id="tag-instance:e3a90e3eeca409f0c02afd6669b4d295">Tag Instance</h4>
+
+<ul>
+<li>Create the following: Key = <code>Name</code>; Value = <code>&lt;your name here-mongodb-service-broker&gt;</code></li>
+</ul>
+
+<h4 id="create-a-security-group:e3a90e3eeca409f0c02afd6669b4d295">Create a Security Group</h4>
+
+<p>Create a security group with the following rules:</p>
+
+<p><strong>Rule 1:</strong> <br>
+ Type = <code>ssh</code> <br>
+ Protocol = <code>TCP</code> <br>
+ Port Range = <code>22</code> <br>
+ Source = <code>anywhere</code> (0.0.0.0/0) <br></p>
+
+<p><strong>Rule 2:</strong> <br>
+  Type = <code>Custom TCP Rule</code> <br>
+  Protocol = <code>TCP</code> <br>
+  Port Range = <code>27017</code> <br>
+  Source = <code>anywhere</code> (0.0.0.0/0) <br></p>
+
+<h4 id="review-instance-launch:e3a90e3eeca409f0c02afd6669b4d295">Review Instance Launch</h4>
+
+<p>Select your key-pair and launch the instance.</p>
+
+<p>Once the instance is running, select it in list of EC2 instances. <strong><em>Obtain the public IP for use in the lab</em></strong>.</p>
+
+<h2 id="accessing-your-mongo-vm-remotely:e3a90e3eeca409f0c02afd6669b4d295">Accessing Your Mongo VM Remotely</h2>
+
+<p>SSH using your private key, the <code>ubuntu</code> user and the public IP address of your VM.</p>
+
+<p>For example:</p>
+
+<pre><code>$ ssh -i ~/.ssh/my-key-pair.pem ubuntu@53.91.185.0
+</code></pre>
+
+<p><a href=http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html target="_blank">Amazon Reference Documentation</a></p>
+
+<h2 id="managing-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Managing MongoDB</h2>
+
+<h3 id="start-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Start MongoDB</h3>
+
+<pre><code>$ sudo service mongod start
+</code></pre>
+
+<h3 id="stop-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Stop MongoDB</h3>
+
+<pre><code>$ sudo service mongod stop
+</code></pre>
+
+<h3 id="restart-mongodb:e3a90e3eeca409f0c02afd6669b4d295">Restart MongoDB</h3>
+
+<pre><code>$ sudo service mongod restart
+</code></pre>
+
+<h2 id="the-mongo-shell:e3a90e3eeca409f0c02afd6669b4d295">The Mongo Shell</h2>
+
+<p>The <code>mongo</code> shell is also loaded on the VM.  It can be accessed in the terminal by doing the following:</p>
+
+<pre><code>$ mongo
+</code></pre>
+
+<p><a href=https://docs.mongodb.org/manual/mongo/ target="_blank">Mongo Shell Reference</a></p>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

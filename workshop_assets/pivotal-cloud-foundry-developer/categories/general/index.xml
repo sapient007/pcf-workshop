@@ -1,0 +1,1522 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General on Pivotal Cloud Foundry Developer</title>
+    <link>/pivotal-cloud-foundry-developer/categories/general/</link>
+    <description>Recent content in General on Pivotal Cloud Foundry Developer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright Pivotal. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 10 Mar 2016 08:52:24 -0600</lastBuildDate>
+    <atom:link href="/pivotal-cloud-foundry-developer/categories/general/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Requirements</title>
+      <link>/pivotal-cloud-foundry-developer/requirements/</link>
+      <pubDate>Thu, 10 Mar 2016 08:52:24 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/requirements/</guid>
+      <description>
+
+&lt;h1 id=&#34;personal-experience:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Personal Experience&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Understanding of development concepts&lt;/li&gt;
+&lt;li&gt;Experience using a terminal window&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;pivotal-cloud-foundry-environment:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Pivotal Cloud Foundry Environment&lt;/h1&gt;
+
+&lt;p&gt;You will need a Pivotal Cloud Foundry environment to execute the labs.  You may use a Pivotal Cloud Foundry instance or &lt;a href=http://run.pivotal.io target=&#34;_blank&#34;&gt;Pivotal Web Services&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If taking the course via e-learning using Pivotal Web Services is recommended, unless you have access to another Pivotal Cloud Foundry instance (typically already provisioned by your company).  It is not recommended that you provision a personal Pivotal Cloud Foundry environment to complete the labs.  The setup and installation of Pivotal Cloud Foundry is beyond the scope of this course.&lt;/p&gt;
+
+&lt;p&gt;If taking the course via instructor led training your instructor will provide guidance on the environment to use.&lt;/p&gt;
+
+&lt;p&gt;Throughout the labs you will see specific directions for Pivotal Cloud Foundry or Pivotal Web Services.  Make sure follow the directions for the applicable environment.&lt;/p&gt;
+
+&lt;h2 id=&#34;pivotal-cloud-foundry:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Pivotal Cloud Foundry&lt;/h2&gt;
+
+&lt;p&gt;Pivotal Cloud Foundry may be used to complete these labs.  The following dependencies are required:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Elastic Runtime 1.7 +&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If using self-signed certificates, under the &lt;code&gt;Elastic Runtime Tile&lt;/code&gt; → &lt;code&gt;Settings&lt;/code&gt; → &lt;code&gt;Networking&lt;/code&gt; page make sure the following options have been checked: &lt;code&gt;Disable SSL certificate verification for this environment&lt;/code&gt;, &lt;code&gt;Ignore SSL certificate verification on route services&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MySql Tile&lt;/li&gt;
+&lt;li&gt;Metrics Tile&lt;/li&gt;
+&lt;li&gt;Redis Tile&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;pivotal-web-services:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Pivotal Web Services&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=http://run.pivotal.io target=&#34;_blank&#34;&gt;Pivotal Web Services&lt;/a&gt; may be used to complete these labs.  Simply sign up for an account.&lt;/p&gt;
+
+&lt;h2 id=&#34;a-note-about-the-service-broker-lab:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;A Note About the Service Broker Lab&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/service-broker&#34;&gt;Service Broker lab&lt;/a&gt; requires access to a MongoDB instance.  Please review that lab for alternatives on how to meet that requirement.  Options include using the &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/service-broker/aws-mongo-ami&#34;&gt;AWS MongoDB AMI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;local-machine:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Local Machine&lt;/h1&gt;
+
+&lt;p&gt;You will need the ability to install software on your local machine.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;4GB Memory&lt;/li&gt;
+&lt;li&gt;Installation of &lt;code&gt;cf&lt;/code&gt; (this will be done in the first lab)&lt;/li&gt;
+&lt;li&gt;Network access to the Pivotal Cloud Foundry environment and internet&lt;/li&gt;
+&lt;li&gt;&lt;a href=http://jmeter.apache.org/ target=_&#34;blank&#34;&gt; Apache JMeter &lt;/a&gt;  also requires &lt;a href=http://www.oracle.com/technetwork/java/javase/downloads/index.html target=&#34;_blank&#34;&gt;Java&lt;/a&gt; - Used in the &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/application-auto-scaler&#34;&gt;Auto Scaler&lt;/a&gt;, &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/application-performance-monitor&#34;&gt;APM&lt;/a&gt; and &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/metrics&#34;&gt;Metrics&lt;/a&gt; labs&lt;/li&gt;
+&lt;li&gt;&lt;a href=https://jenkins.io/ target=&#34;_blank&#34;&gt;Jenkins&lt;/a&gt; also requires a &lt;a href=http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html  target=&#34;_blank&#34;&gt;JDK 8&lt;/a&gt; and &lt;a href=https://git-scm.com/ target=&#34;_blank&#34;&gt;git&lt;/a&gt; (provisioning a &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/continuous-delivery/aws-jenkins-ami&#34;&gt;Jenkins on AWS&lt;/a&gt; is alternative to local install) - Used in Continuous Delivery Lab&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;optional:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Optional&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target=&#34;_blank&#34;&gt;JSON Formatter for Chrome&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Windows users may desire a better terminal experience than the &lt;em&gt;cmd.exe&lt;/em&gt;.  Check out &lt;a href=https://conemu.github.io/ target=&#34;_blank&#34;&gt;ConEmu&lt;/a&gt;.  It provides multiple tabs and search which is helpful during these labs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;windows-vm:a05dcee144da6675ae9d2fe98e94d8dd&#34;&gt;Windows VM&lt;/h1&gt;
+
+&lt;p&gt;An alternative to installing and configuring the software on your local machine is to use the Windows VM.&lt;/p&gt;
+
+&lt;p&gt;If using the Windows VM see these &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/windows-vm/index.html&#34;&gt;requirements&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Services</title>
+      <link>/pivotal-cloud-foundry-developer/services/</link>
+      <pubDate>Tue, 08 Mar 2016 15:10:46 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/services/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to create a managed service instance&lt;/li&gt;
+&lt;li&gt;How to create a user provided service instance&lt;/li&gt;
+&lt;li&gt;How to bind an application to a service instance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;review-articulate-dependencies:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Review &lt;code&gt;articulate&lt;/code&gt; dependencies&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;articulate&lt;/code&gt; exposes functionality to add attendees on the &lt;code&gt;Services&lt;/code&gt; page.  However, &lt;code&gt;articulate&lt;/code&gt; doesn&amp;rsquo;t do this alone.  It makes REST calls to the &lt;code&gt;attendee-service&lt;/code&gt; application. To learn more about services, let&amp;rsquo;s provision the &lt;code&gt;attendee-service&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/services.png&#34; alt=&#34;Services&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;push-the-attendee-service-application:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Push the &lt;code&gt;attendee-service&lt;/code&gt; application&lt;/h2&gt;
+
+&lt;p&gt;1) &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/demo-apps/attendee-service-0.0.1-SNAPSHOT.jar&#34;&gt;Download&lt;/a&gt; the &lt;code&gt;attendee-service&lt;/code&gt; application.  Copy the file to folder: &lt;code&gt;~/pivotal-cloud-foundry-developer-workshop/attendee-service/&lt;/code&gt; (&lt;code&gt;~&lt;/code&gt; is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your &lt;a href=https://en.wikipedia.org/wiki/Home_directory target=&#34;_blank&#34;&gt;home&lt;/a&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; If your browser warns you about downloading this file please proceed to download it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=https://github.com/pivotal-enablement/attendee-service target=&#34;_blank&#34;&gt;Source&lt;/a&gt; is not required, but you may be curious how it works as you move through the labs.&lt;/p&gt;
+
+&lt;p&gt;2) Push the &lt;code&gt;attendee-service&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/attendee-service/
+$ cf push attendee-service -p ./attendee-service-0.0.1-SNAPSHOT.jar -m 512M --random-route
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does &lt;code&gt;attendee-service&lt;/code&gt; start up correctly?  Why not?&lt;/p&gt;
+
+&lt;h2 id=&#34;add-a-managed-service:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Add a Managed Service&lt;/h2&gt;
+
+&lt;p&gt;1) Review the &lt;a href=http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on managing service instances&lt;/p&gt;
+
+&lt;p&gt;2) Review what services are available in the marketplace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf marketplace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Provision a MySql service instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Cloud Foundry:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service p-mysql 100mb-dev attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Web Services:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service cleardb spark attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Now we need to bind the application with the service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service attendee-service attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage attendee-service&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;5) Restart the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6) View the &lt;code&gt;attendee-service&lt;/code&gt; in a browser.&lt;/p&gt;
+
+&lt;p&gt;You should see response similar to the following (pic is using the &lt;a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target=&#34;_blank&#34;&gt;JSON Formatter for Chrome&lt;/a&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/attendee_service.png&#34; alt=&#34;attendee-service&#34; title=&#34;attendee-service&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;how-does-this-work:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How does this work?&lt;/h3&gt;
+
+&lt;p&gt;1) Read about how twelve-factor apps handle &lt;a href=http://12factor.net/backing-services target=&#34;_blank&#34;&gt;backing services&lt;/a&gt; and &lt;a href=http://12factor.net/config target=&#34;_blank&#34;&gt;configuration&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Read about &lt;a href=https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES target=&#34;_blank&#34;&gt;VCAP_SERVICES&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;3) View the environment for &lt;code&gt;attendee-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf env attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Different languages/frameworks will have various ways to read environment variables.  &lt;code&gt;attendee-service&lt;/code&gt; takes advantage of a &lt;a href=https://github.com/cloudfoundry/java-buildpack target=&#34;_blank&#34;&gt;Java Buildpack&lt;/a&gt; feature called &lt;a href=https://github.com/cloudfoundry/java-buildpack-auto-reconfiguration target=&#34;_blank&#34;&gt;Auto-Reconfiguration&lt;/a&gt; that will automatically re-write bean definitions to connect with services bound to an application.&lt;/p&gt;
+
+&lt;h3 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;After binding a service to an application why is the application restarted/restaged?&lt;/li&gt;
+&lt;li&gt;In this case, why could we &lt;code&gt;restart&lt;/code&gt; vs &lt;code&gt;restage&lt;/code&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;add-a-user-provided-service-instance:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Add a User Provided Service Instance&lt;/h2&gt;
+
+&lt;p&gt;In the enterprise, not all services will be provisioned by Pivotal Cloud Foundry.&lt;/p&gt;
+
+&lt;p&gt;For example, consider your Oracle RAC cluster.  How can we connect our applications running on Pivotal Cloud Foundry to these external systems?&lt;/p&gt;
+
+&lt;p&gt;Additionally, how can we easily connect applications together running on the platform?&lt;/p&gt;
+
+&lt;p&gt;1) Read about &lt;a href=http://docs.pivotal.io/pivotalcf/devguide/services/user-provided.html target=&#34;_blank&#34;&gt;user provided service instances&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Create a user provided service.  This will create an interactive prompt.  Don&amp;rsquo;t use the literal below for the value of &lt;code&gt;uri&lt;/code&gt;, use your &lt;code&gt;attendee-service&lt;/code&gt; &lt;code&gt;uri&lt;/code&gt;.  Also make sure to specify &lt;code&gt;http&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; This will not work with &lt;code&gt;https&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$cf create-user-provided-service attendee-service -p uri
+
+uri&amp;gt; http://attendee-service-surfy-glt.pcfi1.fe.gopivotal.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Bind &lt;code&gt;articulate&lt;/code&gt; to the &lt;code&gt;attendee-service&lt;/code&gt; user provided service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service articulate attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage articulate&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;4) Restart the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) Refresh the &lt;code&gt;articulate&lt;/code&gt; &lt;code&gt;Services&lt;/code&gt; page.  You can now see the &lt;code&gt;attendee-service&lt;/code&gt; listed under &lt;code&gt;Services&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/articulate_attendee.png&#34; alt=&#34;articulate attendee&#34; title=&#34;articulate attendee&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;6) Review the environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf env articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;7) Add some attendees.&lt;/p&gt;
+
+&lt;h3 id=&#34;questions-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From an application perspective, are managed services instances different from user provided service instances?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;beyond-the-class:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Beyond the class&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;a href=https://github.com/cloudfoundry-samples/spring-music target=&#34;_blank&#34;&gt;Spring Music&lt;/a&gt; and a User Provided Service Instance to connect to a database (MySQL or Oracle) in your environment.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Application Autoscaler</title>
+      <link>/pivotal-cloud-foundry-developer/application-auto-scaler/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/application-auto-scaler/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to use the &lt;code&gt;app-autoscaler&lt;/code&gt; service&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;setup:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;1) Ensure the &lt;code&gt;articulate&lt;/code&gt; application has one application instance running.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf scale articulate -i 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;provision-and-bind-an-autoscaler-service-instance:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Provision and Bind an Autoscaler Service Instance&lt;/h2&gt;
+
+&lt;p&gt;1) Read the documentation about App Autoscaling &lt;a href=https://docs.pivotal.io/pivotalcf/customizing/autoscale-configuration.html target=&#34;_blank&#34;&gt;in response to load&lt;/a&gt; and &lt;a href=https://docs.pivotal.io/pivotalcf/customizing/scheduled-scaling.html target=&#34;blank&#34;&gt;scheduled scaling&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Review what&amp;rsquo;s in the marketplace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf marketplace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Create a autoscaler service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service app-autoscaler gold autoscaler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Bind the service to &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service articulate autoscaler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage articulate&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;5) Restart the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;configuring-autoscaling-service-instance:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Configuring Autoscaling Service Instance&lt;/h2&gt;
+
+&lt;p&gt;1) View &lt;code&gt;articulate&lt;/code&gt; in Apps Manager.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Navigate to the &lt;code&gt;Services&lt;/code&gt; tab.&lt;/li&gt;
+&lt;li&gt;Click the &lt;code&gt;Manage&lt;/code&gt; link for the autoscaler (this will open a new tab).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/manage.png&#34; alt=&#34;Manage&#34; title=&#34;Manage&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2) &lt;code&gt;Turn on&lt;/code&gt; autoscaling for &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/turn_on.png&#34; alt=&#34;Turn On&#34; title=&#34;Turn On&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We will use policy defaults.  Note that the default policy for minimum instances is &lt;code&gt;2&lt;/code&gt;.
+&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/settings.png&#34; alt=&#34;Settings&#34; title=&#34;Settings&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Return to Apps Manager and observe the number of instances increase from &lt;code&gt;1&lt;/code&gt; to &lt;code&gt;2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;generate-load-and-observe-the-results:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Generate Load and Observe the Results&lt;/h2&gt;
+
+&lt;p&gt;1) Download &lt;a href=http://jmeter.apache.org/download_jmeter.cgi target=&#34;_blank&#34;&gt;Apache JMeter&lt;/a&gt;.  It will be used to generate load.  Review the JMeter &lt;a href=http://jmeter.apache.org/usermanual/get-started.html target=&#34;_blank&#34;&gt;getting started&lt;/a&gt; directions.&lt;/p&gt;
+
+&lt;p&gt;Helpful hints for &lt;code&gt;Linux and Mac&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Add execute permissions to the jmeter script: &lt;code&gt;chmod +x $WHERE_YOU_EXTRACTED_THE_ZIP/bin/jmeter.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start Jmeter by executing &lt;code&gt;$WHERE_YOU_EXTRACTED_THE_ZIP/bin/jmeter.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Helpful hints for &lt;code&gt;Windows&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Start Jmeter by double clicking the following file in Windows Explorer: &lt;code&gt;$WHERE_YOU_EXTRACTED_THE_ZIP/bin/jmeter.bat&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;2) Download the &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/jmx/load-gen.jmx&#34;&gt;load-gen.jmx&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;p&gt;3) Open the load-gen.jmx file with the JMeter GUI.&lt;/p&gt;
+
+&lt;p&gt;4) Expand the content of the JMeter test plan by:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Selecting the &lt;code&gt;Load Generator&lt;/code&gt; test plan on the left pane.&lt;/li&gt;
+&lt;li&gt;Going to the menu: &lt;code&gt;Option&lt;/code&gt; → &lt;code&gt;Expand All&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;5) Edit the test plan to use your application’s URL (do not include the &lt;code&gt;http://&lt;/code&gt;) and the &lt;code&gt;/services&lt;/code&gt; endpoint.&lt;/p&gt;
+
+&lt;p&gt;To do so, change the &lt;code&gt;Server Name or IP&lt;/code&gt; field on the &lt;code&gt;HTTP Request Defaults&lt;/code&gt; item.&lt;/p&gt;
+
+&lt;p&gt;For Example: &lt;code&gt;articulate-eyesome-kilocalorie.pcfi1.fe.gopivotal.com/services&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;6) Save the test plan: &lt;code&gt;File&lt;/code&gt; → &lt;code&gt;Save&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;7) Run the test plan: &lt;code&gt;Run&lt;/code&gt; → &lt;code&gt;Start&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;8) Use Apps Manager and the &lt;code&gt;cf&lt;/code&gt; CLI to observe your service scale up and back down based on load.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; You may see &lt;code&gt;articulate&lt;/code&gt; crash when placing load on it in this scenario.  This is okay.  We are running the application with a lower memory setting so that we can scale within quota limits.&lt;/p&gt;
+
+&lt;p&gt;9) Stop the test plan: &lt;code&gt;Run&lt;/code&gt; → &lt;code&gt;Stop&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;10) Review Autoscale history.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/history.png&#34; alt=&#34;History&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;clean-up:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Clean up&lt;/h2&gt;
+
+&lt;p&gt;1) Unbind the &lt;code&gt;autoscaler&lt;/code&gt; service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unbind-service articulate autoscaler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Delete the &lt;code&gt;autoscaler&lt;/code&gt; service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete-service autoscaler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Scale &lt;code&gt;articulate&lt;/code&gt; back to original settings.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf scale articulate -i 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Restart &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How do you handle autoscaling today?&lt;/li&gt;
+&lt;li&gt;What 12 factor principles are important when it comes to scaling?&lt;/li&gt;
+&lt;li&gt;How do you handle scaling at the data layer?&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Application Performance Monitoring</title>
+      <link>/pivotal-cloud-foundry-developer/application-performance-monitor/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/application-performance-monitor/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to use an APM service&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;setup:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;1) APM solutions cause applications to consume more memory.  Increase the memory limit for each application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf scale articulate -m 1G -i 1
+$ cf scale attendee-service -m 1G -i 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;provision-a-new-relic-service-instance:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Provision a New Relic Service Instance&lt;/h2&gt;
+
+&lt;p&gt;Read the documentation on &lt;a href=https://github.com/cloudfoundry/java-buildpack/blob/master/docs/framework-new_relic_agent.md target=&#34;_blank&#34;&gt;New Relic integration&lt;/a&gt; with the Java Buildpack.&lt;/p&gt;
+
+&lt;h3 id=&#34;pivotal-cloud-foundry-instructions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Pivotal Cloud Foundry Instructions&lt;/h3&gt;
+
+&lt;p&gt;Follow these instructions if using &lt;em&gt;Pivotal Cloud Foundry&lt;/em&gt;.  If using &lt;em&gt;Pivotal Web Services&lt;/em&gt; then skip this section.&lt;/p&gt;
+
+&lt;p&gt;1) Signup for a &lt;a href=http://newrelic.com/signup?funnel=pivotal-cloud-foundry&amp;partner=Pivotal+Cloud+Foundry&amp;product_id=Standard&amp;promo_code=PVCF60PRO target=&#34;_blank&#34;&gt;60 day free trial license&lt;/a&gt; with New Relic.&lt;/p&gt;
+
+&lt;p&gt;2) Obtain &lt;code&gt;license key&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This can be found under &lt;code&gt;Account Settings&lt;/code&gt; from the drop down menu in the upper right corner of the page.&lt;/p&gt;
+
+&lt;p&gt;3) Create a user provided service instance.  This will create an interactive prompt.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-user-provided-service newrelic -p license_key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;pivotal-web-services-instructions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Pivotal Web Services Instructions&lt;/h3&gt;
+
+&lt;p&gt;Follow these instructions if using &lt;em&gt;Pivotal Web Services&lt;/em&gt;.  If using &lt;em&gt;Pivotal Cloud Foundry&lt;/em&gt; then skip this section.&lt;/p&gt;
+
+&lt;p&gt;1) Create a New Relic Service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service newrelic standard newrelic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;bind-the-new-relic-service-instance:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Bind the New Relic Service Instance&lt;/h2&gt;
+
+&lt;p&gt;1) Bind the &lt;code&gt;newrelic&lt;/code&gt; service instance to &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service articulate newrelic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Restage &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restage articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Bind the &lt;code&gt;newrelic&lt;/code&gt; service instance to &lt;code&gt;attendee-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service attendee-service newrelic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Restage &lt;code&gt;attendee-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restage attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Why must &lt;code&gt;articulate&lt;/code&gt; &amp;amp; &lt;code&gt;attendee-service&lt;/code&gt; be restaged as oppose to restarted?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;create-some-web-traffic-and-view-in-new-relic:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Create Some Web Traffic and View in New Relic&lt;/h2&gt;
+
+&lt;p&gt;1) Refresh the &lt;code&gt;articulate&lt;/code&gt; &lt;code&gt;Service&lt;/code&gt; web page multiple times.&lt;/p&gt;
+
+&lt;p&gt;Optionally use the JMeter script from the &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/application-auto-scaler&#34;&gt;Application Autoscaler lab&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Observe and explore the performance metrics in the New Relic console under the &lt;code&gt;APM&lt;/code&gt; tab.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Pivotal Web Services&lt;/em&gt; users can access the New Relic console via the &lt;code&gt;Manage&lt;/code&gt; link in Apps Manager
+&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/manage.png&#34; alt=&#34;Apps Manager&#34; /&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/articulate.png&#34; alt=&#34;Articulate&#34; title=&#34;Articulate&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/attendee_service.png&#34; alt=&#34;Attendee SErvice&#34; title=&#34;Attendee Service&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;clean-up:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Clean up&lt;/h2&gt;
+
+&lt;p&gt;1) Unbind &lt;code&gt;newrelic&lt;/code&gt; service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unbind-service articulate newrelic
+$ cf unbind-service attendee-service newrelic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Delete &lt;code&gt;newrelic&lt;/code&gt; service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete-service newrelic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Scale back down to our original settings.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf scale articulate -m 512M -i 1
+$ cf scale attendee-service -m 512M -i 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Restage applications.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restage articulate
+$ cf restage attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;questions-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How do you manage APM tools today?  How is this different?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;beyond-the-class:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Beyond the Class&lt;/h1&gt;
+
+&lt;p&gt;Pivotal Cloud Foundry offers a marketplace experience with both &lt;a href=https://docs.pivotal.io/newrelic/index.html target=&#34;_blank&#34;&gt;New Relic&lt;/a&gt; and &lt;a href=https://docs.pivotal.io/appdynamics/index.html target=&#34;_blank&#34;&gt;App Dynamics&lt;/a&gt;.  Try it with your Pivotal Cloud Foundry installation.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Application Security Groups</title>
+      <link>/pivotal-cloud-foundry-developer/application-security-group/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/application-security-group/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; This lab requires using the &lt;code&gt;admin&lt;/code&gt; account.  If using Pivotal Web Services you will not be able to complete this lab, however reviewing it is recommended.&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to manage application security groups&lt;/li&gt;
+&lt;li&gt;How security group rules can impact your application&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;review-application-security-groups:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Review Application Security Groups&lt;/h2&gt;
+
+&lt;p&gt;1) Review the &lt;a href=http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on &lt;a href=https://docs.pivotal.io/pivotalcf/concepts/security.html#network-traffic target=&#34;_blank&#34;&gt;application security groups&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) List the security groups in your environment.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; &lt;code&gt;admin&lt;/code&gt; access is not required.  The command will list running and bound space security groups (spaces that you have access to).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf security-groups
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Pivotal Cloud Foundry ships with an open security group by default (&lt;code&gt;all_open&lt;/code&gt;).  View this security group.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; &lt;code&gt;admin&lt;/code&gt; access is not required.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf security-group all_open
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Login as &lt;code&gt;admin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The remaining steps in the lab must be done with the &lt;code&gt;admin&lt;/code&gt; account.  If you don&amp;rsquo;t have access, ask your administrator about completing this lab.&lt;/p&gt;
+
+&lt;p&gt;5) Review the security groups as &lt;code&gt;admin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; when logged in as &lt;code&gt;admin&lt;/code&gt; &lt;code&gt;cf security-groups&lt;/code&gt; lists all security groups (bound or not).  Additional commands are used to discover running and staging security groups.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf security-groups
+$ cf staging-security-groups
+$ cf running-security-groups
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;lock-down-all-egress-traffic-for-running-applications:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Lock Down All Egress Traffic For Running Applications&lt;/h2&gt;
+
+&lt;p&gt;1) Unbind the &lt;code&gt;all_open&lt;/code&gt; security group for running applications.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unbind-running-security-group all_open
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What Just Happened?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You just locked down all outbound traffic for running applications.  We will demonstrate that next.&lt;/p&gt;
+
+&lt;p&gt;2) Tail the &lt;code&gt;attendee-service&lt;/code&gt; logs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf logs attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Open another terminal.  Restart &lt;code&gt;attendee-service&lt;/code&gt; while tailing the logs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Review the logs.  The &lt;code&gt;attendee-service&lt;/code&gt; application wasn&amp;rsquo;t able to connect to the database.&lt;/p&gt;
+
+&lt;h2 id=&#34;create-a-security-group-allowing-egress-traffic-to-mysql:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Create a Security Group Allowing Egress Traffic to MySql&lt;/h2&gt;
+
+&lt;p&gt;1) Create a &lt;a href=http://docs.pivotal.io/pivotalcf/adminguide/app-sec-groups.html#creating-groups target=&#34;_blank&#34;&gt;security group rules file&lt;/a&gt; allowing egress traffic to MySql.&lt;/p&gt;
+
+&lt;p&gt;You can find the values by examining the &lt;code&gt;attendee-service&lt;/code&gt; env.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf env attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Create the security group in Pivotal Cloud Foundry.&lt;/p&gt;
+
+&lt;p&gt;Use the naming convention of: &lt;code&gt;mysql-&amp;lt;insert initials here&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-security-group mysql-dnr ./asg.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Bind the security group at the &lt;strong&gt;space&lt;/strong&gt; level, where the &lt;code&gt;attendee-service&lt;/code&gt; is running.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-security-group mysql-dnr dave dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Continue to tail the &lt;code&gt;attendee-service&lt;/code&gt; logs.  Clear the screen if necessary.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf logs attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) In another terminal.  Restart &lt;code&gt;attendee-service&lt;/code&gt; while tailing the logs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6) Review the logs.  The &lt;code&gt;attendee-service&lt;/code&gt; application was able to connect to the database.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Congratulations!&lt;/strong&gt;  You have opened up connectivity to just MySQL!&lt;/p&gt;
+
+&lt;h2 id=&#34;clean-up:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Clean up&lt;/h2&gt;
+
+&lt;p&gt;1) Bind the &lt;code&gt;all_open&lt;/code&gt; security group for running applications.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-running-security-group all_open
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;WARNING:&lt;/em&gt;&lt;/strong&gt; this step is necessary so the remaining labs will not be impacted by a locked down environment.&lt;/p&gt;
+
+&lt;p&gt;2) Logout of the &lt;code&gt;admin&lt;/code&gt; account.&lt;/p&gt;
+
+&lt;h2 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do application security groups use a whitelist or blacklist approach to firewall rules?&lt;/li&gt;
+&lt;li&gt;What are some reasons why security groups could be used?&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Blue Green</title>
+      <link>/pivotal-cloud-foundry-developer/blue-green/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/blue-green/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to manage an application upgrade with a blue-green deployment&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;setup:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;1) To simulate a blue-green deployment, first scale &lt;code&gt;articulate&lt;/code&gt; to multiple instances.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf scale articulate -i 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;perform-a-blue-green-deployment:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Perform a Blue-Green Deployment&lt;/h2&gt;
+
+&lt;p&gt;1) Read about using&lt;a href=https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/blue-green.html target=&#34;_blank&#34;&gt;Blue-Green Deployments to reduce downtime and risk&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Browse to the &lt;code&gt;articulate&lt;/code&gt; &lt;code&gt;Blue-Green&lt;/code&gt; page.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/blue_green.png&#34; alt=&#34;Blue-Green Deployments&#34; title=&#34;Blue-Green&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Lets assume that the deployed application is version 1.  Let&amp;rsquo;s generate some traffic.  Press the &lt;code&gt;Start&lt;/code&gt; button.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Leave this open as a dedicated tab in your browser.  We will come back to this later.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;4) Observe our existing application handling all the web requests.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/start.png&#34; alt=&#34;Start Load&#34; title=&#34;Start Load&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;5) Record the subdomain (&lt;code&gt;host&lt;/code&gt;) for the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;This is our production route.  &lt;em&gt;You will use this in the next step.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf routes
+
+Getting routes as droberts@pivotal.io ...
+
+space   host                                           domain                   apps   
+dev     articulate-heartsickening-elegance             pcfi1.fe.gopivotal.com   articulate   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6) Now let&amp;rsquo;s &lt;code&gt;push&lt;/code&gt; the next version of &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, this time we will specify the subdomain by appending &lt;code&gt;-temp&lt;/code&gt; to our production route.&lt;/p&gt;
+
+&lt;p&gt;For example (your subdomain will be different):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/articulate/
+$ cf push articulate-v2 -p ./articulate-0.0.1-SNAPSHOT.jar -m 512M -n articulate-heartsickening-elegance-temp --no-start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;7) Bind &lt;code&gt;articulate-v2&lt;/code&gt; to the &lt;code&gt;attendee-service&lt;/code&gt; user provided service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service articulate-v2 attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage articulate-v2&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;8) Start the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf start articulate-v2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;9) Now we have two versions of our app deployed.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Open a new tab&lt;/em&gt; and view version 2 of &lt;code&gt;articulate&lt;/code&gt; in your browser.  Take note of the application name.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/green.png&#34; alt=&#34;Green&#34; title=&#34;Green&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point in the deployment process, you could do further testing of the version you are about to release before exposing customers to it.&lt;/p&gt;
+
+&lt;p&gt;10) Let&amp;rsquo;s assume we are ready to start directing production traffic to version 2.  We need to map our production route to &lt;code&gt;articulate-v2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For example (your domain and subdomain will be different):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf map-route articulate-v2 pcfi1.fe.gopivotal.com -n articulate-heartsickening-elegance
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;11) Return to browser tab where you started the load.  You should see that it is starting to send requests to version 2.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/map_route.png&#34; alt=&#34;Map Route&#34; title=&#34;Map Route&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;12) Press the &lt;code&gt;Reset&lt;/code&gt; button, so we can see how the load get distributed across app instances.&lt;/p&gt;
+
+&lt;p&gt;If you are running with a similar configuration to this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf apps
+Getting apps in org dave / space dev as droberts@pivotal.io...
+OK
+
+name                     requested state   instances   memory   disk   urls   
+articulate               started           2/2         512M       1G     ...
+articulate-v2            started           1/1         512M       1G     ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see about a third of the requests going to version 2.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/third.png&#34; alt=&#34;Third&#34; title=&#34;Quarter&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;13) Move more traffic to version 2.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf scale articulate -i 1
+$ cf scale articulate-v2 -i 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you &lt;code&gt;Reset&lt;/code&gt; the load generator, you will see &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt; of the traffic go to &lt;code&gt;articulate-v2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;14) Move all traffic to version 2.&lt;/p&gt;
+
+&lt;p&gt;Remove the production route from the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;For example (your domain and subdomain will be different):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unmap-route articulate pcfi1.fe.gopivotal.com -n articulate-heartsickening-elegance
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you &lt;code&gt;Reset&lt;/code&gt; the load generator, you will see all the traffic goes to &lt;code&gt;articulate-v2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/unmap.png&#34; alt=&#34;Unmap&#34; title=&#34;Unmap&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; Refreshing the entire page will update the application name.&lt;/p&gt;
+
+&lt;p&gt;15) Remove the temp route from the &lt;code&gt;articulate-v2&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;For example (your domain and subdomain will be different):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf unmap-route articulate-v2 pcfi1.fe.gopivotal.com -n articulate-heartsickening-elegance-temp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Congratulations!&lt;/strong&gt; You performed a blue-green deployment.&lt;/p&gt;
+
+&lt;h3 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How would a rollback situation be handled using a blue-green deployment?&lt;/li&gt;
+&lt;li&gt;What other design implications does running at least two versions at the same time have on your applications?&lt;/li&gt;
+&lt;li&gt;Do you do blue-green deployments today?  How is this different?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;cleanup:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Cleanup&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s reset our environment.&lt;/p&gt;
+
+&lt;p&gt;1) Delete the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Rename &lt;code&gt;articulate-v2&lt;/code&gt; to &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf rename articulate-v2 articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Restart &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Scale down.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf scale articulate -i 1
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Buildpack</title>
+      <link>/pivotal-cloud-foundry-developer/buildpack/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/buildpack/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to use a custom buildpack&lt;/li&gt;
+&lt;li&gt;How to configure the Java Buildpack&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;use-a-custom-buildpack:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Use a Custom Buildpack&lt;/h2&gt;
+
+&lt;p&gt;1) Review the documentation on &lt;a href=http://docs.pivotal.io/pivotalcf/buildpacks/custom.html#deploying-with-custom-buildpacks target=&#34;_blank&#34;&gt;deploying with custom buildpacks&lt;/a&gt; and how dependencies are handled with the Java Buildpack &lt;a href=https://github.com/cloudfoundry/java-buildpack#online-package target=&#34;_blank&#34;&gt;online package&lt;/a&gt; and the &lt;a href=https://github.com/cloudfoundry/java-buildpack#offline-package target=&#34;_blank&#34;&gt;offline package&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Review the Java Version reported by &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/java_version.png&#34; alt=&#34;Java Version&#34; title=&#34;Java Version&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Review which buildpack is in use.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf app articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Push &lt;code&gt;articulate&lt;/code&gt; again, but this time specify a custom buildpack.  In this case, we will use the latest version of the &lt;a href=https://github.com/cloudfoundry/java-buildpack target=&#34;_blank&#34;&gt;Java Buildpack&lt;/a&gt; on GitHub.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/articulate/
+$ cf push articulate -p ./articulate-0.0.1-SNAPSHOT.jar -b https://github.com/cloudfoundry/java-buildpack.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) Using your browser, refresh the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s likely (but not required) that the &lt;code&gt;Java Version&lt;/code&gt; changed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What Just Happened?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We instructed our application to use a custom buildpack (as opposed to a system provided one).&lt;/p&gt;
+
+&lt;p&gt;In this case, we used the Java Buildpack source on Github as our custom buildpack.  The Java Buildpack source is continuously updated and it is an &lt;a href=https://github.com/cloudfoundry/java-buildpack#online-package target=&#34;_blank&#34;&gt;online&lt;/a&gt; package of the buildpack.  Meaning it has access to all dependencies via the network (it has access to all JRE versions, etc).  Whereas, the system provided Java buidpack is &lt;a href=https://github.com/cloudfoundry/java-buildpack#offline-package target=&#34;_blank&#34;&gt;offline&lt;/a&gt;, with a limited set of dependencies.  For both the online and offline packages, unless the Java version is specified the application is run with the latest version of Java available to the buildpack.&lt;/p&gt;
+
+&lt;h2 id=&#34;change-the-java-version:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Change the Java version&lt;/h2&gt;
+
+&lt;p&gt;1) Review the Java Buildpack &lt;a href=https://github.com/cloudfoundry/java-buildpack#configuration-and-extension target=&#34;_blank&#34;&gt;configuration and extension documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Let&amp;rsquo;s assume that we want to run &lt;code&gt;articulate&lt;/code&gt; on a specific version Java.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf set-env articulate JBP_CONFIG_OPEN_JDK_JRE &amp;quot;{jre: { version: 1.8.0_45 }}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Using your browser, refresh the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;QUESTION:&lt;/em&gt;&lt;/strong&gt; Is the &lt;code&gt;articulate&lt;/code&gt; running with &lt;code&gt;1.8.0_45&lt;/code&gt;?  Why not?&lt;/p&gt;
+
+&lt;p&gt;4) Restage &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restage articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;QUESTION:&lt;/em&gt;&lt;/strong&gt; Would &lt;code&gt;cf restart&lt;/code&gt; be sufficient instead of &lt;code&gt;cf restage&lt;/code&gt;?  Why not?&lt;/p&gt;
+
+&lt;p&gt;5) Using your browser, refresh the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;h2 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What other items are easily customized with the Java Buildpack?&lt;/li&gt;
+&lt;li&gt;If you use Java, what items do you think would need customization in your environment?&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Continuous Delivery</title>
+      <link>/pivotal-cloud-foundry-developer/continuous-delivery/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/continuous-delivery/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to build a continuous delivery pipeline with Jenkins&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;what-is-continuous-delivery:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Continuous Delivery?&lt;/h2&gt;
+
+&lt;p&gt;For a brief explanation, click &lt;a href=https://en.wikipedia.org/wiki/Continuous_delivery target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;setup-github-repository:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Setup Github Repository&lt;/h2&gt;
+
+&lt;p&gt;1) Locate the &lt;code&gt;Articulate&lt;/code&gt; project on GitHub:
+&lt;a href=https://github.com/pivotal-enablement/articulate target=&#34;_blank&#34;&gt;github.com/pivotal-enablement/articulate&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2) Use the &lt;code&gt;Fork&lt;/code&gt; button to make your own private copy of the project in your own GitHub account.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-jenkins:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Install Jenkins&lt;/h2&gt;
+
+&lt;p&gt;Install Jenkins on your local machine or use AWS Jenkins AMI.&lt;/p&gt;
+
+&lt;h3 id=&#34;local-installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Local Installation&lt;/h3&gt;
+
+&lt;p&gt;1) Prior to installing Jenkins the following should be installed:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html target=&#34;_blank&#34;&gt;JDK 1.8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=https://git-scm.com/ target=&#34;_blank&#34;&gt;git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2) Open a browser to &lt;a href=https://jenkins.io/ target=&#34;_blank&#34;&gt;jenkins.io&lt;/a&gt; and download the installer for your OS.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/download.png&#34; alt=&#34;Download&#34; title=&#34;Download&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Run the installer.&lt;/p&gt;
+
+&lt;p&gt;4) On completion of the install, you should see the Jenkins dashboard appear in your browser at
+&lt;code&gt;localhost:8080&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;aws-jenkins-ami:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;AWS Jenkins AMI&lt;/h3&gt;
+
+&lt;p&gt;Provision a &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/continuous-delivery/aws-jenkins-ami&#34;&gt;Jenkins instance on AWS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;configure-jenkins:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Configure Jenkins&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;You may skip this section if using the AWS Jenkins AMI&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;1) Click on the &lt;code&gt;Manage Jenkins&lt;/code&gt; link, then click the &lt;code&gt;Manage Plugins&lt;/code&gt; link.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/manage_plugins.png&#34; alt=&#34;Manage Plugins&#34; title=&#34;Manage Plugins&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2) Click on the &lt;code&gt;Available&lt;/code&gt; tab, and find the GitHub plugin. (You can search using the Filter box in the top
+right corner.) Select it and click &lt;code&gt;Install without restart&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/github_plugin.png&#34; alt=&#34;GitHub plugin&#34; title=&#34;GitHub plugin&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Also install the Cloud Foundry Plugin.  Select it and click &lt;code&gt;Install without restart&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/cf_plugin.png&#34; alt=&#34;cf plugin&#34; title=&#34;cf plugin&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4) From the &lt;code&gt;Manage Jenkins&lt;/code&gt; page, click on &lt;code&gt;Configure System&lt;/code&gt;. Scroll down to the &lt;code&gt;Maven&lt;/code&gt; section, and
+click the &lt;code&gt;Add Maven&lt;/code&gt; button.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/maven.png&#34; alt=&#34;Maven Configuration&#34; title=&#34;Maven Configuration&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;create-build-job:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Create Build Job&lt;/h2&gt;
+
+&lt;p&gt;1) From the Jenkins dashboard, click &lt;code&gt;New Item&lt;/code&gt; (in top left corner), name it &lt;code&gt;articulate-&amp;lt;insert initials&amp;gt;&lt;/code&gt; and select &lt;code&gt;Maven
+project&lt;/code&gt; Then click &lt;code&gt;OK&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Example Name: &lt;code&gt;articulate-dnr&lt;/code&gt;.  Do not use &lt;code&gt;articulate&lt;/code&gt;.  Make sure that it unique and personably identifiable.&lt;/p&gt;
+
+&lt;p&gt;2) Under &lt;code&gt;Source Code Management&lt;/code&gt;, select &lt;code&gt;Git&lt;/code&gt;, and supply your forked repository URL.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/repo.png&#34; alt=&#34;Repo&#34; title=&#34;Repo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Under &lt;code&gt;Build Triggers&lt;/code&gt;, select &lt;code&gt;Poll SCM&lt;/code&gt;. In the &lt;code&gt;Schedule&lt;/code&gt;, enter the CRON formatted string such as &lt;code&gt;H/5 * * * *&lt;/code&gt;. This will poll your Github repository every 5 minutes for changes, and if any are detected, will execute the build.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/poll.png&#34; alt=&#34;Poll&#34; title=&#34;Poll&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4) Under &lt;code&gt;Build&lt;/code&gt;, add the project path to the &lt;code&gt;Root POM&lt;/code&gt;, so it becomes &lt;code&gt;pom.xml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/build.png&#34; alt=&#34;Build&#34; title=&#34;Build&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;5) Under &lt;code&gt;Post-build Actions&lt;/code&gt;, click the &lt;code&gt;Add post-build action&lt;/code&gt;, and select &lt;code&gt;Push to Cloud Foundry&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;6) Fill in the parameters to target and log into the Cloud Foundry instance you&amp;rsquo;ll be using. You will have to add
+your credentials. Test the connection to make sure you can connect.  Also check the &lt;code&gt;Reset app if already exists&lt;/code&gt; checkbox.  This allows for app bits and configuration to be updated/reset with each deployment; creating a more dependable way to redeploy the application (see the context sensitive help in Jenkins for more details).&lt;/p&gt;
+
+&lt;p&gt;7) Make sure that &lt;code&gt;Enter configuration in Jenkins&lt;/code&gt; is selected.&lt;/p&gt;
+
+&lt;p&gt;Fill in the following fields:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Application Name&lt;/code&gt; = &lt;code&gt;articulate-&amp;lt;insert initials&amp;gt;&lt;/code&gt; (e.g. &lt;code&gt;articulate-dnr&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Memory&lt;/code&gt; = &lt;code&gt;512M&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Hostname&lt;/code&gt; = come up with something original and unique&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Instance&lt;/code&gt; = &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Timeout&lt;/code&gt; = &lt;code&gt;60&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Services&lt;/code&gt; = &lt;code&gt;attendee-service&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;Advanced Settings&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Application Path&lt;/code&gt; = &lt;code&gt;target/articulate-0.0.1-SNAPSHOT.jar&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/config.png&#34; alt=&#34;Push config&#34; title=&#34;Push config&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;8) Save the config and try running the build by clicking &lt;code&gt;Build Now&lt;/code&gt;.  Do not proceed past this step until you have a successful build and deployment to Pivotal Cloud Foundry.  Confirm the application is deployed by viewing it in your browser.&lt;/p&gt;
+
+&lt;p&gt;Make sure to view the Build details (Left Side of Screen → &lt;code&gt;Build History&lt;/code&gt; → &lt;code&gt;Build #&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Console Output&lt;/code&gt; can be viewed there (for active or completed jobs).  This is very useful for debugging failing builds.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/console.png&#34; alt=&#34;Console&#34; title=&#34;Console&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;9) In your forked repo, edit the Welcome message for Articulate.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Edit the following file (can be done with a browser):
+&lt;code&gt;https://github.com/&amp;lt;YOUR ACCOUNT&amp;gt;/articulate/blob/master/src/main/resources/templates/index.html&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Change the welcome message from &lt;code&gt;Welcome to Articulate!&lt;/code&gt; to &lt;code&gt;Welcome to My Articulate Application!&lt;/code&gt;
+Commit and push the change to GitHub, wait until the polling detects it, and watch the magic. Verify the build in Jenkins now succeeds.  Also verify your change in the deployed application with a browser.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;10) &lt;strong&gt;Congratulations&lt;/strong&gt;, you have finished this exercise!&lt;/p&gt;
+
+&lt;h2 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What are some of the benefits of continuous delivery?&lt;/li&gt;
+&lt;li&gt;Does continuous delivery mean continuous deployment?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;cleanup:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Cleanup&lt;/h2&gt;
+
+&lt;p&gt;1) Delete the application that the pipeline deployed.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete articulate-dnr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;beyond-the-class:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Beyond the Class&lt;/h1&gt;
+
+&lt;p&gt;The CD exercise above is very simplistic and should be expanded for real projects.&lt;/p&gt;
+
+&lt;h2 id=&#34;artifact-repository:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Artifact Repository&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ideally, you want to build your artifacts (jars/wars) and publish them to a repository like Artifactory.&lt;/li&gt;
+&lt;li&gt;Artifacts should be versioned to match the app deployments on PCF.&lt;/li&gt;
+&lt;li&gt;All pushes to PCF should be using the same artifacts. Artifacts should be built once and used throughout the lifecycle.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;code-promotion:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Code promotion&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Jobs should be established in Jenkins to deploy/promote code to different phases like dev to test to prod.&lt;/li&gt;
+&lt;li&gt;Jobs should use the same artifact published to Artifactory.&lt;/li&gt;
+&lt;li&gt;Jobs can be triggered automatically or manually but should be fully automated. There should be no manual steps beyond clicking &lt;code&gt;build now&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;notification:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Notification&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Jenkins supports many notification plugins. It is important for code owners to be aware of build status.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;pivotal-cloud-foundry:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Pivotal Cloud Foundry&lt;/h2&gt;
+
+&lt;p&gt;Try out the &lt;a href=http://docs.pivotal.io/cjoc/Jenkins.html target=&#34;_blank&#34;&gt;CloudBees Jenkins Operations Center tile&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/application-auto-scaler/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/application-auto-scaler/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some challenges with regard to Monoliths?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Open discussion.  It will be interesting to see if students agree have experienced these:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;not appropriate for the cloud&lt;/li&gt;
+&lt;li&gt;couple change cycles together&lt;/li&gt;
+&lt;li&gt;services can&amp;rsquo;t be scaled independently&lt;/li&gt;
+&lt;li&gt;too many devs in one codebase&lt;/li&gt;
+&lt;li&gt;developers understanding a large codebase&lt;/li&gt;
+&lt;li&gt;long term commitment to tech stack.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How do microservices differ from SOA/ESB based approach?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; There is no central orchestrator.  The microservices know how to discover and work with each other.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What is a bounded context?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; It is taken from Eric Evan&amp;rsquo;s domain Driven Design.  It essentially means that having a holistic unified enterprise data model is impossible nor cost effective.  However, having a unified data model under a specific context is possible.  This is because everyone within that context understands the model the same way.  This means that other bounded contexts can define similar models based on their view of them.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How can the move to microservices affect your team structure?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Often with the move to microservices there is a shift to a DevOps culture and an organization around Business Capability teams. Why?  Because managing it via silos doesn&amp;rsquo;t work very well.  Business Capability Teams are responsible for their apps in production.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some characteristics of a microservices architecture?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Polyglot Persistence&lt;/li&gt;
+&lt;li&gt;Polyglot Languages&lt;/li&gt;
+&lt;li&gt;Cloud Friendly Protocols (HTTP, AMQP).  Not RMI or anything else language specific.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some microservice benefits?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;decoupled change cycles&lt;/li&gt;
+&lt;li&gt;efficient scaling&lt;/li&gt;
+&lt;li&gt;smaller codebase to learn&lt;/li&gt;
+&lt;li&gt;fewer developers in each codebase&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How does Pivotal Cloud Foundry address some of the challenges with microservices?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dynamic Routing&lt;/li&gt;
+&lt;li&gt;Scaling&lt;/li&gt;
+&lt;li&gt;Monitoring&lt;/li&gt;
+&lt;li&gt;Services&lt;/li&gt;
+&lt;li&gt;Health Mgmt&lt;/li&gt;
+&lt;li&gt;Buildpacks&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How do you handle autoscaling today?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Open discussion, trying to highlight the value of the platform.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What 12 factor principles are important when it comes to scaling?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; There could be others listed here, but Disposability (quick start up times) is definitely key.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How do you handle scaling at the data layer?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; This is an open discussion.  Meaning how do they do it today.  The key here is that you also need elasticity at the data layer.  Transactional solutions such as GemFire go here.  To my knowledge usually managed as a User Provided Service Instance.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/application-performance-monitor/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/application-performance-monitor/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Why must articulate &amp;amp; attendee-service be restaged as oppose to restarted?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; The droplet must be recreated to include the New Relic dependency.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How do you manage APM tools today? How is this different?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Open discussion, trying to highlight the value of the platform.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/application-security-group/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/application-security-group/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;As a developer, what &lt;code&gt;cf&lt;/code&gt; commands can be used to investigate/understand security groups?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; &lt;code&gt;cf security-groups&lt;/code&gt;, &lt;code&gt;cf security-group&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Do application security groups use a whitelist or blacklist approach to firewall rules?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Whitelist.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some reasons why security groups could be used?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Open discussion&amp;hellip;Protection against typically trusted sources (employees) doing bad things, limiting risk by only exposing what you should have access to, forcing apps to use a given API rather than accessing the data directly.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/blue-green/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/blue-green/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What is the purpose of a blue-green deployment?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; No downtime deployments.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How is the distribution of traffic handled when running multiple versions of an app?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Percentage of app instances bound to the route.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;True or False.  When releasing a new version of an application, adding a new non nullable field to a database table is an acceptable blue-green strategy.&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; False&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How would a rollback situation be handled using a blue-green deployment?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Unmap the production route.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What other design implications does running at least two versions at the same time have on your applications?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;  We covered several in the preso/lab.  The key here is that changes have to be backwards compatible.  Challenge students to discuss their own apps.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Do you do blue-green deployments today? How is this different?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; This is an open discussion.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/buildpack/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/buildpack/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Which script is responsible for building the droplet?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; &lt;code&gt;bin/compile&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How do buildpacks help with managing with CVEs?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Instead of patching systems manually, simply upload patched buildpacks and restage applications.&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Would &lt;code&gt;cf restart&lt;/code&gt; be sufficient instead of &lt;code&gt;cf restage&lt;/code&gt;? Why not?&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; The droplet needs to be rebuilt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What other items are easily customized with the Java Buildpack?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tomcat Version&lt;/li&gt;
+&lt;li&gt;JRE Implementation (Oracle)&lt;/li&gt;
+&lt;li&gt;Trust Store&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;If you use Java, what items do you think would need customization in your environment?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; This really is open ended, but should invoke interesting conversation and feedback.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some of the industry trends pushing companies towards transformation?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Software Eating the world - every company need to become a software company to stay relevant/in business&lt;/li&gt;
+&lt;li&gt;Mobile apps/ different devices&lt;/li&gt;
+&lt;li&gt;IT not being able to keep with business expectations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are the benefits of Pivotal Cloud Foundry?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IaaS Independence&lt;/li&gt;
+&lt;li&gt;Self Serve Platform for Developers (cf push, services)&lt;/li&gt;
+&lt;li&gt;Operationally Robust (HA, Metrics, Logs, Quotas, etc)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt;  &lt;em&gt;What did you just do?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Deployed 4 apps.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What does push mean?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Deploy an app.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What was the same?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; The command.  Regardless of language you ended up with a running app.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What was different?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; URI, language, the buildpack&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Is this easier than what you normally do?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How long does this take you now?&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some common items in the output that occurred when pushing each application?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; loading buildpacks, creating containers, creating routes, etc.  The goal here is to start learning the vocabulary, but also generate excitement about how easy PCF makes things.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;p&gt;In the initial release of PCF 1.7 the Apps Manager shipped with the wrong/old version of the &lt;code&gt;cf&lt;/code&gt; CLI (6.13).  At least version 6.16 is needed to do these labs (Service Broker and Route Service).  The latest stable &lt;code&gt;cf&lt;/code&gt; CLI can be downloaded from &lt;a href=&#34;https://github.com/cloudfoundry/cli#downloads&#34;&gt;https://github.com/cloudfoundry/cli#downloads&lt;/a&gt;.  Students will need to download from this location rather than the Apps Manager.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/continuous-delivery/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/continuous-delivery/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some of the continuous delivery strategies?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do implement continuous integration&lt;/li&gt;
+&lt;li&gt;Do not create environment specific packages&lt;/li&gt;
+&lt;li&gt;Do not assume existing processes are right&lt;/li&gt;
+&lt;li&gt;Do not use a different process for different environments&lt;/li&gt;
+&lt;li&gt;Do recreate app environments frequently&lt;/li&gt;
+&lt;li&gt;Do ensure database changes are automated&lt;/li&gt;
+&lt;li&gt;Do deploy less more frequently&lt;/li&gt;
+&lt;li&gt;Automate testing&lt;/li&gt;
+&lt;li&gt;Use blue-green deployments&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some of the benefits of continuous delivery?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Reduce risk&lt;/li&gt;
+&lt;li&gt;Accelerated Time to Market&lt;/li&gt;
+&lt;li&gt;Building the Right Product&lt;/li&gt;
+&lt;li&gt;Improved Productivity and Efficiency&lt;/li&gt;
+&lt;li&gt;Reliable Releases&lt;/li&gt;
+&lt;li&gt;Improved Product Quality&lt;/li&gt;
+&lt;li&gt;Improved Customer Satisfaction&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Does continuous delivery mean continuous deployment?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; No.  Continuous Deployment mean every commit is pushed to prod.  Continuous Delivery means every change can be deployed to production at anytime.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

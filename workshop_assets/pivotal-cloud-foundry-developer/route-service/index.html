@@ -1,0 +1,241 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Route Service</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Route Service - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</a></li>
+<li><a href="#what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</a></li>
+<li><a href="#exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</a>
+<ul>
+<li><a href="#setup:d680e8a854a7cbad6d490c445cba2eba">Setup</a></li>
+<li><a href="#route-service-overview:d680e8a854a7cbad6d490c445cba2eba">Route Service Overview</a></li>
+<li><a href="#scenario:d680e8a854a7cbad6d490c445cba2eba">Scenario</a></li>
+<li><a href="#push-route-service:d680e8a854a7cbad6d490c445cba2eba">Push <code>route-service</code></a></li>
+<li><a href="#create-a-route-service-and-bind-it-to-a-route:d680e8a854a7cbad6d490c445cba2eba">Create a Route Service and Bind it to a Route</a></li>
+<li><a href="#observe-the-effects-of-the-route-service:d680e8a854a7cbad6d490c445cba2eba">Observe the effects of the <code>route-service</code></a></li>
+<li><a href="#questions:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+<li><a href="#clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</a></li>
+</ul></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<p>Estimated Time: 25 minutes</p>
+
+<h1 id="requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</h1>
+
+<p><a href="/pivotal-cloud-foundry-developer/requirements">Lab Requirements</a></p>
+
+<h1 id="what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</h1>
+
+<ul>
+<li>How to create a route service</li>
+</ul>
+
+<h1 id="exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</h1>
+
+<h2 id="setup:d680e8a854a7cbad6d490c445cba2eba">Setup</h2>
+
+<p>1) <a href="/pivotal-cloud-foundry-developer/resources/demo-apps/route-service-1.0.0.BUILD-SNAPSHOT.jar">Download</a> the <code>route-service</code> application. Copy the file to folder: <code>~/pivotal-cloud-foundry-developer-workshop/route-service/</code> (<code>~</code> is shorthand for the home directory in Linux, Mac and Unix based operating systems). You will need to create this directory in your <a href="https://en.wikipedia.org/wiki/Home_directory" target="_blank">home</a> directory.</p>
+
+<p><strong>NOTE:</strong> If your browser warns you about downloading this file please proceed to download it.</p>
+
+<p><a href="https://github.com/pivotal-enablement/route-service-example" target="_blank">Source</a>
+is not required, but you may be curious how it works as you move through the labs.</p>
+
+<h2 id="route-service-overview:d680e8a854a7cbad6d490c445cba2eba">Route Service Overview</h2>
+
+<p>1) Review the documentation on
+<a href="http://docs.pivotal.io/pivotalcf/services/route-services.html" target="_blank">Route Services.</a></p>
+
+<h2 id="scenario:d680e8a854a7cbad6d490c445cba2eba">Scenario</h2>
+
+<p>Route services can be used for a number of things such as logging, transformations, security and rate limiting.</p>
+
+<p>Our <code>route-service</code> application will do a couple of things.  It will log incoming and outgoing requests.  It will also impose a rate limit.  No more than 3 requests per 15 seconds.  Rate limited requests will be returned with an HTTP status code 429 (too many requests).  Rate limiting is very common in the API space.  Rate limiting protects your API from being overrun.</p>
+
+<p>The <code>attendee-service</code> service exposes a RESTful API, so we will front it with our <code>route-service</code>.</p>
+
+<h2 id="push-route-service:d680e8a854a7cbad6d490c445cba2eba">Push <code>route-service</code></h2>
+
+<p>1) Push <code>route-service</code>.</p>
+
+<pre><code>$ cd ~/pivotal-cloud-foundry-developer-workshop/route-service/
+$ cf push route-service -p ./route-service-1.0.0.BUILD-SNAPSHOT.jar -m 512M --random-route --no-start
+</code></pre>
+
+<p>2) Create a Redis service instance.</p>
+
+<p><strong>Pivotal Cloud Foundry:</strong></p>
+
+<pre><code>$ cf create-service p-redis shared-vm redis
+</code></pre>
+
+<p><strong>Pivotal Web Services:</strong></p>
+
+<pre><code>$ cf create-service rediscloud 30mb redis
+</code></pre>
+
+<p>3) Bind the service instance.</p>
+
+<pre><code>$ cf bind-service route-service redis
+</code></pre>
+
+<p>4) Start the application.</p>
+
+<pre><code>$ cf start route-service
+</code></pre>
+
+<h2 id="create-a-route-service-and-bind-it-to-a-route:d680e8a854a7cbad6d490c445cba2eba">Create a Route Service and Bind it to a Route</h2>
+
+<p>1) Create a user provided service.</p>
+
+<pre><code>$ cf create-user-provided-service route-service -r https://&lt;ROUTE-SERVICE-ADDRESS&gt;
+</code></pre>
+
+<p>For Example:</p>
+
+<pre><code>$ cf create-user-provided-service route-service -r https://route-service.cfapps.haas-39.pez.pivotal.io
+</code></pre>
+
+<p>2) Bind the <code>route-service</code> to the <code>attendee-service</code> route.</p>
+
+<pre><code>$ cf bind-route-service &lt;APPLICATION-DOMAIN&gt; route-service --hostname &lt;APPLICATION-HOST&gt;
+</code></pre>
+
+<p>For Example:</p>
+
+<pre><code>$ cf bind-route-service cfapps.haas-39.pez.pivotal.io route-service --hostname attendee-service
+</code></pre>
+
+<h2 id="observe-the-effects-of-the-route-service:d680e8a854a7cbad6d490c445cba2eba">Observe the effects of the <code>route-service</code></h2>
+
+<p>1) Tail the logs of <code>route-service</code>.</p>
+
+<pre><code>$ cf logs route-service
+</code></pre>
+
+<p>2) Choose a client of your preference, but one that can show HTTP status code.  Hit an <code>attendee-service</code> endpoint (e.g. <code>/attendees</code>) several times and see if you can get the rate limit to trigger.  Observe the logs.</p>
+
+<p>Pic below is using Chrome with the Developer Tools.
+<img src="/pivotal-cloud-foundry-developer/resources/images/rate_limit.png" alt="Rate Limit" title="Rate Limit" /></p>
+
+<h2 id="questions:d680e8a854a7cbad6d490c445cba2eba">Questions</h2>
+
+<ul>
+<li>What are the key headers used to implement route services (Service Instance Responsibilities)?</li>
+<li>How would you apply route services in your environment?</li>
+</ul>
+
+<h2 id="clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</h2>
+
+<p>1) Unbind the route service.</p>
+
+<pre><code>$ cf unbind-route-service &lt;APPLICATION-DOMAIN&gt; route-service --hostname &lt;APPLICATION-HOST&gt;
+</code></pre>
+
+<p>For Example:</p>
+
+<pre><code>$ cf unbind-route-service cfapps.haas-39.pez.pivotal.io route-service --hostname attendee-service
+</code></pre>
+
+<p>2) Delete <code>route-service</code> service instance.</p>
+
+<pre><code>$ cf delete-service route-service
+</code></pre>
+
+<p>3) Unbind <code>redis</code> service instance.</p>
+
+<pre><code>$ cf unbind-service route-service redis
+</code></pre>
+
+<p>4) Delete the <code>redis</code> service instance.</p>
+
+<pre><code>$ cf delete-service redis
+</code></pre>
+
+<p>5) Delete the <code>route-service</code> app.</p>
+
+<pre><code>$ cf delete route-service
+</code></pre>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

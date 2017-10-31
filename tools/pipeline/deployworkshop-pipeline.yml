@@ -1,0 +1,42 @@
+---
+resources:
+- name: workshop-web-app
+  type: git
+  source:
+    uri: git@github.com:sapient007/pcf-workshop-dev.git
+    private_key: {{git_private_key}}
+    ignore_paths:
+      - workshop-web-app/tools/**
+      - tools/**
+    branch: {{workshop-branch}}
+
+- name: resource-deploy-web-app
+  type: cf
+  source:
+    api: {{cf_api_uri}}
+    username: {{cf_user}}
+    password: {{cf_password}}
+    organization: {{cf_organization}}
+    space: {{cf_space}}
+    skip_cert_check: true
+
+- name: resource-version
+  type: semver
+  source:
+    driver: git
+    initial_version: 0.0.1
+    uri: git@github.com:sapient007/pcf-workshop-dev.git
+    branch: {{workshop-branch}}
+    file: version
+    private_key: {{git_private_key}}
+
+jobs:
+- name: job-deploy-app
+  serial: true
+  plan:
+  - {get: workshop-web-app, trigger: true}
+  - get: resource-version
+  - put: resource-deploy-web-app
+    params:
+      manifest: workshop-web-app/workshop_assets/manifest.yml
+      path: workshop-web-app/workshop_assets/

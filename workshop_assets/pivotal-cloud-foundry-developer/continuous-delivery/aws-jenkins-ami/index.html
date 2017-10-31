@@ -1,0 +1,249 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Amazon Web Services Jenkins AMI</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Amazon Web Services Jenkins AMI - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#jenkins-vm:cf111929893583a0ebe30e1cf891368c">Jenkins VM</a>
+<ul>
+<li><a href="#requirements:cf111929893583a0ebe30e1cf891368c">Requirements</a></li>
+<li><a href="#installed-software:cf111929893583a0ebe30e1cf891368c">Installed Software</a></li>
+<li><a href="#provisioning:cf111929893583a0ebe30e1cf891368c">Provisioning</a>
+<ul>
+<li><a href="#provisioning-wizard:cf111929893583a0ebe30e1cf891368c">Provisioning Wizard</a>
+<ul>
+<li><a href="#choose-an-instance-type:cf111929893583a0ebe30e1cf891368c">Choose an Instance Type</a></li>
+<li><a href="#configure-instance-details:cf111929893583a0ebe30e1cf891368c">Configure Instance Details</a></li>
+<li><a href="#add-storage:cf111929893583a0ebe30e1cf891368c">Add Storage</a></li>
+<li><a href="#tag-instance:cf111929893583a0ebe30e1cf891368c">Tag Instance</a></li>
+<li><a href="#create-a-security-group:cf111929893583a0ebe30e1cf891368c">Create a Security Group</a></li>
+<li><a href="#review-instance-launch:cf111929893583a0ebe30e1cf891368c">Review Instance Launch</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#accessing-your-jenkins-vm-remotely:cf111929893583a0ebe30e1cf891368c">Accessing Your Jenkins VM Remotely</a>
+<ul>
+<li><a href="#https:cf111929893583a0ebe30e1cf891368c">HTTPS</a>
+<ul>
+<li><a href="#credentials:cf111929893583a0ebe30e1cf891368c">Credentials:</a></li>
+</ul></li>
+<li><a href="#ssh:cf111929893583a0ebe30e1cf891368c">SSH</a></li>
+</ul></li>
+<li><a href="#managing-jenkins:cf111929893583a0ebe30e1cf891368c">Managing Jenkins</a>
+<ul>
+<li><a href="#start-jenkins:cf111929893583a0ebe30e1cf891368c">Start Jenkins</a></li>
+<li><a href="#stop-jenkins:cf111929893583a0ebe30e1cf891368c">Stop Jenkins</a></li>
+<li><a href="#restart-jenkins:cf111929893583a0ebe30e1cf891368c">Restart Jenkins</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<h1 id="jenkins-vm:cf111929893583a0ebe30e1cf891368c">Jenkins VM</h1>
+
+<p>A Jenkins VM (Ubuntu 14.04) is available to complete the continuous delivery lab.  The VM is hosted on Amazon Web Services.</p>
+
+<h2 id="requirements:cf111929893583a0ebe30e1cf891368c">Requirements</h2>
+
+<ul>
+<li>Network connectivity and access for Jenkins to reach your Pivotal Cloud Foundry environment (push on your behalf)</li>
+</ul>
+
+<h2 id="installed-software:cf111929893583a0ebe30e1cf891368c">Installed Software</h2>
+
+<p>The software listed below has been installed and configured on the VM:</p>
+
+<ul>
+<li>Jenkins - <a href=https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-License target="_blank">License</a></li>
+<li>JDK 1.8 -
+<a href=http://www.oracle.com/technetwork/java/javase/terms/license/index.html target="_blank">License</a></li>
+<li>Git - <a href=https://git-scm.com/about/free-and-open-source target="_blank">License</a></li>
+<li>GitHub Plugin -
+<a href=https://github.com/jenkinsci/github-plugin/blob/master/LICENSE target="_blank">License</a></li>
+<li>Cloud Foundry Plugin - <a href=https://github.com/jenkinsci/cloudfoundry/blob/master/LICENSE.txt target="_blank">License</a></li>
+</ul>
+
+<h2 id="provisioning:cf111929893583a0ebe30e1cf891368c">Provisioning</h2>
+
+<p>1) User must have access to an AWS account (can run from any account)</p>
+
+<p>2) User must have an existing key pair in the account or create one</p>
+
+<p>3) The AMI can be found be searching for <code>jenkins-continuous-delivery-lab</code> in the EC2 Dashboard.  Must be in the N. Virginia region.</p>
+
+<p>Using the EC2 dashboard, under Images &gt; AMIs search for <code>jenkins-continuous-delivery-lab</code>. Click Launch.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/search.png" alt="search for ami" /></p>
+
+<h3 id="provisioning-wizard:cf111929893583a0ebe30e1cf891368c">Provisioning Wizard</h3>
+
+<p>When launching, accept defaults except where specified.</p>
+
+<h4 id="choose-an-instance-type:cf111929893583a0ebe30e1cf891368c">Choose an Instance Type</h4>
+
+<ul>
+<li>Use <code>t2.medium</code> (4 GB memory)</li>
+</ul>
+
+<h4 id="configure-instance-details:cf111929893583a0ebe30e1cf891368c">Configure Instance Details</h4>
+
+<ul>
+<li>Auto-assign Public IP  = <code>Enable</code></li>
+</ul>
+
+<h4 id="add-storage:cf111929893583a0ebe30e1cf891368c">Add Storage</h4>
+
+<ul>
+<li>Accept defaults</li>
+</ul>
+
+<h4 id="tag-instance:cf111929893583a0ebe30e1cf891368c">Tag Instance</h4>
+
+<ul>
+<li>Create the following: Key = <code>Name</code>; Value = <code>&lt;your name here-jenkins&gt;</code></li>
+</ul>
+
+<h4 id="create-a-security-group:cf111929893583a0ebe30e1cf891368c">Create a Security Group</h4>
+
+<p>Create a security group with the following rules:</p>
+
+<p><strong>Rule 1:</strong> <br>
+ Type = <code>ssh</code> <br>
+ Protocol = <code>TCP</code> <br>
+ Port Range = <code>22</code> <br>
+ Source = <code>anywhere</code> (0.0.0.0/0) <br></p>
+
+<p><strong>Rule 2:</strong> <br>
+  Type = <code>HTTPS</code> <br>
+  Protocol = <code>TCP</code> <br>
+  Port Range = <code>443</code> <br>
+  Source = <code>anywhere</code> (0.0.0.0/0) <br></p>
+
+<h4 id="review-instance-launch:cf111929893583a0ebe30e1cf891368c">Review Instance Launch</h4>
+
+<p>Select your key-pair an launch the instance.</p>
+
+<p>Once the instance is running, select it in list of EC2 instances.</p>
+
+<p><strong><em>Obtain the public IP for use in the lab</em></strong>.</p>
+
+<h2 id="accessing-your-jenkins-vm-remotely:cf111929893583a0ebe30e1cf891368c">Accessing Your Jenkins VM Remotely</h2>
+
+<h3 id="https:cf111929893583a0ebe30e1cf891368c">HTTPS</h3>
+
+<p>A self signed certificate is used, so browser warnings are expected.</p>
+
+<p>Access Jenkins via the <code>https://&lt;ip-address</code>.</p>
+
+<h4 id="credentials:cf111929893583a0ebe30e1cf891368c">Credentials:</h4>
+
+<p><strong>Username:</strong> <code>pivotal</code> <br>
+<strong>Password:</strong> <code>keepitsimple</code></p>
+
+<h3 id="ssh:cf111929893583a0ebe30e1cf891368c">SSH</h3>
+
+<p>SSH using your private key, the <code>ubuntu</code> user and the public IP address of your VM.</p>
+
+<p>For example:</p>
+
+<pre><code>$ ssh -i ~/.ssh/my-key-pair.pem ubuntu@53.91.185.0
+</code></pre>
+
+<p><a href=http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html target="_blank">Amazon Reference Documentation</a></p>
+
+<h2 id="managing-jenkins:cf111929893583a0ebe30e1cf891368c">Managing Jenkins</h2>
+
+<h3 id="start-jenkins:cf111929893583a0ebe30e1cf891368c">Start Jenkins</h3>
+
+<pre><code>$ sudo service jenkins start
+</code></pre>
+
+<h3 id="stop-jenkins:cf111929893583a0ebe30e1cf891368c">Stop Jenkins</h3>
+
+<pre><code>$ sudo service jenkins stop
+</code></pre>
+
+<h3 id="restart-jenkins:cf111929893583a0ebe30e1cf891368c">Restart Jenkins</h3>
+
+<pre><code>$ sudo service jenkins restart
+</code></pre>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

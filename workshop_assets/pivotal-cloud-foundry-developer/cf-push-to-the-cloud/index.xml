@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cf-push-to-the-clouds on Pivotal Cloud Foundry Developer</title>
+    <link>/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/</link>
+    <description>Recent content in Cf-push-to-the-clouds on Pivotal Cloud Foundry Developer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright Pivotal. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 07 Mar 2016 15:49:50 -0600</lastBuildDate>
+    <atom:link href="/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some of the industry trends pushing companies towards transformation?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Software Eating the world - every company need to become a software company to stay relevant/in business&lt;/li&gt;
+&lt;li&gt;Mobile apps/ different devices&lt;/li&gt;
+&lt;li&gt;IT not being able to keep with business expectations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are the benefits of Pivotal Cloud Foundry?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IaaS Independence&lt;/li&gt;
+&lt;li&gt;Self Serve Platform for Developers (cf push, services)&lt;/li&gt;
+&lt;li&gt;Operationally Robust (HA, Metrics, Logs, Quotas, etc)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt;  &lt;em&gt;What did you just do?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Deployed 4 apps.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What does push mean?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Deploy an app.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What was the same?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; The command.  Regardless of language you ended up with a running app.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What was different?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; URI, language, the buildpack&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Is this easier than what you normally do?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How long does this take you now?&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What are some common items in the output that occurred when pushing each application?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; loading buildpacks, creating containers, creating routes, etc.  The goal here is to start learning the vocabulary, but also generate excitement about how easy PCF makes things.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;p&gt;In the initial release of PCF 1.7 the Apps Manager shipped with the wrong/old version of the &lt;code&gt;cf&lt;/code&gt; CLI (6.13).  At least version 6.16 is needed to do these labs (Service Broker and Route Service).  The latest stable &lt;code&gt;cf&lt;/code&gt; CLI can be downloaded from &lt;a href=&#34;https://github.com/cloudfoundry/cli#downloads&#34;&gt;https://github.com/cloudfoundry/cli#downloads&lt;/a&gt;.  Students will need to download from this location rather than the Apps Manager.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Push to the Cloud</title>
+      <link>/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/</link>
+      <pubDate>Fri, 04 Mar 2016 09:51:10 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/cf-push-to-the-cloud/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to access Apps Manager&lt;/li&gt;
+&lt;li&gt;How to install the &lt;code&gt;cf&lt;/code&gt; CLI&lt;/li&gt;
+&lt;li&gt;How to target a Pivotal Cloud Foundry instance with the &lt;code&gt;cf&lt;/code&gt; CLI&lt;/li&gt;
+&lt;li&gt;How to &lt;code&gt;cf push&lt;/code&gt; apps&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;download-the-cf-cli:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Download the &lt;code&gt;cf&lt;/code&gt; CLI&lt;/h2&gt;
+
+&lt;p&gt;Endpoint and credential information for accessing Apps Manager will be provided by your instructor.  Apps Manager is a web application that helps you manage your applications, but it is also the place to download the &lt;code&gt;cf&lt;/code&gt; CLI.  The next set of steps walk you through just that.&lt;/p&gt;
+
+&lt;p&gt;1) &lt;a href=http://docs.pivotal.io/pivotalcf/console/dev-console.html target=&#34;_blank&#34;&gt;Review the Apps Manager Documentation&lt;/a&gt;.  Knowing where to go for help is essential.&lt;/p&gt;
+
+&lt;p&gt;2) Login into Pivotal Cloud Foundry with the Apps Manager.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; It is common to use self signed certs in educational environments, but doing so will result in warnings from your browser.  These warnings can safely be ignored (proceed through them).&lt;/p&gt;
+
+&lt;p&gt;3) Upon logging into Apps Manager for the first time you will be greeted with a welcome message that will walk you through the installation of the &lt;code&gt;cf&lt;/code&gt; CLI.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/get_started.png&#34; alt=&#34;Get Started&#34; title=&#34;Get Started&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you do not see this dialog, the same information can be found under &lt;code&gt;Tools&lt;/code&gt; (Left side).&lt;/p&gt;
+
+&lt;p&gt;4) Download and &lt;a href=http://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html target=&#34;_blank&#34;&gt;install&lt;/a&gt; the &lt;code&gt;cf&lt;/code&gt; CLI for your platform.&lt;/p&gt;
+
+&lt;p&gt;5) Open a terminal window.  Explore the &lt;code&gt;cf&lt;/code&gt; CLI. In the terminal window type &lt;code&gt;cf&lt;/code&gt;.  Review the commands available with the &lt;code&gt;cf&lt;/code&gt; CLI.  Help on a specific command can be found using the &lt;code&gt;--help&lt;/code&gt; option (e.g. &lt;code&gt;cf login --help&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf
+...
+$ cf login --help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;login-to-pivotal-cloud-foundry-with-the-cf-cli:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Login to Pivotal Cloud Foundry with the &lt;code&gt;cf&lt;/code&gt; CLI&lt;/h2&gt;
+
+&lt;p&gt;1) Continue to follow directions for logging in with the &lt;code&gt;cf&lt;/code&gt; CLI.  You can copy and paste the &lt;code&gt;cf login&lt;/code&gt; command directly from Apps Manager.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf login -a &amp;lt;substitute the API endpoint from Apps Manager&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt;  Are SSL errors preventing you from logging in?  Try adding the &lt;code&gt;--skip-ssl-validation&lt;/code&gt; option.&lt;/p&gt;
+
+&lt;p&gt;2) Review your current API endpoint, user, org, and space&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf target
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What Just Happened?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You have logged into Pivotal Cloud Foundry from two different clients (Apps Manager and the &lt;code&gt;cf&lt;/code&gt; CLI).  You have installed the &lt;code&gt;cf&lt;/code&gt; CLI and targeted a Pivotal Cloud Foundry instance.  You are ready to &lt;code&gt;push&lt;/code&gt; apps.&lt;/p&gt;
+
+&lt;h2 id=&#34;pushing-apps:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Pushing apps&lt;/h2&gt;
+
+&lt;p&gt;Next we will push (deploy) several applications.&lt;/p&gt;
+
+&lt;p&gt;1) Download the &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/demo-apps/demo-apps.zip&#34;&gt;demo applications&lt;/a&gt;.  Copy the file to folder: &lt;code&gt;~/pivotal-cloud-foundry-developer-workshop&lt;/code&gt; (&lt;code&gt;~&lt;/code&gt; is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your &lt;a href=https://en.wikipedia.org/wiki/Home_directory target=&#34;_blank&#34;&gt;home&lt;/a&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;2) Extract the zip file to &lt;code&gt;~/pivotal-cloud-foundry-developer-workshop/demo-apps&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The zip file contains four directories; each directory contains an application developed in a different language.&lt;/p&gt;
+
+&lt;p&gt;3) Open a terminal window and push the &lt;code&gt;node&lt;/code&gt; application&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/demo-apps/node
+$ cf push node --random-route -m 128M
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) View the &lt;code&gt;node&lt;/code&gt; application in your browser or use &lt;code&gt;curl&lt;/code&gt;.  The url can be obtained from the &lt;code&gt;cf push&lt;/code&gt; output or by issuing the command &lt;code&gt;cf apps&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl node-northeasterly-zygoma.cfapps.io
+Hello Node
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) Repeat steps 3 - 4 for the &lt;code&gt;php&lt;/code&gt;, &lt;code&gt;python&lt;/code&gt;, and &lt;code&gt;ruby&lt;/code&gt; applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; Make sure you &lt;code&gt;cd&lt;/code&gt; into each directory before pushing.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What Just Happened?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You just deployed four applications each based on a different language and runtime.  Pivotal Cloud Foundry is a polyglot platform, meaning it supports multiple languages and does so in a pluggable way (via buildpacks)!&lt;/p&gt;
+
+&lt;h3 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What are some common items in the output that occurred when pushing each application?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;explore-apps-manager:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Explore Apps Manager&lt;/h2&gt;
+
+&lt;p&gt;1) Review the following views:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Org&lt;/li&gt;
+&lt;li&gt;Space&lt;/li&gt;
+&lt;li&gt;App&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What Just Happened?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You have interfaced with Pivotal Cloud Foudry from two separate clients (&lt;code&gt;cf&lt;/code&gt; and Apps Manager).  Many of the operations that are available in &lt;code&gt;cf&lt;/code&gt; CLI are also available in Apps Manager.&lt;/p&gt;
+
+&lt;h2 id=&#34;clean-up:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Clean up&lt;/h2&gt;
+
+&lt;p&gt;1) Delete the applications you just pushed.&lt;/p&gt;
+
+&lt;p&gt;This is very important for resource constrained environments.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf delete node
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Repeat for &lt;code&gt;php&lt;/code&gt;, &lt;code&gt;python&lt;/code&gt;, and &lt;code&gt;ruby&lt;/code&gt; applications.&lt;/p&gt;
+
+&lt;h1 id=&#34;beyond-the-class:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Beyond the class&lt;/h1&gt;
+
+&lt;p&gt;Check out the Cloud Foundry &lt;a href=https://github.com/cloudfoundry-samples target=&#34;_blank&#34;&gt;sample applications&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=https://github.com/cloudfoundry-samples/spring-music target=&#34;_blank&#34;&gt;Spring Music&lt;/a&gt; is a favorite.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

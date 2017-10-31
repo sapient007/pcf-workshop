@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Buildpacks on Pivotal Cloud Foundry Developer</title>
+    <link>/pivotal-cloud-foundry-developer/buildpack/</link>
+    <description>Recent content in Buildpacks on Pivotal Cloud Foundry Developer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright Pivotal. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 07 Mar 2016 15:49:50 -0600</lastBuildDate>
+    <atom:link href="/pivotal-cloud-foundry-developer/buildpack/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Buildpack</title>
+      <link>/pivotal-cloud-foundry-developer/buildpack/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/buildpack/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to use a custom buildpack&lt;/li&gt;
+&lt;li&gt;How to configure the Java Buildpack&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;use-a-custom-buildpack:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Use a Custom Buildpack&lt;/h2&gt;
+
+&lt;p&gt;1) Review the documentation on &lt;a href=http://docs.pivotal.io/pivotalcf/buildpacks/custom.html#deploying-with-custom-buildpacks target=&#34;_blank&#34;&gt;deploying with custom buildpacks&lt;/a&gt; and how dependencies are handled with the Java Buildpack &lt;a href=https://github.com/cloudfoundry/java-buildpack#online-package target=&#34;_blank&#34;&gt;online package&lt;/a&gt; and the &lt;a href=https://github.com/cloudfoundry/java-buildpack#offline-package target=&#34;_blank&#34;&gt;offline package&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Review the Java Version reported by &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/java_version.png&#34; alt=&#34;Java Version&#34; title=&#34;Java Version&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3) Review which buildpack is in use.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf app articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Push &lt;code&gt;articulate&lt;/code&gt; again, but this time specify a custom buildpack.  In this case, we will use the latest version of the &lt;a href=https://github.com/cloudfoundry/java-buildpack target=&#34;_blank&#34;&gt;Java Buildpack&lt;/a&gt; on GitHub.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/articulate/
+$ cf push articulate -p ./articulate-0.0.1-SNAPSHOT.jar -b https://github.com/cloudfoundry/java-buildpack.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) Using your browser, refresh the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s likely (but not required) that the &lt;code&gt;Java Version&lt;/code&gt; changed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What Just Happened?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We instructed our application to use a custom buildpack (as opposed to a system provided one).&lt;/p&gt;
+
+&lt;p&gt;In this case, we used the Java Buildpack source on Github as our custom buildpack.  The Java Buildpack source is continuously updated and it is an &lt;a href=https://github.com/cloudfoundry/java-buildpack#online-package target=&#34;_blank&#34;&gt;online&lt;/a&gt; package of the buildpack.  Meaning it has access to all dependencies via the network (it has access to all JRE versions, etc).  Whereas, the system provided Java buidpack is &lt;a href=https://github.com/cloudfoundry/java-buildpack#offline-package target=&#34;_blank&#34;&gt;offline&lt;/a&gt;, with a limited set of dependencies.  For both the online and offline packages, unless the Java version is specified the application is run with the latest version of Java available to the buildpack.&lt;/p&gt;
+
+&lt;h2 id=&#34;change-the-java-version:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Change the Java version&lt;/h2&gt;
+
+&lt;p&gt;1) Review the Java Buildpack &lt;a href=https://github.com/cloudfoundry/java-buildpack#configuration-and-extension target=&#34;_blank&#34;&gt;configuration and extension documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Let&amp;rsquo;s assume that we want to run &lt;code&gt;articulate&lt;/code&gt; on a specific version Java.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf set-env articulate JBP_CONFIG_OPEN_JDK_JRE &amp;quot;{jre: { version: 1.8.0_45 }}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Using your browser, refresh the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;QUESTION:&lt;/em&gt;&lt;/strong&gt; Is the &lt;code&gt;articulate&lt;/code&gt; running with &lt;code&gt;1.8.0_45&lt;/code&gt;?  Why not?&lt;/p&gt;
+
+&lt;p&gt;4) Restage &lt;code&gt;articulate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restage articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;QUESTION:&lt;/em&gt;&lt;/strong&gt; Would &lt;code&gt;cf restart&lt;/code&gt; be sufficient instead of &lt;code&gt;cf restage&lt;/code&gt;?  Why not?&lt;/p&gt;
+
+&lt;p&gt;5) Using your browser, refresh the &lt;code&gt;articulate&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;h2 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What other items are easily customized with the Java Buildpack?&lt;/li&gt;
+&lt;li&gt;If you use Java, what items do you think would need customization in your environment?&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/buildpack/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/buildpack/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Which script is responsible for building the droplet?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; &lt;code&gt;bin/compile&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;How do buildpacks help with managing with CVEs?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Instead of patching systems manually, simply upload patched buildpacks and restage applications.&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Would &lt;code&gt;cf restart&lt;/code&gt; be sufficient instead of &lt;code&gt;cf restage&lt;/code&gt;? Why not?&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; The droplet needs to be rebuilt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What other items are easily customized with the Java Buildpack?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tomcat Version&lt;/li&gt;
+&lt;li&gt;JRE Implementation (Oracle)&lt;/li&gt;
+&lt;li&gt;Trust Store&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;If you use Java, what items do you think would need customization in your environment?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; This really is open ended, but should invoke interesting conversation and feedback.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

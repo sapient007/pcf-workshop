@@ -1,0 +1,154 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Instructor Notes</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Instructor Notes - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#questions:db235fc914867ffea6b540c8732499d5">Questions</a>
+<ul>
+<li><a href="#general-discussion-questions:db235fc914867ffea6b540c8732499d5">General Discussion Questions</a></li>
+<li><a href="#questions-from-the-lab:db235fc914867ffea6b540c8732499d5">Questions From the Lab</a></li>
+</ul></li>
+<li><a href="#troubleshooting:db235fc914867ffea6b540c8732499d5">Troubleshooting</a>
+<ul>
+<li><a href="#name-and-id-collisions:db235fc914867ffea6b540c8732499d5">Name and Id Collisions</a></li>
+<li><a href="#purge-when-necessary:db235fc914867ffea6b540c8732499d5">Purge When Necessary</a></li>
+</ul></li>
+<li><a href="#feedback:db235fc914867ffea6b540c8732499d5">Feedback</a></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<h1 id="questions:db235fc914867ffea6b540c8732499d5">Questions</h1>
+
+<p>After completing the lab recap as a class the following questions:</p>
+
+<h2 id="general-discussion-questions:db235fc914867ffea6b540c8732499d5">General Discussion Questions</h2>
+
+<p><strong>Q:</strong> <em>Where does a service broker have to be be deployed?</em><br>
+<strong>A:</strong> The broker can be deployed provided the Cloud Controller can reach it via HTTPS.</p>
+
+<p><strong>Q:</strong> <em>Why provide unique credentials per binding?</em><br>
+<strong>A:</strong> So that unbinding (revoking access) doesn&rsquo;t affect multiple applications.</p>
+
+<h2 id="questions-from-the-lab:db235fc914867ffea6b540c8732499d5">Questions From the Lab</h2>
+
+<p><strong>Q:</strong> <em>Can a service broker support upgrade/downgrade of a service instance to a different plan?</em><br>
+<strong>A:</strong> Upgrade is supported.</p>
+
+<p><strong>Q:</strong> <em>The broker is required by the Cloud Controller to respond within how many seconds?</em><br>
+<strong>A:</strong> 60 seconds.</p>
+
+<p><strong>Q:</strong> <em>Does provisioning have to be done synchronously?</em><br>
+<strong>A:</strong> No, it can be done asynchronously.</p>
+
+<p><strong>Q:</strong> <em>Do all services have to be bindable?</em><br>
+<strong>A:</strong> No.  Need an example here.</p>
+
+<h1 id="troubleshooting:db235fc914867ffea6b540c8732499d5">Troubleshooting</h1>
+
+<p>Troubleshooting guidance for the lab that instructors need to know.</p>
+
+<h2 id="name-and-id-collisions:db235fc914867ffea6b540c8732499d5">Name and Id Collisions</h2>
+
+<p>Make sure that students set the environment variables to unique values for the entire platform, otherwise they won&rsquo;t be able to create/register their service broker.</p>
+
+<h2 id="purge-when-necessary:db235fc914867ffea6b540c8732499d5">Purge When Necessary</h2>
+
+<p>If a student&rsquo;s service broker/service instance/bindings get completely messed up and normal methods no longer work (<code>create-service</code>, <code>bind-service</code>, <code>unbind-service</code>, <code>delete-service</code>) there are  options to essentially reset things.</p>
+
+<p>For instance, if they can&rsquo;t delete/unbind a service instance consider the following methods (does not require <code>admin</code> for Spaced-Scoped Brokers):</p>
+
+<pre><code>// removes one service instance and associated bindings
+$ cf purge-service-instance
+</code></pre>
+
+<pre><code>//removes the service from the marketplace and all service instances with associated bindings
+$ cf purge-service-offering
+</code></pre>
+
+<h1 id="feedback:db235fc914867ffea6b540c8732499d5">Feedback</h1>
+
+<p>Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.</p>
+
+<p>Submit feedback to: <a href="mailto:pcf-developer-instructor-feedback@pivotal.io">pcf-developer-instructor-feedback@pivotal.io</a></p>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Services on Pivotal Cloud Foundry Developer</title>
+    <link>/pivotal-cloud-foundry-developer/services/</link>
+    <description>Recent content in Services on Pivotal Cloud Foundry Developer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright Pivotal. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 08 Mar 2016 15:10:46 -0600</lastBuildDate>
+    <atom:link href="/pivotal-cloud-foundry-developer/services/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Services</title>
+      <link>/pivotal-cloud-foundry-developer/services/</link>
+      <pubDate>Tue, 08 Mar 2016 15:10:46 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/services/</guid>
+      <description>
+
+&lt;p&gt;Estimated Time: 25 minutes&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/requirements&#34;&gt;Lab Requirements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What you will learn&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to create a managed service instance&lt;/li&gt;
+&lt;li&gt;How to create a user provided service instance&lt;/li&gt;
+&lt;li&gt;How to bind an application to a service instance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;exercises:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Exercises&lt;/h1&gt;
+
+&lt;h2 id=&#34;review-articulate-dependencies:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Review &lt;code&gt;articulate&lt;/code&gt; dependencies&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;articulate&lt;/code&gt; exposes functionality to add attendees on the &lt;code&gt;Services&lt;/code&gt; page.  However, &lt;code&gt;articulate&lt;/code&gt; doesn&amp;rsquo;t do this alone.  It makes REST calls to the &lt;code&gt;attendee-service&lt;/code&gt; application. To learn more about services, let&amp;rsquo;s provision the &lt;code&gt;attendee-service&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/services.png&#34; alt=&#34;Services&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;push-the-attendee-service-application:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Push the &lt;code&gt;attendee-service&lt;/code&gt; application&lt;/h2&gt;
+
+&lt;p&gt;1) &lt;a href=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/demo-apps/attendee-service-0.0.1-SNAPSHOT.jar&#34;&gt;Download&lt;/a&gt; the &lt;code&gt;attendee-service&lt;/code&gt; application.  Copy the file to folder: &lt;code&gt;~/pivotal-cloud-foundry-developer-workshop/attendee-service/&lt;/code&gt; (&lt;code&gt;~&lt;/code&gt; is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your &lt;a href=https://en.wikipedia.org/wiki/Home_directory target=&#34;_blank&#34;&gt;home&lt;/a&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; If your browser warns you about downloading this file please proceed to download it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=https://github.com/pivotal-enablement/attendee-service target=&#34;_blank&#34;&gt;Source&lt;/a&gt; is not required, but you may be curious how it works as you move through the labs.&lt;/p&gt;
+
+&lt;p&gt;2) Push the &lt;code&gt;attendee-service&lt;/code&gt; application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ~/pivotal-cloud-foundry-developer-workshop/attendee-service/
+$ cf push attendee-service -p ./attendee-service-0.0.1-SNAPSHOT.jar -m 512M --random-route
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does &lt;code&gt;attendee-service&lt;/code&gt; start up correctly?  Why not?&lt;/p&gt;
+
+&lt;h2 id=&#34;add-a-managed-service:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Add a Managed Service&lt;/h2&gt;
+
+&lt;p&gt;1) Review the &lt;a href=http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; on managing service instances&lt;/p&gt;
+
+&lt;p&gt;2) Review what services are available in the marketplace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf marketplace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Provision a MySql service instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Cloud Foundry:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service p-mysql 100mb-dev attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Pivotal Web Services:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf create-service cleardb spark attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Now we need to bind the application with the service instance.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service attendee-service attendee-mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage attendee-service&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;5) Restart the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6) View the &lt;code&gt;attendee-service&lt;/code&gt; in a browser.&lt;/p&gt;
+
+&lt;p&gt;You should see response similar to the following (pic is using the &lt;a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target=&#34;_blank&#34;&gt;JSON Formatter for Chrome&lt;/a&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/attendee_service.png&#34; alt=&#34;attendee-service&#34; title=&#34;attendee-service&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;how-does-this-work:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How does this work?&lt;/h3&gt;
+
+&lt;p&gt;1) Read about how twelve-factor apps handle &lt;a href=http://12factor.net/backing-services target=&#34;_blank&#34;&gt;backing services&lt;/a&gt; and &lt;a href=http://12factor.net/config target=&#34;_blank&#34;&gt;configuration&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Read about &lt;a href=https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES target=&#34;_blank&#34;&gt;VCAP_SERVICES&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;3) View the environment for &lt;code&gt;attendee-service&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf env attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4) Different languages/frameworks will have various ways to read environment variables.  &lt;code&gt;attendee-service&lt;/code&gt; takes advantage of a &lt;a href=https://github.com/cloudfoundry/java-buildpack target=&#34;_blank&#34;&gt;Java Buildpack&lt;/a&gt; feature called &lt;a href=https://github.com/cloudfoundry/java-buildpack-auto-reconfiguration target=&#34;_blank&#34;&gt;Auto-Reconfiguration&lt;/a&gt; that will automatically re-write bean definitions to connect with services bound to an application.&lt;/p&gt;
+
+&lt;h3 id=&#34;questions:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;After binding a service to an application why is the application restarted/restaged?&lt;/li&gt;
+&lt;li&gt;In this case, why could we &lt;code&gt;restart&lt;/code&gt; vs &lt;code&gt;restage&lt;/code&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;add-a-user-provided-service-instance:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Add a User Provided Service Instance&lt;/h2&gt;
+
+&lt;p&gt;In the enterprise, not all services will be provisioned by Pivotal Cloud Foundry.&lt;/p&gt;
+
+&lt;p&gt;For example, consider your Oracle RAC cluster.  How can we connect our applications running on Pivotal Cloud Foundry to these external systems?&lt;/p&gt;
+
+&lt;p&gt;Additionally, how can we easily connect applications together running on the platform?&lt;/p&gt;
+
+&lt;p&gt;1) Read about &lt;a href=http://docs.pivotal.io/pivotalcf/devguide/services/user-provided.html target=&#34;_blank&#34;&gt;user provided service instances&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2) Create a user provided service.  This will create an interactive prompt.  Don&amp;rsquo;t use the literal below for the value of &lt;code&gt;uri&lt;/code&gt;, use your &lt;code&gt;attendee-service&lt;/code&gt; &lt;code&gt;uri&lt;/code&gt;.  Also make sure to specify &lt;code&gt;http&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE:&lt;/em&gt;&lt;/strong&gt; This will not work with &lt;code&gt;https&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$cf create-user-provided-service attendee-service -p uri
+
+uri&amp;gt; http://attendee-service-surfy-glt.pcfi1.fe.gopivotal.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Bind &lt;code&gt;articulate&lt;/code&gt; to the &lt;code&gt;attendee-service&lt;/code&gt; user provided service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf bind-service articulate attendee-service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;You can ignore the &amp;ldquo;TIP: Use &amp;lsquo;cf restage articulate&amp;rsquo; to ensure your env variable changes take effect&amp;rdquo; message at this time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;4) Restart the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf restart articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5) Refresh the &lt;code&gt;articulate&lt;/code&gt; &lt;code&gt;Services&lt;/code&gt; page.  You can now see the &lt;code&gt;attendee-service&lt;/code&gt; listed under &lt;code&gt;Services&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/pivotal-cloud-foundry-developer/pivotal-cloud-foundry-developer/resources/images/articulate_attendee.png&#34; alt=&#34;articulate attendee&#34; title=&#34;articulate attendee&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;6) Review the environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cf env articulate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;7) Add some attendees.&lt;/p&gt;
+
+&lt;h3 id=&#34;questions-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Questions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From an application perspective, are managed services instances different from user provided service instances?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;beyond-the-class:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Beyond the class&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;a href=https://github.com/cloudfoundry-samples/spring-music target=&#34;_blank&#34;&gt;Spring Music&lt;/a&gt; and a User Provided Service Instance to connect to a database (MySQL or Oracle) in your environment.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instructor Notes</title>
+      <link>/pivotal-cloud-foundry-developer/services/notes/</link>
+      <pubDate>Mon, 07 Mar 2016 15:49:50 -0600</pubDate>
+      
+      <guid>/pivotal-cloud-foundry-developer/services/notes/</guid>
+      <description>
+
+&lt;h1 id=&#34;questions:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions&lt;/h1&gt;
+
+&lt;p&gt;After completing the lab recap as a class the following questions:&lt;/p&gt;
+
+&lt;h2 id=&#34;general-discussion-questions:db235fc914867ffea6b540c8732499d5&#34;&gt;General Discussion Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;What is the difference between a managed and user provided service?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; Managed services are advertised in the Marketplace (to do this they must implement he Service Broker API).  Additionally, service instances are created on your behalf.  User provided service instances are not provisioned by the platform.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Would it be advisable for a Twelve-Factor app to store configuration in a local file?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; No, because the application would have to be rebuilt to change the config.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;Does a Twelve-Factor App make a distinction between local and third party resources?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; No, both should provide locator/credential information in the config.&lt;/p&gt;
+
+&lt;h2 id=&#34;questions-from-the-lab:db235fc914867ffea6b540c8732499d5&#34;&gt;Questions From the Lab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;After binding a service to an application why does the application need to be restarted/restaged?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; So that the application can have access to the environment variable (&lt;code&gt;VCAP_SERVICES&lt;/code&gt;) that defines how to reach the service instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;em&gt;In this case, why could we restart vs restage?&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;A:&lt;/strong&gt; The application droplet did not need to be rebuilt.  No dependencies are added to the droplet when binding a database service in this example.&lt;/p&gt;
+
+&lt;h1 id=&#34;troubleshooting:db235fc914867ffea6b540c8732499d5&#34;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Troubleshooting guidance for the lab that instructors need to know.&lt;/p&gt;
+
+&lt;h1 id=&#34;feedback:db235fc914867ffea6b540c8732499d5&#34;&gt;Feedback&lt;/h1&gt;
+
+&lt;p&gt;Please keep track of all types of feedback, so that we can make this module great.  That includes questions that students may ask that we should be answering up front, lab corrections/improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;Submit feedback to: &lt;a href=&#34;mailto:pcf-developer-instructor-feedback@pivotal.io&#34;&gt;pcf-developer-instructor-feedback@pivotal.io&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

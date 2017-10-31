@@ -1,0 +1,538 @@
+<div class="row">
+	
+	<div class="pane bg-dark-2">
+		<div class="container">
+			<h2 class="type-neutral-11 title">Pivotal Cloud Foundry Developer: Service Broker</h2>
+		</div>
+	</div>
+</div>
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="alternate" href="/index.xml" type="application/rss+xml" title="Pivotal Cloud Foundry Developer">
+		<link rel="icon" href="/pivotal-cloud-foundry-developer/P_Mark_WhiteOnTeal.png">
+		<title>Service Broker - Pivotal Cloud Foundry Developer</title>
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/highlight.js.min.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/pui-v2.0.0/pivotal-ui.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/theme.css">
+		<link rel="stylesheet" href="/pivotal-cloud-foundry-developer/css/bootie-docs.css">
+	</head>
+
+<body role="document">
+	
+
+<div class="container">
+	<div class="row">
+			
+
+	<div class="col-sm-14 doc-sidebar">
+		<div class="sidebar-module">
+			<div class="sidebar-toc">
+				<h4>Table of Contents</h4>
+				<nav id="TableOfContents">
+<ul>
+<li><a href="#requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</a></li>
+<li><a href="#what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</a></li>
+<li><a href="#exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</a>
+<ul>
+<li><a href="#setup:d680e8a854a7cbad6d490c445cba2eba">Setup</a></li>
+<li><a href="#service-broker-api-overview:d680e8a854a7cbad6d490c445cba2eba">Service Broker API Overview</a></li>
+<li><a href="#create-a-mongodb-service-broker:d680e8a854a7cbad6d490c445cba2eba">Create a MongoDB Service Broker</a>
+<ul>
+<li><a href="#about-this-broker:d680e8a854a7cbad6d490c445cba2eba">About this Broker</a></li>
+<li><a href="#implement-catalog-management:d680e8a854a7cbad6d490c445cba2eba">Implement Catalog Management</a>
+<ul>
+<li><a href="#questions:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+<li><a href="#implement-provisioning-and-deprovisioning:d680e8a854a7cbad6d490c445cba2eba">Implement Provisioning and Deprovisioning</a>
+<ul>
+<li><a href="#questions-1:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+<li><a href="#implement-binding-and-unbinding:d680e8a854a7cbad6d490c445cba2eba">Implement Binding and Unbinding</a>
+<ul>
+<li><a href="#questions-2:d680e8a854a7cbad6d490c445cba2eba">Questions</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#use-the-mongodb-service-broker:d680e8a854a7cbad6d490c445cba2eba">Use the MongoDB Service Broker</a></li>
+<li><a href="#clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</a></li>
+</ul></li>
+<li><a href="#beyond-the-class:d680e8a854a7cbad6d490c445cba2eba">Beyond the class</a></li>
+</ul>
+</nav>
+			</div>
+		</div>
+	</div>
+
+
+		<div class="col-sm-24 doc-main">
+			<main role="main">
+				<article>
+					<a id="title"></a>
+					<div class="doc-entry-meta">
+					</div>
+					<section>
+						
+
+<p>Estimated Time: 60 minutes</p>
+
+<h1 id="requirements:d680e8a854a7cbad6d490c445cba2eba">Requirements</h1>
+
+<p><a href="/pivotal-cloud-foundry-developer/requirements">Lab Requirements</a></p>
+
+<h1 id="what-you-will-learn:d680e8a854a7cbad6d490c445cba2eba">What you will learn</h1>
+
+<ul>
+<li>How to implement the Service Broker API</li>
+<li>How to deploy a service broker as an app to Pivotal Cloud Foundry</li>
+<li>How to register the service broker with the Cloud Controller</li>
+<li>How to make the single plan in the catalog “public” in your organization</li>
+</ul>
+
+<h1 id="exercises:d680e8a854a7cbad6d490c445cba2eba">Exercises</h1>
+
+<h2 id="setup:d680e8a854a7cbad6d490c445cba2eba">Setup</h2>
+
+<p>1) Download the <a href="/pivotal-cloud-foundry-developer/resources/demo-apps/cloudfoundry-mongodb-service-broker.zip">zip file</a>.  The zip file contains source code and jar ready for you to deploy (no building necessary).  Copy the file to folder: <code>~/pivotal-cloud-foundry-developer-workshop/</code> (<code>~</code> is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your <a href=https://en.wikipedia.org/wiki/Home_directory target="_blank">home</a> directory.</p>
+
+<p>2) Extract the the zip file to <code>~/pivotal-cloud-foundry-developer-workshop/cloudfoundry-mongodb-service-broker</code>.</p>
+
+<p>3) OPTIONAL STEP - Import applications into your IDE such as <a href=https://spring.io/tools target="_blank">Spring Tool Suite</a> (STS).</p>
+
+<p>STS Import Help:</p>
+
+<p>Select File &gt; Import… Then select Gradle &gt; Gradle Project. On the Import Gradle Project page, browse to the directory where you extracted the zip.  Then push the &ldquo;Build Model&rdquo; button.  Select the project.  Click &ldquo;Finish&rdquo;.</p>
+
+<p>The above steps require the <code>Grade Support</code> IDE extension to be installed. To install <code>Gradle Support</code> select Help &gt; Dashboard.  This will open a new tab to the Dashboard.  Click on &ldquo;IDE Extensions&rdquo; then search for &ldquo;Gradle&rdquo;.  Select <code>Gradle Support</code> or <code>Gradle (STS Legacy) Support</code> and click the &ldquo;Install&rdquo; button.  Complete the installation wizard and restart STS.</p>
+
+<h2 id="service-broker-api-overview:d680e8a854a7cbad6d490c445cba2eba">Service Broker API Overview</h2>
+
+<p>1) Review the <a href=http://docs.pivotal.io/pivotalcf/services/api.html#api-overview target="_blank">documentation</a>.  Specifically, the sequence diagram.  This is what we will implement.</p>
+
+<h2 id="create-a-mongodb-service-broker:d680e8a854a7cbad6d490c445cba2eba">Create a MongoDB Service Broker</h2>
+
+<h3 id="about-this-broker:d680e8a854a7cbad6d490c445cba2eba">About this Broker</h3>
+
+<p>This broker is implemented with Spring Boot and leverages the <a href=https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker target="_blank">Spring Cloud Service Broker</a> project.  As a result, a lot of the work has been done for us.  In a nutshell, this means that Service Broker endpoints have been mapped (provided) but there a few beans and interfaces we need to implement to complete a broker implementation.</p>
+
+<h3 id="implement-catalog-management:d680e8a854a7cbad6d490c445cba2eba">Implement Catalog Management</h3>
+
+<p>1) Review the documentation on <a href=http://docs.pivotal.io/pivotalcf/services/api.html#catalog-mgmt target="_blank">implementing catalog management</a>.</p>
+
+<p>2) We need to implement catalog management in our <code>mongodb-service-broker</code> application.  Fortunately, all the Service Broker API endpoints have been mapped by the Spring Cloud Service Broker project.  For instance, the  <a href=https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker/blob/master/src/main/java/org/springframework/cloud/servicebroker/controller/CatalogController.java target="_blank"><code>v2/catalog</code> endpoint</a>.</p>
+
+<p>3) We have an endpoint, but the Spring Cloud Service Broker can&rsquo;t provide all the implementation.  We need to describe our catalog.  To to that, all we need to do is provide a <code>Catalog</code> bean.</p>
+
+<p>Review the following file: <code>~/pivotal-cloud-foundry-developer-workshop/cloudfoundry-mongodb-service-broker/src/main/java/org/springframework/cloud/servicebroker/mongodb/config/CatalogConfig.java</code>.</p>
+
+<pre><code>@Configuration
+public class CatalogConfig {
+
+  @Bean
+  public Catalog catalog() {
+    return new Catalog(Collections.singletonList(
+        new ServiceDefinition(
+            getEnvOrDefault(&quot;SERVICE_ID&quot;,&quot;mongodb-service-broker&quot;), //env variable
+            getEnvOrDefault(&quot;SERVICE_NAME&quot;,&quot;MongoDB&quot;), //env variable
+            &quot;A simple MongoDB service broker implementation&quot;,
+            true,
+            false,
+            Collections.singletonList(
+                new Plan(getEnvOrDefault(&quot;PLAN_ID&quot;,&quot;mongo-plan&quot;), //env variable
+                    &quot;standard&quot;,
+                    &quot;This is a default mongo plan.  All services are created equally.&quot;,
+                    getPlanMetadata())),
+            Arrays.asList(&quot;mongodb&quot;, &quot;document&quot;),
+            getServiceDefinitionMetadata(),
+            null,
+            null)));
+  }
+...
+</code></pre>
+
+<p>4) Push the <code>mongodb-service-broker</code> application.</p>
+
+<pre><code>$ cd ~/pivotal-cloud-foundry-developer-workshop/cloudfoundry-mongodb-service-broker/
+$ cf push mongodb-service-broker -p build/libs/cloudfoundry-mongodb-service-broker.jar -m 512M --random-route --no-start
+</code></pre>
+
+<p>5) Set environment variables.</p>
+
+<p>These environment variables get used by the broker to generate the catalog.  These values should be unique across the entire Pivotal Cloud Foundry instance to meet the broker API specifications.</p>
+
+<p>As a convention, append your initials to where specified.</p>
+
+<pre><code>$ cf set-env mongodb-service-broker SERVICE_ID mongodb-service-broker-&lt;initials&gt;
+$ cf set-env mongodb-service-broker SERVICE_NAME MongoDB-&lt;initials&gt;
+$ cf set-env mongodb-service-broker PLAN_ID mongo-plan-&lt;initials&gt;
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code>$ cf set-env mongodb-service-broker SERVICE_ID mongodb-service-broker-dnr
+$ cf set-env mongodb-service-broker SERVICE_NAME MongoDB-dnr
+$ cf set-env mongodb-service-broker PLAN_ID mongo-plan-dnr
+</code></pre>
+
+<p><em>You can safely ignore the &ldquo;TIP: Use &lsquo;cf restage&rsquo; to ensure your env variable changes take effect&rdquo; message.</em></p>
+
+<p>6) Start <code>mongodb-service-broker</code></p>
+
+<pre><code>$ cf start mongodb-service-broker
+</code></pre>
+
+<p>7) Verify your work.  Call the application <code>v2/catalog</code> endpoint through a browser.  Because the application is secured with Basic Auth you will need to provide credentials.</p>
+
+<p><strong>Username:</strong> pivotal <br>
+<strong>Password:</strong> keepitsimple</p>
+
+<p>You should see response similar to the following (pic is using the <a href=https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en target="_blank">JSON Formatter for Chrome</a>):</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/catalog.png" alt="Catalog" title="Catalog" /></p>
+
+<p>8) Register your Service Broker.</p>
+
+<p>We will be creating a <a href=http://docs.pivotal.io/pivotalcf/services/managing-service-brokers.html target="_blank">Space-Scoped</a> broker.  Space-Scoped brokers help you during the development/testing of your service broker, because they are private to a space and don&rsquo;t require an <code>admin</code> to enable access (list it in the marketplace, provision service instances, etc).</p>
+
+<p>A unique broker name is required.  Use your initials.</p>
+
+<p>For Example:</p>
+
+<pre><code>$ cf create-service-broker mongodb-service-broker-dnr pivotal keepitsimple https://mongodb-service-broker-pert-dagger.pcfi1.fe.gopivotal.com --space-scoped
+</code></pre>
+
+<p>9) View the Service Brokers in your installation. You should see your new Service Broker.</p>
+
+<pre><code>$ cf service-brokers
+</code></pre>
+
+<p>10) View service access.</p>
+
+<pre><code>$ cf service-access
+</code></pre>
+
+<p><em>Notice that your service access is set to <code>none</code>, because this is space-scoped broker.</em></p>
+
+<p>11) Verify that your service is listed in the marketplace.</p>
+
+<pre><code>cf marketplace
+</code></pre>
+
+<p>Congratulations, you have implemented and tested the catalog endpoint in your service broker!</p>
+
+<h4 id="questions:d680e8a854a7cbad6d490c445cba2eba">Questions</h4>
+
+<ul>
+<li>Can a service broker support upgrade/downgrade of a service?</li>
+</ul>
+
+<h3 id="implement-provisioning-and-deprovisioning:d680e8a854a7cbad6d490c445cba2eba">Implement Provisioning and Deprovisioning</h3>
+
+<p>1) Review the documentation on implementing <a href=http://docs.pivotal.io/pivotalcf/services/api.html#provisioning target="_blank">provisioning</a> and <a href=http://docs.pivotal.io/pivotalcf/services/api.html#deprovisioning target="_blank">deprovisioning</a>.</p>
+
+<p>2) We need to implement provisioning/deprovisioning in our <code>mongodb-service-broker</code> application. To do so we just need to implement the <a href=https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker/blob/master/src/main/java/org/springframework/cloud/servicebroker/service/ServiceInstanceService.java target="_blank">ServiceInstanceService</a> interface, because the Spring Cloud Service Broker project has already done the <a href=https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker/blob/master/src/main/java/org/springframework/cloud/servicebroker/controller/ServiceInstanceController.java target="_blank">mapping</a>.</p>
+
+<p>Review the following file: <code>~/pivotal-cloud-foundry-developer-workshop/cloudfoundry-mongodb-service-broker/src/main/java/org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceService.java</code></p>
+
+<p>Provisioning Code:</p>
+
+<pre><code>@Service
+public class MongoServiceInstanceService implements ServiceInstanceService {
+...
+
+  @Override
+  public CreateServiceInstanceResponse createServiceInstance(CreateServiceInstanceRequest request) {
+    // make sure we haven't provisioned this before (check broker database)
+    ServiceInstance instance = repository.findOne(request.getServiceInstanceId());
+    if (instance != null) {
+      throw new ServiceInstanceExistsException(request.getServiceInstanceId(), request.getServiceDefinitionId());
+    }
+
+    instance = new ServiceInstance(request);
+
+    if (mongo.databaseExists(instance.getServiceInstanceId())) {
+      // ensure the instance is empty
+      mongo.deleteDatabase(instance.getServiceInstanceId());
+    }
+
+    DB db = mongo.createDatabase(instance.getServiceInstanceId());
+    if (db == null) {
+      throw new ServiceBrokerException(&quot;Failed to create new DB instance: &quot; + instance.getServiceInstanceId());
+      }
+    //save to broker database for record keeping
+    repository.save(instance);
+
+    return new CreateServiceInstanceResponse();
+  }
+...
+
+</code></pre>
+
+<p><strong><em>What&rsquo;s happening?</em></strong></p>
+
+<p>The <code>createServiceInstance</code> method is where our broker provisions the database.  But to do so two things must happen:</p>
+
+<ol>
+<li>Record details in the broker database that we are provisioning a service instance (a MongoDB database)</li>
+<li>Create the database</li>
+</ol>
+
+<p>Deprovisioning Code:</p>
+
+<pre><code>@Service
+public class MongoServiceInstanceService implements ServiceInstanceService {
+...
+  @Override
+  public DeleteServiceInstanceResponse deleteServiceInstance(DeleteServiceInstanceRequest request) throws   MongoServiceException {
+    String instanceId = request.getServiceInstanceId();
+    //locate record in broker database
+    ServiceInstance instance = repository.findOne(instanceId);
+    if (instance == null) {
+      throw new ServiceInstanceDoesNotExistException(instanceId);
+    }
+
+    // delete mongo database
+    mongo.deleteDatabase(instanceId);
+    // delete record from broker database
+    repository.delete(instanceId);
+    return new DeleteServiceInstanceResponse();
+  }
+}
+</code></pre>
+
+<p><strong><em>What&rsquo;s happening?</em></strong></p>
+
+<p>The <code>deleteServiceInstance</code> method is where our broker deprovisions the database.  But to do so two things must happen:</p>
+
+<ol>
+<li>Delete the database</li>
+<li>Delete the record of the service instance in the broker database</li>
+</ol>
+
+<h4 id="questions-1:d680e8a854a7cbad6d490c445cba2eba">Questions</h4>
+
+<ul>
+<li>The broker is required by the Cloud Controller to respond within how many seconds?</li>
+<li>Does provisioning have to be done synchronously?</li>
+</ul>
+
+<h3 id="implement-binding-and-unbinding:d680e8a854a7cbad6d490c445cba2eba">Implement Binding and Unbinding</h3>
+
+<p>1) Review the documentation on implementing <a href=http://docs.pivotal.io/pivotalcf/services/api.html#binding target="_blank">binding</a> and <a href=http://docs.pivotal.io/pivotalcf/services/api.html#unbinding target="_blank">unbinding</a>.</p>
+
+<p>2) We need to implement binding/unbinding in our <code>mongodb-service-broker</code> application. To do so we just need to implement the <a href=https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker/blob/master/src/main/java/org/springframework/cloud/servicebroker/service/ServiceInstanceBindingService.java target="_blank">ServiceInstanceBindingService</a> interface, because the Spring Cloud Service Broker project has already done the <a href=https://github.com/spring-cloud/spring-cloud-cloudfoundry-service-broker/blob/master/src/main/java/org/springframework/cloud/servicebroker/controller/ServiceInstanceBindingController.java target="_blank">mapping</a>.</p>
+
+<p>Review the following file: <code>~/pivotal-cloud-foundry-developer-workshop/cloudfoundry-mongodb-service-broker/src/main/java/org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceBindingService.java</code></p>
+
+<p>Binding Code:</p>
+
+<pre><code>@Service
+public class MongoServiceInstanceBindingService implements ServiceInstanceBindingService {
+...
+  @Override
+  public CreateServiceInstanceBindingResponse createServiceInstanceBinding(CreateServiceInstanceBindingRequest request) {
+
+    String bindingId = request.getBindingId();
+    String serviceInstanceId = request.getServiceInstanceId();
+
+    ServiceInstanceBinding binding = bindingRepository.findOne(bindingId);
+    if (binding != null) {
+      throw new ServiceInstanceBindingExistsException(serviceInstanceId, bindingId);
+    }
+
+    String database = serviceInstanceId;
+    String username = bindingId;
+    String password = &quot;password&quot;;
+
+
+    mongo.createUser(database, username, password);
+
+    Map&lt;String, Object&gt; credentials =
+        Collections.singletonMap(&quot;uri&quot;, (Object) mongo.getConnectionString(database, username, password));
+
+    binding = new ServiceInstanceBinding(bindingId, serviceInstanceId, credentials, null, request.getBoundAppGuid());
+    bindingRepository.save(binding);
+
+    return new CreateServiceInstanceAppBindingResponse().withCredentials(credentials);
+  }
+...
+</code></pre>
+
+<p><strong><em>What&rsquo;s happening?</em></strong></p>
+
+<p>The <code>createServiceInstanceBinding</code> method is where our broker binds an application to the provisioned service instance (database).  But to do so two things must happen:</p>
+
+<ol>
+<li>Create a unique set of credentials for this binding request in MongoDB</li>
+<li>Create a record of the binding in the broker database</li>
+</ol>
+
+<p>Unbinding Code:</p>
+
+<pre><code>@Service
+public class MongoServiceInstanceBindingService implements ServiceInstanceBindingService {
+
+  @Override
+  public void deleteServiceInstanceBinding(DeleteServiceInstanceBindingRequest request) {
+    String bindingId = request.getBindingId();
+    ServiceInstanceBinding binding = getServiceInstanceBinding(bindingId);
+
+    if (binding == null) {
+      throw new ServiceInstanceBindingDoesNotExistException(bindingId);
+    }
+
+    mongo.deleteUser(binding.getServiceInstanceId(), bindingId);
+    bindingRepository.delete(bindingId);
+  }
+}
+</code></pre>
+
+<p><strong><em>What&rsquo;s happening?</em></strong></p>
+
+<p>The <code>deleteServiceInstanceBinding</code> method is where our broker unbinds an application to the provisioned service instance (database).  But to do so two things must happen:</p>
+
+<ol>
+<li>Delete the credentials (user) for this binding request in MongoDB</li>
+<li>Delete the record of the binding in the broker database</li>
+</ol>
+
+<p>Congratulations! You have created a simple service broker.</p>
+
+<h4 id="questions-2:d680e8a854a7cbad6d490c445cba2eba">Questions</h4>
+
+<ul>
+<li>Do all services have to be bindable?</li>
+</ul>
+
+<h2 id="use-the-mongodb-service-broker:d680e8a854a7cbad6d490c445cba2eba">Use the MongoDB Service Broker</h2>
+
+<p>1) Configure the <code>mongodb-service-broker</code> application to use a MongoDB instance.</p>
+
+<p>A MongoDB instance can be obtained in the following ways:</p>
+
+<ol>
+<li>Your instructor will provision MongoDB and provide connectivity details to you</li>
+<li>Use a MongoDB instance in your environment</li>
+<li>Provision a <a href="/pivotal-cloud-foundry-developer/service-broker/aws-mongo-ami">MongoDB instance on AWS</a></li>
+</ol>
+
+<p>Make sure to obtain the IP address of your MongoDB instance before moving forward.  The broker will attempt to connect to MongoDB  on port 27017.</p>
+
+<p><strong><em>Note:</em></strong> MongoDB security configuration should not be enabled (<code>security.authorization = false</code>).</p>
+
+<pre><code>$ cf set-env mongodb-service-broker MONGODB_HOST &lt;IP-ADDRESS&gt;
+</code></pre>
+
+<p><em>You can safely ignore the &ldquo;TIP: Use &lsquo;cf restage&rsquo; to ensure your env variable changes take effect&rdquo; message.</em></p>
+
+<p>2) Restart the application.</p>
+
+<pre><code>$ cf restart mongodb-service-broker
+</code></pre>
+
+<p>3) Download <a href="/pivotal-cloud-foundry-developer/resources/demo-apps/spring-music.war">Spring-Music</a>.  Copy the file to folder: <code>~/pivotal-cloud-foundry-developer-workshop/spring-music/</code> (<code>~</code> is shorthand for the home directory in Linux, Mac and Unix based operating systems).  You will need to create this directory in your <a href=https://en.wikipedia.org/wiki/Home_directory target="_blank">home</a> directory.</p>
+
+<p>4) Push <code>spring-music</code>.</p>
+
+<pre><code>$ cd ~/pivotal-cloud-foundry-developer-workshop/spring-music/
+$ cf push spring-music -p ./spring-music.war -m 512M --random-route
+</code></pre>
+
+<p>5) View <code>spring-music</code> in a browser.  Click on the <code>i</code> button on the top right of the screen.  Notice that there are no services attached and <code>spring-music</code> is using an embedded database.</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/spring-music-initial.png" alt="Spring Music - Embedded DB" title="Spring Music - Embedded DB" /></p>
+
+<p>6) Create a MongoDB service instance.</p>
+
+<p>For Example:</p>
+
+<pre><code>$ cf create-service MongoDB-dnr standard mongo-service
+</code></pre>
+
+<p>7) Bind the <code>spring-music</code> to <code>mongo-service</code>.</p>
+
+<pre><code>$ cf bind-service spring-music mongo-service
+</code></pre>
+
+<p><em>You can safely ignore the &ldquo;TIP: Use &lsquo;cf restage spring-music&rsquo; to ensure your env variable changes take effect&rdquo; message.</em></p>
+
+<p>8) Restart <code>spring-music</code></p>
+
+<pre><code>$ cf restart spring-music
+</code></pre>
+
+<p>9) Refresh <code>spring-music</code> in the browser.  Click on the <code>i</code> button in the top right of the screen.  You are now using MongoDB!</p>
+
+<p><img src="/pivotal-cloud-foundry-developer/resources/images/spring-music-mongo.png" alt="Spring Music - MongoDB" title="Spring Music - MongoDB" /></p>
+
+<p>10) <strong>Optional Step:</strong> If you have access.  View the data in MongoDB.</p>
+
+<h2 id="clean-up:d680e8a854a7cbad6d490c445cba2eba">Clean up</h2>
+
+<p>1) Delete <code>spring-music</code>.</p>
+
+<pre><code>$ cf delete spring-music
+</code></pre>
+
+<p>2) Delete the <code>mongo-service</code> service instance.</p>
+
+<pre><code>$ cf delete-service mongo-service
+</code></pre>
+
+<p>3) Delete the service broker.</p>
+
+<p>For example:</p>
+
+<pre><code>$ cf delete-service-broker mongodb-service-broker-dnr
+</code></pre>
+
+<p>4) Delete <code>mongodb-service-broker</code> application.</p>
+
+<pre><code>$ cf delete mongodb-service-broker
+</code></pre>
+
+<p>5) If provisioned, terminate the AWS mongodb instance.</p>
+
+<h1 id="beyond-the-class:d680e8a854a7cbad6d490c445cba2eba">Beyond the class</h1>
+
+<p>Review other <a href=http://docs.pivotal.io/pivotalcf/services/examples.html target="_blank">sample brokers</a>.</p>
+
+					</section>
+				</article>
+			</main>
+		</div> 
+
+
+	</div> 
+</div>
+
+<hr />
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<p class="doc-footer-em"><a href="#">Back to TOP</a></p>
+		</div>
+	</div>
+
+</div> 
+
+<footer class="doc-footer">
+	
+	<p>© Copyright Pivotal. All rights reserved.</p>
+</footer>
+
+
+
+
+
+<script src="/pivotal-cloud-foundry-developer/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/pivotal-cloud-foundry-developer/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+
