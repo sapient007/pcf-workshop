@@ -8,5 +8,6 @@ cf_organization:
 cf_space: 
 
 #git information
+git_repo: 
 workshop-branch: 
 git_private_key: |

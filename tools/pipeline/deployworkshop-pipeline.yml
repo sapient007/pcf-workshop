@@ -3,7 +3,7 @@ resources:
 - name: workshop-web-app
   type: git
   source:
-    uri: git@github.com:sapient007/pcf-workshop-dev.git
+    uri: {{git_repo}}
     private_key: {{git_private_key}}
     ignore_paths:
       - workshop-web-app/tools/**
