@@ -19,4 +19,5 @@ CD into the unzipped folder
 
 From the terminal enter: ./run.sh
 .
+.
 
